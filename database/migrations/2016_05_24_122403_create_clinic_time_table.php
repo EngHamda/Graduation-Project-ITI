@@ -17,8 +17,8 @@ class CreateClinicTimeTable extends Migration
             $table->string('clinic_day');
             $table->string('clinic_from');
             $table->string('clinic_to');
-            $table->string('clinic_id');
-            $table->rememberToken();
+            $table->integer('clinic_id')->unsigned();
+            $table->foreign('clinic_id')->references('id')->on('clinics');
             $table->timestamps();
         });
     }
@@ -30,6 +30,10 @@ class CreateClinicTimeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('clinictimes');
+
+        Schema::drop('clinictimes',function(Blueprint $table)
+        {
+            $table->dropForeign('clinictimes_clinic_id_foreign');
+        });
     }
 }

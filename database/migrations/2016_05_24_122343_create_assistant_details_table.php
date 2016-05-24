@@ -15,8 +15,8 @@ class CreateAssistantDetailsTable extends Migration
         Schema::create('assistantdetails', function (Blueprint $table) {
             $table->increments('id');
             $table->string('clinic_id');
-            $table->string('user_id');
-            $table->rememberToken();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +28,10 @@ class CreateAssistantDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('assistantdetails');
+
+        Schema::drop('assistantdetails',function(Blueprint $table)
+        {
+            $table->dropForeign('assistantdetails_user_id_foreign');
+        });
     }
 }

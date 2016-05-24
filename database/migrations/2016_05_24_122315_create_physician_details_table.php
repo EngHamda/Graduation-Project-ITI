@@ -15,8 +15,8 @@ class CreatePhysicianDetailsTable extends Migration
         Schema::create('physiciandetails', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('user_id');
-            $table->rememberToken();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +28,9 @@ class CreatePhysicianDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('physiciandetails');
+        Schema::drop('physiciandetails',function(Blueprint $table)
+        {
+            $table->dropForeign('physiciandetails_user_id_foreign');
+        });
     }
 }
