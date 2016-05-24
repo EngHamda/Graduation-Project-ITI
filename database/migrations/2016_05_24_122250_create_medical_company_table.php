@@ -23,7 +23,6 @@ class CreateMedicalCompanyTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('picture');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
