@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2">
             <h1>{{ trans('quickadmin::admin.users-create-create_user') }}</h1>
@@ -18,7 +19,7 @@
         </div>
     </div>
 
-    {!! Form::open(['route' => 'users.store','files' => true,'class' => 'form-horizontal']) !!}
+    {!! Form::open(['route' => 'users.store','files' => true,'enctype'=>'multipart/form-data','class' => 'form-horizontal']) !!}
 
     <div class="form-group">
         {!! Form::label('name', trans('quickadmin::admin.users-create-name'), ['class'=>'col-sm-2 control-label']) !!}
@@ -97,9 +98,12 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('Profile Picture', null, ['class'=>'col-sm-2 control-label']) !!}
+        {!! Form::label('profile_picture', 'Profile Picture', array('class'=>'col-sm-2 control-label')) !!}
         <div class="col-sm-10">
-            {!!Form::file('profile_picture', ['class'=>'form-control']) !!}
+            {!! Form::file('profile_picture',$attributes=['class'=>' btn btn-default']) !!}
+            {!! Form::hidden('profile_picture_w', 4096) !!}
+            {!! Form::hidden('profile_picture_h', 4096) !!}
+
         </div>
     </div>
 

@@ -6,6 +6,8 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
+
 
 class UsersController extends Controller
 {
@@ -38,8 +40,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
+
+        $request = $this->saveFiles($request);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);

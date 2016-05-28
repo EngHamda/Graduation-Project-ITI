@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{!! Form::open(array('files' => true, 'route' => 'admin.medicalcompany.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('files' => true,'enctype'=>'multipart/form-data', 'route' => 'admin.medicalcompany.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'Name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -69,7 +69,7 @@
 </div><div class="form-group">
     {!! Form::label('profile_picture', 'Profile Picture', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::file('profile_picture') !!}
+        {!! Form::file('profile_picture',$attributes=['class'=>' btn btn-default']) !!}
         {!! Form::hidden('profile_picture_w', 4096) !!}
         {!! Form::hidden('profile_picture_h', 4096) !!}
         

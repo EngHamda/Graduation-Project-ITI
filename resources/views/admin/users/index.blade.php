@@ -26,7 +26,8 @@
                             <td>{{$user->role->title}}</td>
                             <td></td>
 
-                            <td>{{ HTML::image($user->profile_picture) }}</td>
+                            <td>@if($user->profile_picture != '')<img src="{{ asset('uploads/thumb') . '/'.  $user->profile_picture }}">@endif</td>
+
                             <td>
                                 {!! link_to_route('users.edit', trans('quickadmin::admin.users-index-edit'), [$user->id], ['class' => 'btn btn-xs btn-info']) !!}
                                 {!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . trans('quickadmin::admin.users-index-are_you_sure') . '\');',  'route' => array('users.destroy', $user->id)]) !!}
