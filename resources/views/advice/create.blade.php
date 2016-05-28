@@ -12,8 +12,10 @@
 
             <div class="form-group">
                 {!!Form::label('advice', 'Insert Advice') !!}
-
                 {!! Form::text('advice',$values=null,$attributes=['class'=>'form-control','name'=>'advice'])!!}
+
+                {!! Form::label('physician_id','By Whom') !!}
+                {!! Form::text('user_id',$values=null,$attributes=['class'=>'form-control','name'=>'user_id']) !!}
                 {!! Form::submit('Submit')!!}
             </div>
 

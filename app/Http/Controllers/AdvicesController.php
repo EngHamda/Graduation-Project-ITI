@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+//Command
+use App\Commands\StoreAdviceCommand;
 
 use Illuminate\Http\Request;
-
+//Request
 use App\Http\Requests;
 
+use App\Http\Requests\StoreAdviceRequest;
+//Model
 use App\Advice;
 
 class AdvicesController extends Controller
@@ -41,9 +45,15 @@ class AdvicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdviceRequest $request)
     {
-        //
+        $advice=$request->input('advice');
+        $physician_id=$request->input('user_id');
+
+        $command= new StoreAdviceCommand($advice,$physician_id);
+        $this->dispatch($command);
+        return \Redirect::route('advices.index');
+
     }
 
     /**
