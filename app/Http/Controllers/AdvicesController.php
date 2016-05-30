@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 //Command
 use App\Commands\StoreAdviceCommand;
 
+use App\Commands\UpdateAdviceCommand;
+
+use App\Commands\DestroyAdviceCommand;
+
+
 use Illuminate\Http\Request;
 //Request
 use App\Http\Requests;
 
 use App\Http\Requests\StoreAdviceRequest;
+
+use App\Http\Requests\UpdateAdviceRequest;
 //Model
 use App\Advice;
 
@@ -63,8 +70,8 @@ class AdvicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $advice =Advice::find($id);
-        return view('advice.show',compact('$advice'));
+    {   $advice = Advice::find($id);
+        return view('advice.show',compact('advice'));
     }
 
     /**
@@ -74,8 +81,10 @@ class AdvicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        return view('advice.edit');
+        $advice = Advice::find($id);
+        return view('advice.edit',compact('advice'));
     }
 
     /**
@@ -85,9 +94,14 @@ class AdvicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAdviceRequest $request, $id)
     {
-        //
+        $advice=$request->input('advice');
+
+
+        $command= new UpdateAdviceCommand($id,$advice);
+        $this->dispatch($command);
+        return \Redirect::route('advices.index');
     }
 
     /**
@@ -98,6 +112,8 @@ class AdvicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $command=new DestroyAdviceCommand($id);
+        $this->dispatch($command);
+        return \Redirect::route('advices.index');
     }
 }
