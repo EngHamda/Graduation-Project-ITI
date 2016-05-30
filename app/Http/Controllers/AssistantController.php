@@ -232,7 +232,7 @@ return view('editpatientprofile',compact('user','patientprofile'));
 if($user->role_id==5)
 {
 
-return view('changeguestpatient',compact('user'));
+return view('changeguestpatienttopatient',compact('user'));
 
 }
 

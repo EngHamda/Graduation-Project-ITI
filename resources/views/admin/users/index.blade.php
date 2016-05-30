@@ -45,8 +45,6 @@
         {{ trans('quickadmin::admin.users-index-no_entries_found') }}
     @endif
 
-<<<<<<< HEAD
+
 @endsection
-=======
-@endsection
->>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
+
