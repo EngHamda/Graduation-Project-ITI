@@ -116,4 +116,8 @@ class AdvicesController extends Controller
         $this->dispatch($command);
         return \Redirect::route('advices.index');
     }
+
+    public function adviceLikeAdvice(){
+        
+    }
 }

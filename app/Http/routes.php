@@ -18,3 +18,7 @@ Route::get('/', function () {
 //advices Routes
 
 Route::resource('advices','AdvicesController');
+Route::post('/like',[
+     'uses'=>'AdvicesController@adviceLikeAdvice',
+     'as' =>'like'
+]);

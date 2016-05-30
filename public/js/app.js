@@ -3,7 +3,7 @@
 $('.like').on('click',function(event)
     {
         // Prevent default behavior
-        var adviceId =event.target.parentNode.parentNode.dataset()
+        var adviceId =event.target.parentNode.parentNode.dataset['adviceid'];
         event.preventDefault();
 
        var isLike = event.target.previousElementSibling==null;
@@ -12,7 +12,7 @@ $('.like').on('click',function(event)
             method: 'POST',
             url:'urlLike',
             data:{
-                isLike:isLike,postId:,_token:token
+                isLike:isLike,adviceId:adviceId,_token:token
             }
 
 

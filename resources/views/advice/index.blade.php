@@ -3,7 +3,7 @@
 @section('content')
 
    @foreach($advices as $advice)
-    <article>
+    <article  data-adviceid="{{$advice->id}}">
         <a href="advices/{{$advice->id}}" >
             {{$advice->advice}}
             <br>
