@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/','ReservationsController@index');
+
+//Reservation Routes
+Route::resource('reservations','ReservationsController');
+
+//Reservation Routes
+Route::resource('questions','QuestionsController');
