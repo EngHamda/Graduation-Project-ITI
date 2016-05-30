@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
 @include('admin.partials.header')
 <div style="margin-top: 10%;"></div>
 <div class="container-fluid">
@@ -46,35 +49,50 @@
                                 <input type="password"
                                        class="form-control"
                                        name="password">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+<<<<<<< HEAD
 
                                 
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
                                 <label>
                                     <input type="checkbox"
                                            name="remember">{{ trans('quickadmin::auth.login-remember_me') }}
                                 </label>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+<<<<<<< HEAD
 
                                
                               
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
                                 <button type="submit"
                                         class="btn btn-primary"
                                         style="margin-right: 15px;">
                                     {{ trans('quickadmin::auth.login-btnlogin') }}
                                 </button>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
                             </div>
                         </div>
                     </form>
@@ -83,6 +101,10 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 @include('admin.partials.footer')
 
+=======
+@include('admin.partials.footer')
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e

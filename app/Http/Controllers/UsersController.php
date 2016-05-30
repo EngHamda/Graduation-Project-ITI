@@ -101,23 +101,24 @@ class UsersController extends Controller
 
 
 
+
      public function usersLogin(Request $request)
 {
 
 
-$validator = Validator::make($request->all(), [
-            'email' => 'required|max:255',
-            'password' => 'required',
-        ]);
+	$validator = Validator::make($request->all(), [
+		    'email' => 'required|max:255',
+		    'password' => 'required',
+		]);
 
 
 //print_r($request->all());
 
         if ($validator->fails()) {
-            return redirect('/user/login')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+					    return redirect('/user/login')
+							->withErrors($validator)
+    							->withInput();
+                                  }
 
 
 
@@ -190,3 +191,4 @@ return redirect('/user/login')
 
 
 }
+

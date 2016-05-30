@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 
 
+
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
@@ -59,12 +60,12 @@ Route::post('physician/storecompanyrequest','PhysicianController@storecompanyreq
 //put here routes to be acess only by assistant
 Route::group(['middleware' => 'assistant'], function () {
 
-  Route::get('/assistant', function () {
+  /*Route::get('/assistant', function () {
     return view('assistantprofile');
 
 
 
-} );  
+} );*/  
 
 
 
@@ -79,7 +80,7 @@ Route::get('/assistant/addnewpatientprofile', function () {
 
 
 
-//Route::resource('assistant','AssistantController');
+Route::resource('assistant','AssistantController');
 Route::post('assistant/searchpatientprofile',"AssistantController@search");
 
 
@@ -101,4 +102,5 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 Route::resource('advices','AdvicesController');
+
 

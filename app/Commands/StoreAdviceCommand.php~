@@ -2,7 +2,11 @@
 
 namespace  App\Commands;
 
+<<<<<<< HEAD
+use App\Commands\Command;
+=======
 use App\Commands\command;
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\Advice;
 

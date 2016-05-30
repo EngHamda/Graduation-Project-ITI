@@ -15,9 +15,9 @@ use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
 
 
 
-
-
-class User  extends Model implements AuthenticatableContract,AuthorizableContract,CanResetPasswordContract
+class User extends Model implements AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
 
     use Authenticatable, Authorizable, CanResetPassword, AdminPermissionsTrait;
@@ -35,9 +35,12 @@ class User  extends Model implements AuthenticatableContract,AuthorizableContrac
      * @var array
      */
 
+
   
     protected $fillable = ['name', 'email', 'password','gender','birth_date','phone','buildingnumber','street','city','country','profile_picture','role_id'];
 
+
+  
 
 
     /**
@@ -45,6 +48,7 @@ class User  extends Model implements AuthenticatableContract,AuthorizableContrac
      *
      * @var array
      */
+
 
     protected $hidden = [
         'password', 'remember_token',
@@ -54,7 +58,12 @@ class User  extends Model implements AuthenticatableContract,AuthorizableContrac
 
 
 
- public static function boot()
+
+
+  
+
+    public static function boot()
+
     {
         parent::boot();
 
@@ -77,6 +86,7 @@ class User  extends Model implements AuthenticatableContract,AuthorizableContrac
 
 
 
+
 public function physiciandetail()
     {
        return $this->hasOne('App\Physiciandetail');
@@ -91,8 +101,6 @@ public function patientprofile()
     {
        return $this->hasOne('App\Patientprofile');
     }
-
-
 
 
 

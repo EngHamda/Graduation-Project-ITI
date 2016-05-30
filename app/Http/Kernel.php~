@@ -55,12 +55,14 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-
+<<<<<<< HEAD
         'patient' =>\App\Http\Middleware\PatientMiddleware::class,
         'physician'=>\App\Http\Middleware\PhysicianMiddleware::class,
         'assistant'=>\App\Http\Middleware\AssistantMiddleware::class,
-
         'role' => \Laraveldaily\Quickadmin\Middleware\HasPermissions::class,
 
+=======
+        'role' => \Laraveldaily\Quickadmin\Middleware\HasPermissions::class,
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
     ];
 }

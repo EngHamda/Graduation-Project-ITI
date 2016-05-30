@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 
 
+
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
@@ -101,4 +102,5 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 Route::resource('advices','AdvicesController');
+
 
