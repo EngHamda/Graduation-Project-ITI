@@ -23,8 +23,40 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectAfterLogout = 'login';
 
+
+    /**
+     * Where to redirect users after login / registration.
+     *
+     * @var string
+     */
+
+   
+
+
+
+
+
+  protected function authenticated($request, $user)
+    {
+        if($user->role_id == 4) {
+            return redirect()->intended('/physician');
+        }
+        if($user->role_id == 3) {
+            return redirect()->intended('/assistant');
+        }
+
+ if($user->role_id == 1) {
+            return redirect()->intended('/admin');
+        }
+
+
+        return redirect()->intended('/');
+    }
+
+    protected $redirectAfterLogout = '/';
+
+protected $redirectTo = '/';
     /**
      * Create a new authentication controller instance.
      *
@@ -32,7 +64,10 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+
+      
         $this->redirectAfterLogout = config('quickadmin.homeRoute');
+
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -46,11 +81,18 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+
+
+           
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+
         ]);
     }
+
+
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -62,9 +104,34 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+
+
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id'=>$data['role_id'],
         ]);
     }
+
+
+
+  public function userlogin()
+  {
+
+
+  return view('auth.userlogin');
+
+
+
+ }
+
+
+
+
+
+
+
+
+
+
 }

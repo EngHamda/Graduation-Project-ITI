@@ -117,7 +117,10 @@ class AdvicesController extends Controller
         return \Redirect::route('advices.index');
     }
 
-    public function adviceLikeAdvice(){
-        
+    public function adviceLikeAdvice(Request $request)
+    {
+        $advice_id = $request['adviceId'];
+        $is_Like = $request['isLike']==='true';
+
     }
 }

@@ -2,6 +2,7 @@
 
 namespace  App\Commands;
 
+
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\Advice;

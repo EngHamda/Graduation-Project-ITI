@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
 @include('admin.partials.header')
 <div style="margin-top: 10%;"></div>
 <div class="container-fluid">
@@ -44,25 +49,26 @@
                                 <input type="password"
                                        class="form-control"
                                        name="password">
-                            </div>
+
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <label>
+              <label>
                                     <input type="checkbox"
                                            name="remember">{{ trans('quickadmin::auth.login-remember_me') }}
                                 </label>
-                            </div>
+              </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit"
+              <button type="submit"
                                         class="btn btn-primary"
                                         style="margin-right: 15px;">
                                     {{ trans('quickadmin::auth.login-btnlogin') }}
                                 </button>
+
                             </div>
                         </div>
                     </form>
@@ -71,4 +77,8 @@
         </div>
     </div>
 </div>
+
+
 @include('admin.partials.footer')
+
+

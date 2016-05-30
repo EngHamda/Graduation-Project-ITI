@@ -3,6 +3,9 @@
 namespace App\Commands;
 
 
-abstract class command{
+abstract class Command{
 
 }
+
+?>
+
