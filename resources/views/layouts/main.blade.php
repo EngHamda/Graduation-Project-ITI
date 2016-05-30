@@ -83,10 +83,12 @@
     <!-- Bootstrap -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/app.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     {!! Html::script('js/bootstrap.min.js') !!}
     {{--{!! Html::script('js/custom/multi-upload/jquery.filer.min.js') !!}--}}
 <!--    {!! Html::script('js/custom/script.js') !!} for Q Index -->
     <!--<script src="js/bootstrap.min.js"></script>-->
   </body>
+
 </html>
