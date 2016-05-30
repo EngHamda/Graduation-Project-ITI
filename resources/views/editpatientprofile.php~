@@ -1,0 +1,98 @@
+
+{!! Form::open(array('action'=>['ClassifiedsController@update',$user->id],'method'=>'PUT','enctype'=>'multipart/form-data')) !!}
+    
+{!!  Form::label('name', 'Name'); !!}
+
+    {!! Form::text('name',$value=$user->name);!!}
+<br>
+   
+
+
+
+{!!  Form::label('birth_date', 'birth_date'); !!}
+{!! Form::text('birth_date',$value=$user->birth_date);!!}
+<br>
+
+
+
+{!!  Form::label('gender', 'gender'); !!}
+{!! Form::text('gender',$value=$user->gender);!!}
+
+
+<br>
+
+
+
+<br>
+
+
+
+{!!  Form::label('phone', 'phone'); !!}
+{!! Form::text('phone',$value=$user->phone);!!}
+
+
+<br>
+
+<br>
+
+
+
+{!!  Form::label('buildingnumber', 'buildingnumber'); !!}
+{!! Form::text('buildingnumber',$value=$user->buildingnumber);!!}
+
+
+<br>
+
+
+<br>
+
+
+
+{!!  Form::label('street', 'street'); !!}
+{!! Form::text('street',$value=$user->street);!!}
+
+
+
+
+
+<br>
+{!!  Form::label('city', 'city'); !!}
+{!! Form::text('city',$value=$user->city);!!}
+
+<br>
+{!!  Form::label('country', 'country'); !!}
+{!! Form::text('country',$value=$user->country);!!}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{!! Form::submit('Click Me!');!!}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{!! Form::close() !!}
+
+
+
