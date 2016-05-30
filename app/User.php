@@ -53,15 +53,6 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
-
-
-
-
-
-  
-
     public static function boot()
 
     {
@@ -80,29 +71,28 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\advice');
     }
 
+    public function likes()
+    {
+       return $this->hasMany('App\Like');
+    }
 
-
-
-
-
-
-
-public function physiciandetail()
+    public function physiciandetail()
     {
        return $this->hasOne('App\Physiciandetail');
     }
 
-
-
-
-
-
-public function patientprofile()
+    public function patientprofile()
     {
        return $this->hasOne('App\Patientprofile');
     }
 
-
-
+    public function reservations() {
+        
+        return $this->hasMany('\App\Reservation');
+    }
+    public function questions() {
+        
+        return $this->hasMany('\App\Question');
+    }
 
 }

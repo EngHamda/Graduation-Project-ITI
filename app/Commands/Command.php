@@ -1,15 +1,9 @@
 <?php
-namespace APP\Commands;
+
+namespace App\Commands;
+
+
 abstract class Command{
-
-
-
-
-
-
-
-
-
 
 }
 

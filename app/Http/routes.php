@@ -15,15 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
-
-
-
-
-
-
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
@@ -68,10 +59,6 @@ Route::group(['middleware' => 'assistant'], function () {
 } );*/  
 
 
-
-
-
-
 Route::get('/assistant/addnewpatientprofile', function () {
     return view('addnewpatientprofile');
 
@@ -103,4 +90,19 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 Route::resource('advices','AdvicesController');
 
+Route::post('/like',[
+     'uses'=>'AdvicesController@adviceLikeAdvice',
+     'as' =>'like'
+]);
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/','ReservationsController@index');
+
+//Reservation Routes
+Route::resource('reservations','ReservationsController');
+
+//Reservation Routes
+Route::resource('questions','QuestionsController');
