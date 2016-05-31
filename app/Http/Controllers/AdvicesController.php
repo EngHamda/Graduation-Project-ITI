@@ -19,6 +19,8 @@ use App\Http\Requests\UpdateAdviceRequest;
 //Model
 use App\Advice;
 
+use App\Like;
+
 class AdvicesController extends Controller
 {
     /**
@@ -121,6 +123,45 @@ class AdvicesController extends Controller
     {
         $advice_id = $request['adviceId'];
         $is_Like = $request['isLike']==='true';
+        $update ='false';
+        // Retrieve advice object from database
+        $advice = Advice::find($advice_id);
+            if(!$advice)
+            {
+                return null;
+            }
+        //Retrieve loggined user
+        $user=Auth::user();
 
+        //Retrieve like from database
+        $like = $user()->likes()->where('advice_id',$advice_id)->first();
+
+        if($like)//The user liked or disliked this advice
+        {
+           $already_liked = $like->like;
+            $update='true';
+            if($already_liked==$is_Like){
+                $like->delete(); //if user pressed the same link like or dislike twice delete the row
+                return null;
+            }
+
+        }
+        else
+        {
+            $like = new Like();
+        }
+
+        $like->like = $is_Like;
+        $like->user_id = $user->id;
+        $like->advice_id = $advice->id;
+
+        if($update){
+            $like->update();
+        }
+        else
+        {
+            $like->save();
+        }
+        return null;
     }
 }
