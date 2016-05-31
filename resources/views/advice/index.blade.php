@@ -9,8 +9,8 @@
             <br>
         </a>
         <div>
-        <a href="#" class="like">like</a>
-        <a href="#" class="like">dislike</a>
+        <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice_id)->first()->like==1?'You like this post':'Like':'Like'}}</a>
+        <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice_id)->first()->like==0?'You don\'t like this post':'Dislike':'Dislike'}}</a>
         </div>
     </article>
     <br>
