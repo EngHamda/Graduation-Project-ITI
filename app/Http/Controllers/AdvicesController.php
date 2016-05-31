@@ -20,7 +20,7 @@ use App\Http\Requests\UpdateAdviceRequest;
 use App\Advice;
 
 use App\Like;
-
+use Auth;
 class AdvicesController extends Controller
 {
     /**
@@ -122,27 +122,27 @@ class AdvicesController extends Controller
     public function adviceLikeAdvice(Request $request)
     {
         $advice_id = $request['adviceId'];
-        $is_Like = $request['isLike']==='true';
+        $is_Like = $request['isLike']=='true';
         $update ='false';
         // Retrieve advice object from database
         $advice = Advice::find($advice_id);
             if(!$advice)
             {
-                return null;
+                return 'there is not any advice';
             }
         //Retrieve loggined user
         $user=Auth::user();
 
         //Retrieve like from database
-        $like = $user()->likes()->where('advice_id',$advice_id)->first();
+        $like = $user->likes()->where('advice_id',$advice_id)->first();
 
         if($like)//The user liked or disliked this advice
         {
-           $already_liked = $like->like;
+           $already_liked = $like->liked;
             $update='true';
             if($already_liked==$is_Like){
                 $like->delete(); //if user pressed the same link like or dislike twice delete the row
-                return null;
+                return 'like deleted';
             }
 
         }
@@ -151,7 +151,7 @@ class AdvicesController extends Controller
             $like = new Like();
         }
 
-        $like->like = $is_Like;
+        $like->liked = $is_Like;
         $like->user_id = $user->id;
         $like->advice_id = $advice->id;
 
@@ -162,6 +162,6 @@ class AdvicesController extends Controller
         {
             $like->save();
         }
-        return null;
+        return 'there is an error';
     }
 }

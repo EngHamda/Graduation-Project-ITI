@@ -103,7 +103,7 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 Route::resource('advices','AdvicesController');
 
-Route::post('/like',[
+Route::post('advices/like',[
      'uses'=>'AdvicesController@adviceLikeAdvice',
      'as' =>'like'
 ]);
