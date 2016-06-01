@@ -44,7 +44,11 @@
     @else
         {{ trans('quickadmin::admin.users-index-no_entries_found') }}
     @endif
+<<<<<<< HEAD
 
 
 @endsection
 
+=======
+@endsection
+>>>>>>> cf79f64c39f59fe801a9a83f8572952118e6216b

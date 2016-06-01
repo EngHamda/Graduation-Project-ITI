@@ -1,0 +1,113 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+use App\Commands\StoreAnswerCommand;
+use App\Commands\StoreAnswerQuestionCommand;
+use App\Http\Requests\StoreAnswerRequest;
+
+use App\Question;
+use App\Speciality;
+use App\Answer;
+class AnswersController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()//$id)
+    {
+        //
+//        return view('Q&A.index',  compact('unanswered_questions', 'questions'));//,'specialties'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id)
+    {
+        //
+        $question = Question::find($id);
+        //create query of all specialities
+        $specialities=  Speciality::all('id','name');
+//        return $specialities;
+        return view('Q&A.createAnswer',  compact('question','specialities'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreAnswerRequest $request)
+    {
+        //answer-specific, answer-detail, answer-speciality, id-question
+        $answer_specific     = $request->input('answer-specific');
+        $answer_detail       = $request->input('answer-detail');
+        $answer_speciality   = $request->input('answer-speciality');
+        $question_id         = $request->input('id-question');
+        $physician_id        = 1;//$request->input('id-question');
+//        echo "$question_specific";
+        //create command
+        $commandCreate = new StoreAnswerCommand($answer_specific, $answer_detail, $answer_speciality, $question_id, $physician_id);
+        $commandUpdate = new StoreAnswerQuestionCommand($question_id);
+        //run command
+        $this->dispatch($commandCreate);
+        $this->dispatch($commandUpdate);
+        return \Redirect::route('questions.index')
+                ->with('message','New Answer is added');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

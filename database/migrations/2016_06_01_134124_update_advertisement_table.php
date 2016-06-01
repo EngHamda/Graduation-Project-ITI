@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdvertisementTable extends Migration
+class UpdateAdvertisementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,11 @@ class CreateAdvertisementTable extends Migration
      */
     public function up()
     {
-        
-Schema::create('advertisements', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('advertisementname');
-            $table->string('advertisementpath');
+        Schema::table('advertisement',function(Blueprint $table){
             $table->integer('medicalcompany_id')->unsigned();
             $table->foreign('medicalcompany_id')->references('id')->on('medicalcompany');
-            $table->timestamps();
+            $table->boolean('is_paid');
         });
-
-
-
     }
 
     /**
@@ -33,11 +26,8 @@ Schema::create('advertisements', function (Blueprint $table) {
      */
     public function down()
     {
-        
-Schema::drop('advertisements',function(Blueprint $table)
-        {
-            $table->dropForeign('adverisements_medicalcompany_id_foreign');
+        Schema::table('advertisement',function(Blueprint $table){
+            $table->dropForeign('advertisement_medicalcompany_id_foreign');
         });
-
     }
 }

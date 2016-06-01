@@ -10,9 +10,6 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 class Clinics extends Model {
 
-    
-
-    
 
     protected $table    = 'clinics';
     
@@ -32,7 +29,10 @@ class Clinics extends Model {
 
         Clinics::observe(new UserActionsObserver);
     }
-    
+    public function clinicreservations() {
+        
+        return $this->hasMany('\App\Reservation');
+    }
     
     
     

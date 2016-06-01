@@ -8,7 +8,7 @@ class Answer extends Model
 {
     protected $table = 'answers';
     protected $fillable = [
-        'answer_specific', 'answer_detail', 'physician_id', 'question_id'
+        'answer_specific', 'answer_detail', 'speciality_id', 'physician_id', 'question_id'
         //'patient_id', 'clinic_id', 'physician_id', 'reservation_day'
 //        *id, answer_specific, answer_detail, question_id
 //        *physician_id, created_at, updated_at
@@ -24,5 +24,10 @@ class Answer extends Model
         
         return $this->belongsTo('\App\User');
     }
+    public function speciality() {
+        
+        return $this->belongsTo('\App\Speciality');
+    }
+        
     
 }

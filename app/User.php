@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Auth\Authenticatable;
+
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -12,8 +13,13 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Role;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
+<<<<<<< HEAD
 use App\Advertisementsrequest;
 
+=======
+
+use App\Like;
+>>>>>>> cf79f64c39f59fe801a9a83f8572952118e6216b
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -86,11 +92,15 @@ class User extends Model implements AuthenticatableContract,
        return $this->hasOne('App\Patientprofile');
     }
 
-    public function reservations() {
+    public function patientreservations() {
         
         return $this->hasMany('\App\Reservation');
     }
-    public function questions() {
+    public function physicianreservations() {
+        
+        return $this->hasMany('\App\Reservation');
+    }
+    public function patientquestions() {
         
         return $this->hasMany('\App\Question');
     }

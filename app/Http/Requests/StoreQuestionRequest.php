@@ -14,6 +14,6 @@ class StoreQuestionRequest extends Request
     }
     public function rules() {
         
-        return [];        
+        return [];//'question-specific'=> 'required'        
     }
 }
