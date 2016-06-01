@@ -3,32 +3,32 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
-class Advertisement extends Model
-{
+
+
+
+class Advertisement extends Model {
+
     
 
+    
 
-protected $fillable = [
- 'advertisementname','advertisementpath'    
+    protected $table    = 'advertisement';
+    
+    protected $fillable = [
+          'name','path', 'is_paid','medicalcompany_id',
     ];
+    
 
-   
-    protected $hidden = [
-        
-    ];
-
- public function Medicalcompany()
+    public static function boot()
     {
-        return $this->belongsTo('App\Medicalcompany');
+        parent::boot();
+
+        Advertisement::observe(new UserActionsObserver);
     }
-
-
-public function physiciandetails()
-    {
-        return $this->belongsTo('App\Physiciandetails');
-    }
-
-
-
+    
+    
+    
+    
 }
