@@ -86,11 +86,15 @@ class User extends Model implements AuthenticatableContract,
        return $this->hasOne('App\Patientprofile');
     }
 
-    public function reservations() {
+    public function patientreservations() {
         
         return $this->hasMany('\App\Reservation');
     }
-    public function questions() {
+    public function physicianreservations() {
+        
+        return $this->hasMany('\App\Reservation');
+    }
+    public function patientquestions() {
         
         return $this->hasMany('\App\Question');
     }
