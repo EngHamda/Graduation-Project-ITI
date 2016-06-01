@@ -107,13 +107,21 @@
         </div>
     </div>
 
-
+    <p></p>
     <div class="form-group">
         {!! Form::label('role_id', trans('quickadmin::admin.users-create-role'), ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('role_id', $roles, old('role_id'), ['required','class'=>'form-control']) !!}
         </div>
     </div>
+
+    <div class="form-group" id="clinic">
+        {!! Form::label('clinic_id', 'Clinic', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('clinic_id', $clinics, old('clinic_id'), ['required','class'=>'form-control']) !!}
+        </div>
+    </div>
+
 
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
@@ -127,4 +135,3 @@
     {!! Form::close() !!}
 
 @endsection
-

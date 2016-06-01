@@ -89,12 +89,10 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 Route::resource('advices','AdvicesController');
-
-Route::post('advices/like',[
+/*Route::get('advices/like',[
      'uses'=>'AdvicesController@adviceLikeAdvice',
-     'as' =>'like'
-]);
-
+     //'as' =>'like'
+]);*/
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -106,3 +104,4 @@ Route::resource('reservations','ReservationsController');
 
 //Reservation Routes
 Route::resource('questions','QuestionsController');
+Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));

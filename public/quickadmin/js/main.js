@@ -95,4 +95,18 @@ $(document).ready(function () {
         }
     });
 
+    $('#clinic').hide();
+
+    $('#role_id').change(function(){
+
+        var value = $(this).val();
+        if(value=="4"||value=="3"){
+            $('#clinic').show();
+        }else{
+            $('#clinic').hide();
+        }
+
+    });
+
+
 });

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Advice extends Model
 {
     protected $table="advices";
@@ -16,6 +18,6 @@ class Advice extends Model
 
     public function likes()
     {
-      return $this->hasMany('App\Like');
+        return $this->hasMany('App\Like');
     }
 }
