@@ -99,10 +99,16 @@ Route::post('/like',[
 //    return view('welcome');
 //});
 
-Route::get('/','ReservationsController@index');
+//Route::get('/','ReservationsController@index');
 
 //Reservation Routes
 Route::resource('reservations','ReservationsController');
 
-//Reservation Routes
+//Question Routes
 Route::resource('questions','QuestionsController');
+
+//Answer Routes
+//Route::resource('answers','AnswersController');
+//Route::post('answers/{question}/create','AnswersController@create');
+Route::get('answers/{id}/create','AnswersController@create');
+Route::post('answers','AnswersController@store');

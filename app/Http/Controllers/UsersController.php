@@ -157,6 +157,12 @@ if(auth()->attempt($credientials))
 {
 return redirect('/physician');
 }
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>5];
+
+if(auth()->attempt($credientials))
+{
+return redirect('/physician');
+}
 
 
 else{
