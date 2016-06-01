@@ -22,9 +22,9 @@ class Speciality extends Model {
         Speciality::observe(new UserActionsObserver);
     }
     
-    public function Questions() {
-
-        return $this->belongsToMany('\App\Question')->withTimestamps();
+    public function answers() {
+        
+        return $this->hasMany('\App\Answer');
     }
 
 }

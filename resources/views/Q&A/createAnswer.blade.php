@@ -60,7 +60,7 @@
                         <div class="col-sm-9">
                             @foreach($specialities as $speciality)
                                 <label class="col-sm-6 ">
-                                    {!! Form::radio('answer-speciality', $speciality->name, false) !!}
+                                    {!! Form::radio('answer-speciality', $speciality->id, false) !!}
                                     {{$speciality->name}}
                                 </label>
                             @endforeach
