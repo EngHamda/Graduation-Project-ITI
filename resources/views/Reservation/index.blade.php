@@ -17,6 +17,7 @@
                                 <tr>
                                   <th>Reservation Number</th>
                                   <th>Reservation Day</th>
+                                  <th>Reservation Time</th>
                                   <th>Reservation Status</th>
                                   <th>Patient Name</th>
                                   <th>Physician Name</th>
@@ -35,10 +36,11 @@
                                         </a>
                                     </th>
                                     <td>{{ $reservation->reservation_day }}</td>
-                                    <td>{{ $reservation->reservation_confirmed ? 'Confirmed' : 'Unconfirmed' }}</td>
-                                    <td>{{ $patient_names[$i]->patient_name }}</td>
-                                    <td>{{ $reservation->physician_name }}</td>
-                                    <td>{{ $reservation->clinic_name }}</td>
+                                    <td>{{ $reservation->reservation_time }}</td>
+                                    <td>{{ $reservation->reservation_confirmed }}</td>
+                                    <td>{{ $reservation->patient->name }}</td>
+                                    <td>{{ $reservation->physician->name }}</td>
+                                    <td>{{ $reservation->clinic->name }}</td>
                                     <td>
                                         <a href="http://localhost:8000/reservations/{{ $reservation->id}}/edit" class="btn btn-info">
                                             Edit

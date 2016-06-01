@@ -29,7 +29,10 @@ class Clinics extends Model {
 
         Clinics::observe(new UserActionsObserver);
     }
-    
+    public function clinicreservations() {
+        
+        return $this->hasMany('\App\Reservation');
+    }
     
     
     

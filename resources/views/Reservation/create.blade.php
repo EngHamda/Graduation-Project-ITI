@@ -19,7 +19,8 @@
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
-                                {!! Form::text('patient-name', 'User_Name',array('class'=>' form-control', 'readonly')) !!}
+                                {!! Form::text('patient-name', 'User_Name', 
+                                                array('class'=>' form-control', 'readonly')) !!}
                             <!--</fieldset>-->
                         </div>
                     </div>
@@ -27,16 +28,16 @@
                         {!! Form::label('clinic-name', 'Clinic Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('clinic-name', array('L' => 'Large', 'S' => 'Small')
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Clinic Name')) !!}
+                            {!! Form::select('clinic-name', $clinicList, null, 
+                                              array('class'=>' form-control c-select',
+                                                    'placeholder' => 'Clinic Name')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('physician-name', 'Physician Name'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('physician-name', array('L' => 'Large', 'S' => 'Small')
+                            {!! Form::select('physician-name', array('1' => 'doctor', 'S' => 'Small')
                                             , null, array('class'=>' form-control c-select',
                                                           'placeholder' => 'Physician Name')) !!}
                         </div>
@@ -58,30 +59,8 @@
                                                           'placeholder' => 'Reservation hour')) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        {!! Form::label('reservation-status', 'Reservation Status'  
-                                        ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            <label class="col-sm-6 ">
-                                {!! Form::radio('reservation-confirmed', '0', false) !!}
-                                Unconfirm Reservation
-                            </label>
-                            <label class="col-sm-6 ">
-                                {!! Form::radio('reservation-confirmed', '1', true) !!}
-                                Confirm Reservation
-                            </label>
-                            
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        {!! Form::label('reservation-number', 'Number of Reservation'  
-                                ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            {!! Form::number('reservation-number', null, 
-                                              array('class'=>' form-control',
-                                                    'placeholder' => 'Number of Reservation')) !!}
-                        </div>
-                    </div>
+                    
+                    
                     <div class='col-sm-10 col-sm-offset-2'>
                         {!! Form::submit('Create Reservation', array('class'=>'btn btn-success col-sm-offset-2')) !!}                               
                         {!! Form::reset('Cancel Reservation', array('class'=>'btn btn-danger col-sm-offset-5')) !!}                               

@@ -16,7 +16,10 @@ use App\Http\Requests\UpdateReservationRequest;
 use App\Commands\DestoryReservationCommand;
 
 use App\Reservation;
-use DB;
+use App\Clinics;
+//use App\user;
+
+//use DB;
 //use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
@@ -30,22 +33,16 @@ class ReservationsController extends Controller
     {
         //
 //        $reservations = Reservation::all();
-        $patient_names = DB::table('reservations')
-            ->join('users', 'reservations.patient_id', '=', 'users.id')
-            ->select('reservations.patient_id','users.name as patient_name')
-            ->get();
-        $reservations = DB::table('reservations')
-            ->join('users', 'reservations.physician_id', '=', 'users.id')
-            ->join('clinics', 'reservations.clinic_id', '=', 'clinics.id')
-            ->select('reservations.*','users.name as physician_name', 
-                    'clinics.name as clinic_name')
-            ->orderBy('reservations.reservation_day', 'asc')
-            ->orderBy('reservations.reservation_confirmed', 'asc')
-            ->orderBy('reservations.reservation_number', 'asc')
-            ->get();
-//        return compact('reservation','patient_names');
-        return view('Reservation.index',  compact('reservations','patient_names'));
-//        return view('index',  compact('reservations','patient_names'));
+        $reservations = Reservation:://where('clinic_id', 1)
+                                    //clinic_id for assistant login
+                //->
+                orderBy('reservation_day', 'asc')
+                ->orderBy('reservation_time', 'asc')
+                ->orderBy('reservation_confirmed', 'asc')
+                ->orderBy('reservation_number', 'asc')
+                ->get();//array of selected columns
+//        return compact('reservations');//,'patient_names');
+        return view('Reservation.index', compact('reservations'));//,'patient_names'));
     }
 
     /**
@@ -56,7 +53,21 @@ class ReservationsController extends Controller
     public function create()
     {
         //
-        return view('Reservation.create');
+        $clinicNames = array();
+        $clinicIds = array();
+        $clinics = Clinics::all('id','name');
+        foreach ($clinics as $clinic ){ 
+            // Code Here
+            array_push($clinicNames, $clinic->name);
+            array_push($clinicIds, $clinic->id);
+        }
+        $clinicList = array_combine($clinicIds, $clinicNames);
+        //$clinicList = array_fill_keys($clinicNames, $clinicNames);
+        //output
+            //{"clinicList":{"Clinic1":["Clinic1","Clinic2"]
+            //              ,"Clinic2":["Clinic1","Clinic2"]}}        
+//        return compact('clinicList');
+        return view('Reservation.create', compact('clinicList'));
     }
 
     /**
@@ -69,41 +80,17 @@ class ReservationsController extends Controller
     {
         //
         //get data from view
-        $patient_id            = 1;//$request->input('patient-name');
-        $clinic_id             = 1;//$request->input('clinic-name');
-        $physician_id          = 2;//$request->input('physician-name');
-        $reservation_day       = $request->input('clinic-day').$request->input('clinic-time');
-        $reservation_confirmed = $request->input('reservation-confirmed');
-        $reservation_number    = $request->input('reservation-number');
-/*        
-//$image      = $request->image('reservation-image');
-        //check data
-//        if($image){
-//            $image_filename= $image->getClientOriginalFileName();
-//            //write @cache\app.php
-//            $image->move(public_path('images'),$image_filename);
-//        }else {
-//            $image_filename = 'noimage.jpg';            
-//        }
- * 
- */
+        $patient_id            = 3;//$request->input('patient-name');
+        $clinic_id             = $request->input('clinic-name');
+        $physician_id          = 1;//$request->input('physician-name');
+        $reservation_day       = 'Saturday';//$request->input('clinic-day').$request->input('clinic-time');
+        $reservation_time       = '04:00-08:00';
         //create command
-        $command = new StoreReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_confirmed, $reservation_number);
+        $command = new StoreReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time);
         //run command
         $this->dispatch($command);
         return \Redirect::route('reservations.index')
                 ->with('message','New Reservation is added');
-        /*
-        {!! Form::text('email', 'User_Name',array('class'=>' form-control', 'readonly')) !!}
-        {!! Form::select('clinic-name', array('L' => 'Large', 'S' => 'Small')
-        {!! Form::select('physician-name', array('L' => 'Large', 'S' => 'Small')
-        {!! Form::select('clinic-day', array('saturday' => 'Saturday', 
-        {!! Form::select('clinic-time', array('01.00am' => '01.00 pm - 03.00 pm', 
-        {!! Form::radio('reservation-confirmed', '0', false) !!}
-        {!! Form::radio('reservation-confirmed', '1', true) !!}
-        {!! Form::number('reservation-number', null, 
-        {!! Form::submit('Create Reservation', array('class'=>'btn btn-success col-sm-offset-2')) !!}                               
-         */
     }
 
     /**
@@ -116,20 +103,8 @@ class ReservationsController extends Controller
     {
         //
         $reservation = Reservation::find($id);
-        $patient_name = DB::table('users')
-            ->where('id', '=', $reservation->patient_id)
-            ->select('name as patient_name')
-            ->get();
-        $physician_name = DB::table('users')
-            ->where('id', '=', $reservation->physician_id)
-            ->select('name as physician_name')
-            ->get();
-        $clinic_name = DB::table('clinics')
-            ->where('id', '=', $reservation->clinic_id)
-            ->select('name as clinic_name')
-            ->get();
 //        return compact('reservation','patient_name','physician_name', 'clinic_name');
-        return view('Reservation.show',  compact('reservation','patient_name','physician_name', 'clinic_name'));
+        return view('Reservation.show',  compact('reservation'));//,'patient_name','physician_name', 'clinic_name'));
     }
 
     /**
@@ -142,7 +117,16 @@ class ReservationsController extends Controller
     {
         //
         $reservation = Reservation::find($id);
-        return view('Reservation.edit',  compact('reservation'));
+        $clinicNames = array();
+        $clinicIds = array();
+        $clinics = Clinics::all('id','name');
+        foreach ($clinics as $clinic ){ 
+            // Code Here
+            array_push($clinicNames, $clinic->name);
+            array_push($clinicIds, $clinic->id);
+        }
+        $clinicList = array_combine($clinicIds, $clinicNames);
+        return view('Reservation.edit',  compact('reservation', 'clinicList'));
     }
 
     /**
@@ -156,10 +140,11 @@ class ReservationsController extends Controller
     {
         //
         //get data from view
-        $patient_id            = 1;//$request->input('patient-name');
-        $clinic_id             = 1;//$request->input('clinic-name');
-        $physician_id          = 2;//$request->input('physician-name');
-        $reservation_day       = $request->input('clinic-day').$request->input('clinic-time');
+        $patient_id            = 3;//$request->input('patient-name');
+        $clinic_id             = $request->input('clinic-name');
+        $physician_id          = 1;//$request->input('physician-name');
+        $reservation_day       = 'Saturday';//$request->input('clinic-day').$request->input('clinic-time');
+        $reservation_time      = '04:00-08:00';
         $reservation_confirmed = $request->input('reservation-confirmed');
         $reservation_number    = $request->input('reservation-number');
         //$current_main_image_filename = Reservation::find($id)->main_image;
@@ -171,7 +156,7 @@ class ReservationsController extends Controller
 //            $image_filename = $current_main_image_filename;            
 //        }
         //create command
-        $command = new UpdateReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_confirmed, $reservation_number, $id);
+        $command = new UpdateReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time, $reservation_confirmed, $reservation_number, $id);
         //run command
         $this->dispatch($command);
         return \Redirect::route('reservations.index')

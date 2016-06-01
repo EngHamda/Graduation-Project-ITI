@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreQuestionRequest extends Request
+class StoreAnswerRequest extends Request
 {
     //
     public function authorize() {
@@ -14,6 +14,6 @@ class StoreQuestionRequest extends Request
     }
     public function rules() {
         
-        return [];//'question-specific'=> 'required'        
+        return [];//'answer-specific'=> 'required'        
     }
 }

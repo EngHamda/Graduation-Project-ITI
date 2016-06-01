@@ -6,21 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-/*
-use App\Commands\StoreReservationCommand;
-use App\Http\Requests\StoreReservationRequest;
 
-use App\Commands\UpdateReservationCommand;
-use App\Http\Requests\UpdateReservationRequest;
+use App\Commands\StoreQuestionCommand;
+use App\Http\Requests\StoreQuestionRequest;
+
+use App\Commands\UpdateQuestionCommand;
+use App\Http\Requests\UpdateQuestionRequest;
 
 
-use App\Commands\DestoryReservationCommand;
+use App\Commands\DestoryQuestionCommand;
 
-use App\Reservation;
-use DB;
- */
 use App\Question;
-use DB;
+//use App\Answer;
 
 class QuestionsController extends Controller
 {
@@ -36,21 +33,37 @@ class QuestionsController extends Controller
         //*  is_private, is_answered, patient_id, created_at, updated_at
 
 //        $questions = Question::all();
-        $questions = DB::table('questions')
-            ->join('questionspecialties', 'questionspecialties.question_id', '=', 'questions.id')
-            ->select('questions.id', 'questions.question_code'
-                    , 'questions.question_specific', 'questions.question_detail'
-                    , 'questionspecialties.speciality_id', 'questions.is_private'
-                    , 'questions.is_answered', 'questions.updated_at')
-            ->get();
-        $specialties = DB::table('questionspecialties')
-            ->select('question_id', 'speciality_id')
-            ->groupBy('speciality_id')
-                  //for no duplicate (no record has same ('speciality_id'))
-            ->get();
-        
-        return view('Q&A.index',  compact('questions','specialties'));
-//        return compact('questions','specialties');
+        $questions = Question::orderBy('question_code', 'asc')->get();
+
+        $answered_questions     = array();
+        $unanswered_questions   = array();
+        $answersList            = array();
+        foreach ($questions as $question ){ 
+            // Code Here
+            if( $question->is_answered == 'unanswered' ){
+                array_push($unanswered_questions, $question);
+            }else{
+                array_push($answered_questions, $question);                
+            }
+            //echo $question->is_answered;
+        }
+        foreach ($questions as $question) {
+            $answers = Question::find($question->id)->answers;
+                //asso array need foreach
+                //get all answers of this question
+            foreach ($answers as $answer) {
+                array_push($answersList, $answer);
+                //$answer is all answers of question & $answer is json
+            }
+        }
+//        $specialties = DB::table('questionspecialties')
+//            ->select('question_id', 'speciality_id')
+//            ->groupBy('speciality_id')
+//                  //for no duplicate (no record has same ('speciality_id'))
+//            ->get();
+//        
+        return view('Q&A.index',  compact('unanswered_questions', 'answered_questions','answersList'));//,'specialties'));
+//        return compact('unanswered_questions', 'answered_questions','answersList');//,'specialties');
 
         
     }
@@ -72,33 +85,31 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
         //
         //get data from view
         //*  id, question_code, question_specific, question_detail
         //*  is_private, is_answered, patient_id, created_at, updated_at
 
-        $question_code      = 1;//$request->input('patient-name');
+        $question_code      = 'QI-'.time();//$request->input('patient-name');$x=time();
         $question_specific  = $request->input('question-specific');
         $question_detail    = $request->input('question-detail');
-        $is_private         = 0;//$request->input('is-private');
-        $is_answered        = 0;$request->input('is-answered');
-        $patient_id         = 1;//$request->input('patient-id');
+        $patient_id         = 3;//$request->input('patient-id');
 ///*        
-////$image      = $request->image('reservation-image');
+////$attach      = $request->file('question-attach');
 //        //check data
-////        if($image){
-////            $image_filename= $image->getClientOriginalFileName();
-////            //write @cache\app.php
-////            $image->move(public_path('images'),$image_filename);
+////        if($attach){
+////            $attach_filename= $attach->getClientOriginalFileName();
+////            //write @bootstrap\app.php
+////            $attach->move(public_path('attachments'),$attach_filename);
 ////        }else {
-////            $image_filename = 'noimage.jpg';            
+////            $attach_filename = null; //is send to command           
 ////        }
 // * 
 // */
         //create command
-        $command = new StoreQuestionCommand($question_code, $question_specific, $question_detail, $is_private, $is_answered, $patient_id);
+        $command = new StoreQuestionCommand($question_code, $question_specific, $question_detail, $patient_id);
         //run command
         $this->dispatch($command);
         return \Redirect::route('questions.index')
@@ -115,6 +126,9 @@ class QuestionsController extends Controller
     public function show($id)
     {
         //
+        $question = Question::find($id);
+//        return compact('question');
+        return view('Q&A.show',  compact('question'));
     }
 
     /**
@@ -126,6 +140,8 @@ class QuestionsController extends Controller
     public function edit($id)
     {
         //
+        $question = Question::find($id);
+        return view('Q&A.edit',  compact('question'));
     }
 
     /**
@@ -135,9 +151,18 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateQuestionRequest $request, $id)
     {
         //
+        $question_specific  = $request->input('question-specific');
+        $question_detail    = $request->input('question-detail');
+        $patient_id         = 3;//$request->input('patient-id');
+        //create command
+        $command = new UpdateQuestionCommand($id, $question_specific, $question_detail, $patient_id);
+        //run command
+        $this->dispatch($command);
+        return \Redirect::route('questions.index')
+                ->with('message','Question is updated');
     }
 
     /**
@@ -149,5 +174,11 @@ class QuestionsController extends Controller
     public function destroy($id)
     {
         //
+        $command = new DestoryQuestionCommand($id);
+        //run command
+        $this->dispatch($command);
+        return \Redirect::route('questions.index')
+                ->with('message','Question is deleted');
+        
     }
 }

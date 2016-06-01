@@ -120,41 +120,32 @@ class UsersController extends Controller
 //print_r($request->all());
 
         if ($validator->fails()) {
-					    return redirect('/user/login')
-							->withErrors($validator)
-    							->withInput();
-                                  }
-         $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>2];
-    if(auth()->attempt($credientials))
-    {
-    return redirect('/ggggg');
-    }
+            return redirect('/user/login')
+            ->withErrors($validator)
+                    ->withInput();
+            }
+
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>2];
+if(auth()->attempt($credientials)){return redirect('/ggggg');}
+
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>3];
+if(auth()->attempt($credientials)){return redirect('/assistant');}
+
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>4];
+
+if(auth()->attempt($credientials)){return redirect('/physician');}
+
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>5];
+
+if(auth()->attempt($credientials)){return redirect('/physician');}
 
 
-         $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>3];
-    if(auth()->attempt($credientials))
-    {
-    return redirect('/assistant');
-    }
-
-         $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>4];
-
-    if(auth()->attempt($credientials))
-    {
-    return redirect('/physician');
-    }
-         $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>5];
-         if(auth()->attempt($credientials))
-         {
-             return redirect('/');
-         }
-    else{
+else{
     return redirect('/user/login')
-           ->withErrors(['error'=>'login invalid'])
-           ->withInput() ;
-
-
+       ->withErrors(['error'=>'login invalid'])
+       ->withInput() ;  
+    
     }
-}
+    }
 }
 

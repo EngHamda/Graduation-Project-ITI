@@ -10,10 +10,6 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 class Speciality extends Model {
 
-    
-
-    
-
     protected $table    = 'speciality';
     
     protected $fillable = ['name'];
@@ -26,7 +22,9 @@ class Speciality extends Model {
         Speciality::observe(new UserActionsObserver);
     }
     
-    
-    
-    
+    public function Questions() {
+
+        return $this->belongsToMany('\App\Question')->withTimestamps();
+    }
+
 }

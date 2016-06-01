@@ -27,16 +27,16 @@
                         {!! Form::label('clinic-name', 'Clinic Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('clinic-name', array('L' => 'Large', 'S' => 'Small')
-                                            , $reservation->clinic->name, array('class'=>' form-control c-select',
-                                                          'placeholder' => $reservation->clinic->name)) !!}
+                            {!! Form::select('clinic-name', $clinicList
+                                            , null, array('class'=>' form-control c-select',
+                                                          'placeholder' => 'Choose Clinic')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('physician-name', 'Physician Name'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('physician-name', array('L' => 'Large', 'S' => 'Small')
+                            {!! Form::select('physician-name', array('1' => 'doctor', 'S' => 'Small')
                                             , $reservation->physician->name, array('class'=>' form-control c-select',
                                                           'placeholder' => $reservation->physician->name)) !!}
                         </div>
@@ -63,11 +63,7 @@
                                         ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
                             <label class="col-sm-6 ">
-                                {!! Form::radio('reservation-confirmed', '0', false) !!}
-                                Unconfirm Reservation
-                            </label>
-                            <label class="col-sm-6 ">
-                                {!! Form::radio('reservation-confirmed', '1', true) !!}
+                                {!! Form::checkbox('reservation-confirmed', 'confirmed', true) !!}
                                 Confirm Reservation
                             </label>
                             
