@@ -96,6 +96,10 @@ $(document).ready(function () {
     });
 
     $('#clinic').hide();
+    $('#phytitle').hide();
+    $('#physpeciality').hide();
+    $('#phycertificates').hide();
+
 
     $('#role_id').change(function(){
 
@@ -104,6 +108,16 @@ $(document).ready(function () {
             $('#clinic').show();
         }else{
             $('#clinic').hide();
+        }
+        if(value=="4"){
+            $('#phytitle').show();
+            $('#physpeciality').show();
+            $('#phycertificates').show();
+        }
+        else{
+            $('#phytitle').hide();
+            $('#physpeciality').hide();
+            $('#phycertificates').hide();
         }
 
     });
