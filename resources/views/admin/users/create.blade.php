@@ -122,6 +122,27 @@
         </div>
     </div>
 
+    <div class="form-group" id="physpeciality">
+        {!! Form::label('speciality_id', 'Speciality', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('speciality_id', $specialities, old('speciality_id'), ['required','class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group" id="phytitle">
+        {!! Form::label('title', null, ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('title',old('title'), ['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group" id="phycertificates">
+        {!! Form::label('certification', null, ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('certification',old('certification'), ['class'=>'form-control']) !!}
+        </div>
+    </div>
+
 
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">

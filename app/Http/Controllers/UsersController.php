@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Role;
 use App\User;
 use App\Clinics;
+use App\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
+
 
 
 class UsersController extends Controller
@@ -31,8 +33,9 @@ class UsersController extends Controller
     {
         $roles = Role::lists('title', 'id');
         $clinics = Clinics::lists('name','id');
+        $specialities = Speciality::pluck('name','id');
 
-        return view('admin.users.create', compact('roles','clinics'));
+        return view('admin.users.create', compact('roles','clinics','specialities'));
     }
 
     /**

@@ -10,9 +10,6 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 class Clinics extends Model {
 
-    
-
-    
 
     protected $table    = 'clinics';
     
