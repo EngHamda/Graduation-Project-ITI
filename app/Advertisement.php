@@ -10,7 +10,7 @@ class Advertisement extends Model
 
 
 protected $fillable = [
- 'advertisementname','advertisementpath'    
+ 'medicalcompany_id','path','name','is_paied'    
     ];
 
    
@@ -20,14 +20,10 @@ protected $fillable = [
 
  public function Medicalcompany()
     {
-        return $this->belongsTo('App\Medicalcompany');
+        return $this->belongsTo('App\MedicalCompany');
     }
 
 
-public function physiciandetails()
-    {
-        return $this->belongsTo('App\Physiciandetails');
-    }
 
 
 

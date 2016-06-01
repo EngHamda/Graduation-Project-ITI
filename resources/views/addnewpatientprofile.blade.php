@@ -1,30 +1,117 @@
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="/js/jquery-1.12.4.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="/js/bootstrap.min.js"></script> 
 <head>
  <meta charset="utf-8">
       <title>jQuery UI Datepicker functionality</title>
+
       <link href="/css/jquery-ui.min.css" rel="stylesheet">
       <script src="/js/jquery-1.12.4.min.js"></script>
       <script src="/js/jquery-ui.min.js"></script>
  <script>
-         $(function() {
+       
+
+
+
+$(document).ready(function(){
+
+
+
+
+
+  $(function() {
             $( "#datepicker-1" ).datepicker();
          $( "#datepicker-2" ).datepicker();
          });
+   
+$("#email").focus(function(){
+	$("#emailerror").html(" ");      
+
+});
+
+$("#email").blur(function(){
+        var string=$("#email").val();
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var res = re.test(string);
+	if(!res)
+	{
+
+	$("#emailerror").html("<b>not valid email<b>").css({'color':'#891818'});
+	
+	}
+});
+
+
+$("#password").blur(function(){
+	var password=$("#password").val();
+	var passwordlength = password.length;
+	if(passwordlength<6)
+	{
+
+	$("#passworderror").html("<b>password can't be less than 6 character <b>").css({'color':'#891818'});
+
+	}
+
+});
+
+
+
+$("#password").focus(function(){
+       
+	$("#passworderror").html(" ");
+});
+
+
+
+
+
+
+
+
+
+       
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </script>
 	<title>requestform</title>
 </head>
 <body>
-<form method="POST" action="{{ url('assistant/addnewpatientprofile') }}">
 
-<input type="hidden" value="2" name="roleid">
+<form method="POST" action="{{ url('assistant/addnewpatientprofile') }}" enctype="multipart/form-data"  >
+
+
  <label>name</label>
 <input type="text"   name="name" >
 
 <br>
  <label>E-Mail Address</label>
-<input type="text"   name="email" >
+<input type="text"   name="email" id="email" >
+<div id="emailerror"></div>
 <br>
 <label>password</label>
-<input type="password"   name="password" >
+<input type="password"   name="password" id="password" >
+<div id="passworderror"> </div> 
 <br>
 <label>phone</label>
 <input type="text"   name="phone" >

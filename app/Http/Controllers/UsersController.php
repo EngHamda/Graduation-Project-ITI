@@ -159,6 +159,16 @@ return redirect('/physician');
 }
 
 
+
+$credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>5];
+
+if(auth()->attempt($credientials))
+{
+return redirect('/');
+}
+
+
+
 else{
 return redirect('/user/login')
        ->withErrors(['error'=>'login invalid'])

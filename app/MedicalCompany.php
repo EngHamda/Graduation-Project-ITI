@@ -5,15 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Illuminate\Support\Facades\Hash; 
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
+use Illuminate\Auth\Authenticatable;
 
 
 
 
-class MedicalCompany extends Model {
 
-    
+class MedicalCompany extends Model implements AuthenticatableContract, CanResetPasswordContract
 
-    
+    {
+
+     use Authenticatable, CanResetPassword;
 
     protected $table    = 'medicalcompany';
     
@@ -47,6 +53,15 @@ class MedicalCompany extends Model {
     }
 
 
-    
+ 
+public function advertisements()
+    {
+        return $this->hasMany('App\Advertisement');
+    }
+
+
+
+
+   
     
 }

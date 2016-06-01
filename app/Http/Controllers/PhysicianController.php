@@ -19,7 +19,7 @@ class PhysicianController extends Controller
      */
     public function index()
     {
-        $adverisements=Advertisement::All();
+        $adverisements=Advertisement::where('is_paid','=',1)->get();
        
        return view('physicianprofile',compact('adverisements'));
     }
@@ -107,22 +107,21 @@ return view('requestcompanyappointement',compact('medicalid','advertisementid'))
 
 
 
-public function storecompanyrequest(StoreCompanyAppointmentRequest$request)
+public function storecompanyrequest(StoreCompanyAppointmentRequest $request)
 {
 
 
         $advertisementid=$request->input('advertisementid');
         $advertisement=Advertisement::find($advertisementid);
 $medicalid=$advertisement->Medicalcompany->id;
-        $dateandtime=$request->input('dateandtime');
-  $dateandtime = date('Y-m-d', strtotime($dateandtime));
-    $userid=Auth::user()->id;
-       $user=User::find($userid);
-    $dictordetailsid=$user->physiciandetail->id;
-       
+        $date=$request->input('date');
+  $date = date('Y-m-d', strtotime($date));
+$time=$request->input('time');
+    $doctorid=Auth::user()->id;
+      
 
      
-$command=new StoreDoctorRequestCommand($medicalid,$advertisementid,$dateandtime,$dictordetailsid);
+$command=new StoreDoctorRequestCommand($medicalid,$advertisementid,$date,$doctorid,$time);
 
 $this->dispatch($command);
 

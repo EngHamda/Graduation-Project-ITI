@@ -8,6 +8,7 @@
          $(function() {
             $( "#datepicker-1" ).datepicker();
          $( "#datepicker-2" ).datepicker();
+         $("#datepicker-3").datepicker();
          });
       </script>
 	<title>requestform</title>
@@ -19,6 +20,8 @@
     {!! Form::text('name',$value=$user->name);!!}
 <br>
    
+
+{!! Form::hidden('role_id', 2) !!}
 
 
 
@@ -104,6 +107,9 @@
 <br>
 
 
+{!!  Form::label('admission_date', 'admission'); !!}
+{!! Form::text('admission',$value=null,['id' => 'datepicker-3']);!!}
+<br>
 
 
 

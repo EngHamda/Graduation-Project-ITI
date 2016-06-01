@@ -17,7 +17,8 @@ public $city;
 public $country;
 public $current_image_filename;
 public $id;
-public function __construct($name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id)
+public $role_id;
+public function __construct($role_id,$name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id)
 {
 $this->id=$id;
 $this->name=$name;
@@ -28,6 +29,7 @@ $this->buildingnumber=$buildingnumber;
 $this->street=$street;
 $this->city=$city;
 $this->country=$country;
+$this->role_id=$role_id;
 $this->current_image_filename=$current_image_filename;
 }
 
@@ -46,7 +48,7 @@ return User::where('id',$this->id)->update(array(
 'country'=>$this->country,
 'profile_picture'=>$this->current_image_filename,
 
-
+'role_id'=>$this->role_id,
 
 
 

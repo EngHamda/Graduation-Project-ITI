@@ -3,7 +3,7 @@
 namespace App\Commands;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
-use App\Advertisementrequest;
+use App\Advertisementsrequest;
 
 class StoreDoctorRequestCommand extends Command implements SelfHandling{
 
@@ -12,16 +12,18 @@ class StoreDoctorRequestCommand extends Command implements SelfHandling{
 
 public $medicalid;
 public $advertisementid;
-public $dateandtime;
-public $dictordetailsid;
+public $date;
+public $time;
+public $doctorid;
 
 
-public function __construct($medicalid,$advertisementid,$dateandtime,$dictordetailsid)
+public function __construct($medicalid,$advertisementid,$date,$doctorid,$time)
 {
 $this->medicalid=$medicalid;
 $this->advertisementid=$advertisementid;
-$this->dateandtime=$dateandtime;
-$this->dictordetailsid=$dictordetailsid;
+$this->date=$date;
+$this->time=$time;
+$this->doctorid=$doctorid;
 
 
 
@@ -33,13 +35,14 @@ public function handle()
 
 
 
-return Advertisementrequest::create([
+return Advertisementsrequest::create([
 
-'physiciandetail_id'=>$this->dictordetailsid,
+
 'medicalcompany_id'=>$this->medicalid,
+'user_id'=>$this->doctorid,
 'advertisement_id'=>$this->advertisementid,
-'advertisementrequstdate'=>$this->dateandtime,
-
+'advertisementrequstdate'=>$this->date,
+'advertisementrequsttime'=>$this->time,
 
 ]);
 

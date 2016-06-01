@@ -21,18 +21,18 @@ class DatabaseSeeder extends Seeder
 
 
 
-DB::table('users')->insert([
-'email'=>'doctor@yahoo.com',
-'password'=>Hash::make('12345'),
-'role_id'=>4,
 
+
+
+
+
+
+DB::table('users')->insert([
+'email'=>'as@yahoo.com',
+'password'=>Hash::make('12345'),
+'role_id'=>3,
 
 ]);
-
-
-
-
-
 
 
 

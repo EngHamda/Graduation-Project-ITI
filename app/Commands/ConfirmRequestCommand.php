@@ -3,7 +3,7 @@
 namespace App\Commands;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
-use App\Advertisementrequest;
+use App\Advertisementsrequest;
 
 class ConfirmRequestCommand extends Command implements SelfHandling{
 public $id;
@@ -19,8 +19,8 @@ $this->id=$id;
 public function handle()
 {
 
-return Advertisementrequest::where('id',$this->id)->update(array(
-'confirmed'=>1
+return Advertisementsrequest::where('id',$this->id)->update(array(
+'isconfirmed'=>1
 
 
 

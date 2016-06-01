@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Role;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
-
+use App\Advertisementsrequest;
 
 
 class User extends Model implements AuthenticatableContract,
@@ -94,5 +94,19 @@ class User extends Model implements AuthenticatableContract,
         
         return $this->hasMany('\App\Question');
     }
+
+
+
+ public function adverisementrequest() {
+        
+        return $this->hasMany('\App\Advertisementsrequest');
+    }
+
+
+
+
+
+
+
 
 }
