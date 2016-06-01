@@ -44,5 +44,4 @@
     @else
         {{ trans('quickadmin::admin.users-index-no_entries_found') }}
     @endif
-
 @endsection

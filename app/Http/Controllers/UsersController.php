@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Role;
 use App\User;
+use App\Clinics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
@@ -29,8 +30,9 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::lists('title', 'id');
+        $clinics = Clinics::lists('name','id');
 
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles','clinics'));
     }
 
     /**
@@ -115,86 +117,32 @@ class UsersController extends Controller
 //print_r($request->all());
 
         if ($validator->fails()) {
-					    return redirect('/user/login')
-							->withErrors($validator)
-    							->withInput();
-                                  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            return redirect('/user/login')
+            ->withErrors($validator)
+                    ->withInput();
+            }
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>2];
-if(auth()->attempt($credientials))
-{
-return redirect('/ggggg');
-}
-
+if(auth()->attempt($credientials)){return redirect('/ggggg');}
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>3];
-if(auth()->attempt($credientials))
-{
-return redirect('/assistant');
-}
-
-
-
-
+if(auth()->attempt($credientials)){return redirect('/assistant');}
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>4];
 
-if(auth()->attempt($credientials))
-{
-return redirect('/physician');
-}
+if(auth()->attempt($credientials)){return redirect('/physician');}
+
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>5];
 
-if(auth()->attempt($credientials))
-{
-return redirect('/physician');
-}
+if(auth()->attempt($credientials)){return redirect('/physician');}
 
 
 else{
-return redirect('/user/login')
+    return redirect('/user/login')
        ->withErrors(['error'=>'login invalid'])
-       ->withInput() ;   
-
-}
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+       ->withInput() ;  
+    
+    }
+    }
 }
 
