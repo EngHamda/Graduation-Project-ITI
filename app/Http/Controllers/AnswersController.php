@@ -48,7 +48,7 @@ class AnswersController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        //
+        //answer-specific, answer-detail, answer-speciality, id-question
         $question_specific  = $request->input('answer-speciality');
 //        echo "$question_specific";
     }
