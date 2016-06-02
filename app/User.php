@@ -13,13 +13,10 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Role;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
-<<<<<<< HEAD
+
 use App\Advertisementsrequest;
-
-=======
-
 use App\Like;
->>>>>>> cf79f64c39f59fe801a9a83f8572952118e6216b
+
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,

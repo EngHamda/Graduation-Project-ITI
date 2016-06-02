@@ -10,6 +10,9 @@ use App\Commands\StoreAnswerCommand;
 use App\Commands\StoreAnswerQuestionCommand;
 use App\Http\Requests\StoreAnswerRequest;
 
+use App\Commands\UpdateIsanswerQuestionCommand;
+use App\Commands\DestoryAnswerCommand;
+
 use App\Question;
 use App\Speciality;
 use App\Answer;
@@ -109,5 +112,24 @@ class AnswersController extends Controller
     public function destroy($id)
     {
         //
+        $answer = Answer::find($id);
+        $count = Answer::where('question_id', $answer->question_id)->count();
+        if($count==1){
+            //set question unanswered
+            $commandUpdate = new UpdateIsanswerQuestionCommand($answer->question_id);
+            $this->dispatch($commandUpdate);
+            //$question = Question::find($answer->question_id);
+            
+        }
+        //count number of answer of this question 
+            //if number is one change question is unanswered 
+            //
+            //select count(question_id) from answers where question_id=2;
+            //else 
+        $command = new DestoryAnswerCommand($id);
+        //run command
+        $this->dispatch($command);
+        return \Redirect::route('questions.show', ['id' => $answer->question_id])
+                ->with('message','Answer is deleted');
     }
 }

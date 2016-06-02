@@ -114,4 +114,8 @@ Route::resource('questions','QuestionsController');
 //Route::post('answers/{question}/create','AnswersController@create');
 Route::get('answers/{id}/create','AnswersController@create');
 Route::post('answers','AnswersController@store');
+Route::resource('answers','AnswersController', ['only' => 'destroy']);
 
+//Route::get('answers/{id}','AnswersController@destroy');
+//Route::resource('questions.answers', 'AnswersController');
+//    photos/{photos}/comments/{comments}.

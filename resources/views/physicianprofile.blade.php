@@ -1,5 +1,3 @@
-doctor home page
-<a href="/auth/logout">logout</a>
 
 
 
@@ -21,6 +19,8 @@ doctor home page
   </style>
 </head>
 <body>
+doctor home page
+<a href="/auth/logout">logout</a>
 
 <div class="container">
   <br>
@@ -59,4 +59,3 @@ doctor home page
 </div>
 
 </body>
-</html>
