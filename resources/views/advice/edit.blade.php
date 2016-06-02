@@ -7,7 +7,7 @@
             <h3 class="panel-title">Edit Advice</h3>
         </div>
         <div class="panel-body">
-            {!! Form::open(array('action' => ['AdvicesController@update',$advice->id],'method'=>'PUT','enctype'=>'multipart/form-data')) !!}
+            {!! Form::open(array('url' => ['/advices/update/'.$advice->id],'method'=>'PUT','enctype'=>'multipart/form-data')) !!}
 
             <div class="form-group">
                 {!!Form::label('advice', 'Update Advice') !!}

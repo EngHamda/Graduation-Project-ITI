@@ -45,6 +45,10 @@ Route::get('/physician', 'PhysicianController@index');
 
 Route::get('/physician/request/{id}','PhysicianController@requestcompany');
 Route::post('physician/storecompanyrequest','PhysicianController@storecompanyrequest');
+    Route::post('/advices/create','AdvicesController@store');
+    Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
+    Route::get('/advices/{id}/edit',array('uses' => 'AdvicesController@edit'));
+    Route::put('/advices/update/{id}','AdvicesController@update');
        });
 
 
@@ -89,11 +93,8 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 });
 
 
-Route::resource('advices','AdvicesController');
-/*Route::get('advices/like',[
-     'uses'=>'AdvicesController@adviceLikeAdvice',
-     //'as' =>'like'
-]);*/
+//Route::resource('advices','AdvicesController');
+Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 
 //Route::get('/', function () {

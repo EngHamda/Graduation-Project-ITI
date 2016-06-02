@@ -10,10 +10,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use App\Role;
+
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
 
+use App\Role;
 use App\Advertisementsrequest;
 use App\Like;
 
@@ -41,10 +42,6 @@ class User extends Model implements AuthenticatableContract,
 
   
     protected $fillable = ['name', 'email', 'password','gender','birth_date','phone','buildingnumber','street','city','country','profile_picture','role_id'];
-
-
-  
-
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -102,9 +99,7 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('\App\Question');
     }
 
-
-
- public function adverisementrequest() {
+    public function adverisementrequest() {
         
         return $this->hasMany('\App\Advertisementsrequest');
     }
