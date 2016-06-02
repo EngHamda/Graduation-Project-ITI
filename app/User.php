@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Role;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
+
 use App\Advertisementsrequest;
 use App\Like;
 

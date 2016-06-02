@@ -56,12 +56,6 @@ class QuestionsController extends Controller
                 //$answer is all answers of question & $answer is json
             }
         }
-//        $specialties = DB::table('questionspecialties')
-//            ->select('question_id', 'speciality_id')
-//            ->groupBy('speciality_id')
-//                  //for no duplicate (no record has same ('speciality_id'))
-//            ->get();
-//        
         return view('Q&A.index',  compact('unanswered_questions', 'answered_questions','answersList'));//,'specialties'));
 //        return compact('unanswered_questions', 'answered_questions','answersList');//,'specialties');
 
@@ -127,6 +121,7 @@ class QuestionsController extends Controller
     {
         //
         $question = Question::find($id);
+//        $answers = $question->answers;
 //        return compact('question');
         return view('Q&A.show',  compact('question'));
     }

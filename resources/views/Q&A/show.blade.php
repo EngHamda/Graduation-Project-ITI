@@ -39,5 +39,29 @@
             </div>
         </div>
     </div>
-    <!--Test Show-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+              Answers
+          </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach($question->answers as $answer)
+                    <h3>Answer Specific  : {{ $answer->answer_specific }}</h3>
+                    <h4>Answer Detail  : {{ $answer->answer_detail }}</h4>
+                    <h4>Answer Owner   : {{ $answer->physician->name }}</h4>
+                    <h4>Answer Created_at: {{ $answer->created_at }}</h4>
+                    <h4>Answer Updated_at: {{ $answer->updated_at }}</h4>
+                    <a href="http://localhost:8000/questions/{{ $question->id }}/answers/{{ $answer->id}}/edit" class="btn btn-success">Edit</a>
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['answers.destroy', $answer->id], 'action'=>['QuestionsController@show', $question->id]] ) !!}
+                    {!! Form::submit('Cancel', array('class'=>'btn btn-danger')) !!} 
+                    {!! Form::close() !!}
+                    @endforeach
+                </div>  
+            </div>
+        </div>
+    </div>    
+<!--Test Show-->
 @stop
