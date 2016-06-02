@@ -90,10 +90,7 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 Route::resource('advices','AdvicesController');
-/*Route::get('advices/like',[
-     'uses'=>'AdvicesController@adviceLikeAdvice',
-     //'as' =>'like'
-]);*/
+//Route::post('/physician','AdvicesController@create');
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 
 //Route::get('/', function () {
