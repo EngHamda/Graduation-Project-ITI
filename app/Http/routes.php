@@ -45,6 +45,10 @@ Route::get('/physician', 'PhysicianController@index');
 
 Route::get('/physician/request/{id}','PhysicianController@requestcompany');
 Route::post('physician/storecompanyrequest','PhysicianController@storecompanyrequest');
+    Route::post('/advices/create','AdvicesController@store');
+    Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
+    Route::get('/advices/{id}/edit',array('uses' => 'AdvicesController@edit'));
+    Route::put('/advices/update/{id}','AdvicesController@update');
        });
 
 
@@ -89,8 +93,8 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 });
 
 
-Route::resource('advices','AdvicesController');
-//Route::post('/physician','AdvicesController@create');
+//Route::resource('advices','AdvicesController');
+Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 
 //Route::get('/', function () {
@@ -111,4 +115,8 @@ Route::resource('questions','QuestionsController');
 //Route::post('answers/{question}/create','AnswersController@create');
 Route::get('answers/{id}/create','AnswersController@create');
 Route::post('answers','AnswersController@store');
+Route::resource('answers','AnswersController', ['only' => 'destroy']);
 
+//Route::get('answers/{id}','AnswersController@destroy');
+//Route::resource('questions.answers', 'AnswersController');
+//    photos/{photos}/comments/{comments}.

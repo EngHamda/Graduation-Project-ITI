@@ -19,7 +19,7 @@ class CreateAdvertisementRequestTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('advertisement_id')->unsigned();
-            $table->foreign('advertisement_id')->references('id')->on('advertisements');
+            $table->foreign('advertisement_id')->references('id')->on('advertisement');
             $table->boolean('isconfirmed');
             $table->date('advertisementrequstdate');
             $table->time('advertisementrequsttime');
