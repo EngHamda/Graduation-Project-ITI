@@ -12,8 +12,10 @@
             <div class="row">
                 {{-- This comment will not be present in the rendered HTML --}}
                 <div class="col-md-12">
-                    {!! Form::open(array('action' => ['ReservationsController@update', $reservation->id], 'method' => 'PUT' )
-                                , array('class'=>'form-horizontal')) !!}
+
+
+
+                  {{Form::open(array("url"=>"/patient/update/".$reservation->id,"method"=>'PUT'))}}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}

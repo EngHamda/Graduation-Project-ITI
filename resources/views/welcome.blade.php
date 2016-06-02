@@ -3,12 +3,23 @@
 
 
 
+
+
+
+
+
+
+
+
 @if(auth()->user())
 @if(auth()->user()->role_id==5)
 <a href="/auth/logout"> logout </a>homepage for guestpatient
 @endif
 @if(auth()->user()->role_id==2)
 <a href="/auth/logout"> logout </a>homepage for patient
+<a href="/patient/create"> reservation </a>
+
+
 @endif
 @endif
 @if(!auth()->user())

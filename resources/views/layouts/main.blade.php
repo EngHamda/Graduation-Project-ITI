@@ -45,7 +45,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="http://localhost:8000/">Home</a></li>
-              <li><a href="http://localhost:8000/reservations/create">Add Reservation</a></li>             
+              <li><a href="/patient/create">Add Reservation</a></li>             
               <li><a href="http://localhost:8000/questions/create">Add Question</a></li>             
             </ul>
           </div><!-- /.navbar-collapse -->

@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
 
 
 DB::table('users')->insert([
-'email'=>'as@yahoo.com',
+'email'=>'doc@yahoo.com',
 'password'=>Hash::make('12345'),
-'role_id'=>3,
+'role_id'=>4,
 
 ]);
 
