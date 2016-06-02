@@ -166,7 +166,7 @@ class UsersController extends Controller
             }
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>2];
-if(auth()->attempt($credientials)){return redirect('/ggggg');}
+if(auth()->attempt($credientials)){return redirect('/');}
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>3];
 if(auth()->attempt($credientials)){return redirect('/assistant');}

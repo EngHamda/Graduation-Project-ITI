@@ -29,13 +29,15 @@ Route::get('auth/login', 'Auth\AuthController@getlogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('user/login', 'UsersController@userslogin');
 //put here routes to be acess only by doctor
-Route::group(['middleware' => 'patient'], function () {
+Route::group(['middleware' => 'patient'], function () {   
 
   Route::get('/patient', function () {
     return view('patientprofile');
 } );    
-
-       });
+    
+    //Question Routes
+    Route::resource('questions','QuestionsController');
+  });
 
 
 //put here routes to be acess only by doctor
@@ -107,8 +109,6 @@ Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice')
 //Reservation Routes
 Route::resource('reservations','ReservationsController');
 
-//Question Routes
-Route::resource('questions','QuestionsController');
 
 //Answer Routes
 //Route::resource('answers','AnswersController');
@@ -116,7 +116,9 @@ Route::resource('questions','QuestionsController');
 Route::get('answers/{id}/create','AnswersController@create');
 Route::post('answers','AnswersController@store');
 Route::resource('answers','AnswersController', ['only' => 'destroy']);
-
+Route::GET('questions/answers/{id}/edit','AnswersController@edit');
+Route::PUT('questions/answers/{aid}','AnswersController@update');
 //Route::get('answers/{id}','AnswersController@destroy');
 //Route::resource('questions.answers', 'AnswersController');
 //    photos/{photos}/comments/{comments}.
+//questions/1/answers/10/edit
