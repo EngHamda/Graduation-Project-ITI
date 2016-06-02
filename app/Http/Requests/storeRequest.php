@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreCompanyAppointmentRequest extends Request
+class storeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class StoreCompanyAppointmentRequest extends Request
     public function rules()
     {
         return [
-           
-         
             
-        
+            'email'=>'required|email',
+            'password'=>'required|min:6',
+            'name'=>'required',
         ];
     }
 }

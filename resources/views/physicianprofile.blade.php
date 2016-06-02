@@ -37,7 +37,7 @@ doctor home page
     <div class="carousel-inner" role="listbox">
    @foreach($adverisements as $index => $add)
     <div class="item @if($index == 0) {{ 'active' }} @endif">
-    <a href="/physician/request/{{$add->id}}"><img style="width: 25%;" src="{{ URL::to('/') }}/{{ $add->advertisementpath }}" alt="{{ $add->advertisementname}}">  </a>
+    <a href="/physician/request/{{$add->id}}"><img style="width: 25%;" src="{{ URL::to('/') }}/images/{{ $add->path }}"  alt="{{ URL::to('/') }}/images/{{ $add->path }}">  </a>
     <h3>requst now </h3>
     </div>
 @endforeach

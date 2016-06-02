@@ -7,7 +7,6 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 
 
-
 class Advertisement extends Model {
 
     protected $table    = 'advertisement';
@@ -23,8 +22,10 @@ class Advertisement extends Model {
 
         Advertisement::observe(new UserActionsObserver);
     }
-    
-    
+    public function Medicalcompany()
+    {
+        return $this->belongsTo('App\MedicalCompany');
+    }
     
     
 }

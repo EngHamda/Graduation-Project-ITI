@@ -7,8 +7,9 @@ use App\Commands\ConfirmRequestCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
-use App\Medicalcompany;
-use App\Advertisementrequest;
+use App\MedicalCompany;
+use App\Advertisementsrequest;
+use App\Commands\StoreAdCommand;
 class MedicalcompanyController extends Controller
 {
     public function __construct()
@@ -16,7 +17,27 @@ class MedicalcompanyController extends Controller
 //$this->middleware('auth');
 }
 
+public function uploaded(Request $request)
+{
+$name=$request->input('name');
+        
+$path=$request->file('path')->getClientOriginalName();
 
+$medicalcompany_id=$request->input('medicalcompany_id');
+
+ $request->file('path')->move(public_path('images'), $request->file('path')->getClientOriginalName());
+
+        
+$command=new StoreAdCommand($name,$path,$medicalcompany_id);
+
+$this->dispatch($command);
+
+$requests=Advertisementsrequest::where('medicalcompany_id','=',1)->get();
+
+return view('medicalcompany.index',compact('requests','id'));
+
+
+}
 
 
 
@@ -25,7 +46,7 @@ class MedicalcompanyController extends Controller
 public function index()
 {
 $id=auth()->guard('medicalcompany')->user()->id;
-$requests=Advertisementrequest::where('medicalcompany_id','=',1)->get();
+$requests=Advertisementsrequest::where('medicalcompany_id','=',$id)->get();
 
 return view('medicalcompany.index',compact('requests','id'));
 }

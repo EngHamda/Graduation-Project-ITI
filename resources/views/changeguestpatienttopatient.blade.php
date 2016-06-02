@@ -8,7 +8,7 @@
          $(function() {
             $( "#datepicker-1" ).datepicker();
          $( "#datepicker-2" ).datepicker();
-        $("#datepicker-3").datepicker();
+         $("#datepicker-3").datepicker();
          });
       </script>
 	<title>requestform</title>
@@ -22,6 +22,7 @@
    
 
 {!! Form::hidden('role_id', 2) !!}
+
 
 
 {!!  Form::label('birth_date', 'birth_date'); !!}
@@ -80,35 +81,35 @@
 
 <br>
 {!!  Form::label('patientweight', 'patientweight'); !!}
-{!! Form::text('patientweight',$value=$patientprofile->patientweight);!!}
+{!! Form::text('patientweight',$value=null);!!}
 <br>
 
 {!!  Form::label('patientheight', 'patientheight'); !!}
-{!! Form::text('patientheight',$value=$patientprofile->patientheight);!!}
+{!! Form::text('patientheight',$value=null);!!}
 <br>
 
 {!!  Form::label('patientbloodgroup', 'patientbloodgroup'); !!}
-{!! Form::text('patientbloodgroup',$value=$patientprofile->patientbloodgroup);!!}
+{!! Form::text('patientbloodgroup',$value=null);!!}
 <br>
 
 
 {!!  Form::label('patientemergencyphone', 'patientemergencyphone'); !!}
-{!! Form::text('patientemergencyphone',$value=$patientprofile->patientemergencyphone);!!}
+{!! Form::text('patientemergencyphone',$value=null);!!}
 <br>
 
 
 {!!  Form::label('patientnationality', 'patientnationality'); !!}
-{!! Form::text('patientnationality',$value=$patientprofile->patientnationality);!!}
+{!! Form::text('patientnationality',$value=null);!!}
 <br>
 
 {!!  Form::label('patientnationalid', 'patientnationalid'); !!}
-{!! Form::text('patientnationalid',$value=$patientprofile->patientnationalid);!!}
+{!! Form::text('patientnationalid',$value=null);!!}
 <br>
+
+
 {!!  Form::label('admission_date', 'admission'); !!}
 {!! Form::text('admission',$value=null,['id' => 'datepicker-3']);!!}
 <br>
-
-
 
 
 
@@ -136,6 +137,5 @@
 
 
 {!! Form::close() !!}
-
 
 

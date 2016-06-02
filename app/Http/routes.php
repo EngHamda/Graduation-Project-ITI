@@ -65,7 +65,7 @@ Route::get('/assistant/addnewpatientprofile', function () {
 
 } );  
 
-
+Route::post('assistant/addnewpatientprofile','AssistantController@store');
 
 Route::resource('assistant','AssistantController');
 Route::post('assistant/searchpatientprofile',"AssistantController@search");
@@ -84,6 +84,7 @@ Route::group(['middleware'=>'auth:medicalcompany'],function(){Route::get('/medic
 Route::get('/medicalcompany/login', 'MedicalcompanyController@login');
 Route::post('/medicalcompany/login', 'MedicalcompanyController@postLogin');
 Route::get('/medicalcompany/logout', 'MedicalcompanyController@logout');
+Route::post('/medicalcompany/storead', 'MedicalcompanyController@uploaded');
 Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController@confirm');
 });
 

@@ -9,7 +9,10 @@ use App\Commands\StorePatientProfile;
 use App\Commands\StorePatientProfiletwo;
 use App\Commands\StoreDmissiontime;
 use App\Commands\UpdatePatientProfileCommand;
+use App\Commands\AddnewAdmissionCommand;
+use App\Commands\InsertPatientProfile;
 use App\Commands\UpdatePatientProfile;
+use App\Http\Requests\storeRequest;
 use App\User;
 use App\Patientprofile;
 class AssistantController extends Controller
@@ -40,7 +43,7 @@ class AssistantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeRequest $request)
     {
         
 
@@ -51,18 +54,32 @@ class AssistantController extends Controller
  $password=Hash::make($password); 
  $phone=$request->input('phone');  
  $dateofbirth=$request->input('dateofbirth');
+ $dateofbirth= date('Y-m-d', strtotime($dateofbirth));
 $buildingnumber=$request->input('buildingnumber');
 $street=$request->input('street');
 $city=$request->input('city');
 $country=$request->input('country');
-$profilepicture=$request->input('profilepicture');
+$profilepicture=$request->file('profilepicture');
+
+      if($profilepicture){
+$main_image_filename=$profilepicture->getClientOriginalName();
+$profilepicture->move(public_path('images'),$main_image_filename);
+}
+
+
+
+else{
+
+$profilepicture="none.jpg";
+
+}
  $patientwheight =$request->input('patientweight');
  $patientheight =$request->input('patientheight');
 $bloodgroup=$request->input('bloodgroup');
 $emergencyphone=$request->input('emergencyphone');
 $nationality=$request->input('nationality');
 $nationalid=$request->input('nationalid');
- $roleid=$request->input('roleid');
+ $roleid=2;
 $gender=$request->input('gender');
  $Dmissiontime=$request->input('Dmissiontime');
  $Dmissiontime= date('Y-m-d', strtotime($Dmissiontime));
@@ -146,21 +163,23 @@ $birth_date= date('Y-m-d', strtotime($birth_date));
         $gender=$request->input('gender');
         $phone=$request->input('phone');
         $buildingnumber=$request->input('buildingnumber');
-        $street=$request->file('street');
+        $street=$request->input('street');
         $city=$request->input('city');
         $country=$request->input('country');
-        $main_image=$request->input('main_image');
+        $main_image=$request->file('main_image');
         $patientweight=$request->input('patientweight');
         $patientheight=$request->input('patientheight');
         $patientbloodgroup=$request->input('patientbloodgroup');
         $patientemergencyphone=$request->input('patientemergencyphone');
-        $patientnationality=$request->input('$patientnationality');
-        $patientnationalid=$request->input('$patientnationalid');
-        
+        $patientnationality=$request->input('patientnationality');
+        $patientnationalid=$request->input('patientnationalid');
+        $role_id=2;
+   $Dmissiontime=$request->input('admission') ; 
+ $Dmissiontime= date('Y-m-d', strtotime( $Dmissiontime));  
 $current_image_filename =User::find($id)->profile_picture;
 
       if($main_image){
-$main_image_filename=$profile_picture->getClientOriginalName();
+$main_image_filename=$main_image->getClientOriginalName();
 $main_image->move(public_path('images'),$main_image_filename);
 }
 
@@ -174,22 +193,30 @@ $main_image_filename=$current_image_filename;
 $user_id=$id;
 $user=User::find($id);
 $profileid=$user->patientprofile;
-$command=new UpdatePatientProfileCommand($name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id);
+$command=new UpdatePatientProfileCommand($role_id,$name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id);
 
 $this->dispatch($command);
+
 if($profileid)
 {
 $profileid=$profileid->id;
 $commandtwo=new UpdatePatientProfile($profileid,$user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
 $this->dispatch($commandtwo);
+$commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
+$this->dispatch($commandthree);
+return redirect('assistant')->with('status', 'request sent');
 }
 
 
 if(!$profileid)
 {
-
-
-redirect('/home');
+$commandtwo=new InsertPatientProfile($user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
+$this->dispatch($commandtwo);
+$user=User::find($id);
+$profileid=$user->patientprofile->id;
+$commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
+$this->dispatch($commandthree);
+return redirect('assistant')->with('status', 'request sent');
 
 }
 
@@ -232,7 +259,7 @@ return view('editpatientprofile',compact('user','patientprofile'));
 if($user->role_id==5)
 {
 
-return view('changeguestpatient',compact('user'));
+return view('changeguestpatienttopatient',compact('user'));
 
 }
 

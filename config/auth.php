@@ -76,7 +76,7 @@ return [
         ],
         'medicalcompany' => [
             'driver' => 'eloquent',
-            'model' => App\Medicalcompany::class,
+            'model' => App\MedicalCompany::class,
         ],
 
         // 'users' => [
