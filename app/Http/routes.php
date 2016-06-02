@@ -29,13 +29,15 @@ Route::get('auth/login', 'Auth\AuthController@getlogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('user/login', 'UsersController@userslogin');
 //put here routes to be acess only by doctor
-Route::group(['middleware' => 'patient'], function () {
+Route::group(['middleware' => 'patient'], function () {   
 
   Route::get('/patient', function () {
     return view('patientprofile');
 } );    
-
-       });
+    
+    //Question Routes
+    Route::resource('questions','QuestionsController');
+  });
 
 
 //put here routes to be acess only by doctor
@@ -107,8 +109,6 @@ Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice')
 //Reservation Routes
 Route::resource('reservations','ReservationsController');
 
-//Question Routes
-Route::resource('questions','QuestionsController');
 
 //Answer Routes
 //Route::resource('answers','AnswersController');

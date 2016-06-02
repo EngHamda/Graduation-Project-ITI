@@ -17,6 +17,7 @@ use App\Http\Requests\UpdateQuestionRequest;
 use App\Commands\DestoryQuestionCommand;
 
 use App\Question;
+use Auth;
 //use App\Answer;
 
 class QuestionsController extends Controller
@@ -89,7 +90,7 @@ class QuestionsController extends Controller
         $question_code      = 'QI-'.time();//$request->input('patient-name');$x=time();
         $question_specific  = $request->input('question-specific');
         $question_detail    = $request->input('question-detail');
-        $patient_id         = 3;//$request->input('patient-id');
+        $patient_id         = Auth::user()->id;//$request->input('patient-id');
 ///*        
 ////$attach      = $request->file('question-attach');
 //        //check data
