@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'physician'=>\App\Http\Middleware\PhysicianMiddleware::class,
         'assistant'=>\App\Http\Middleware\AssistantMiddleware::class,
         'role' => \Laraveldaily\Quickadmin\Middleware\HasPermissions::class,
+        'reservation'=>\App\Http\Middleware\ReservationMiddleware::class,
 
     ];
 }

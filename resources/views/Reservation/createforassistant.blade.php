@@ -20,7 +20,7 @@
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
 
-                                {!! Form::text('patient-name', auth()->user()->name, 
+                                {!! Form::text('patient-name', $username, 
                                                 array('class'=>' form-control', 'readonly')) !!}
                             <!--</fieldset>-->
                         </div>

@@ -100,7 +100,7 @@ $profileid=$profile->id;
 var_dump($profileid);
 $command3=new StoreDmissiontime($Dmissiontime,$profileid);
 $this->dispatch($command3);
- return redirect('assistant')->with('status', 'request sent');
+ return redirect('assistant')->with('status', 'patient profile update');
 
 
 
@@ -204,7 +204,7 @@ $commandtwo=new UpdatePatientProfile($profileid,$user_id,$patientweight,$patient
 $this->dispatch($commandtwo);
 $commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
 $this->dispatch($commandthree);
-return redirect('assistant')->with('status', 'request sent');
+return redirect('assistant')->with('status', 'patient profile update');
 }
 
 
@@ -216,7 +216,7 @@ $user=User::find($id);
 $profileid=$user->patientprofile->id;
 $commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
 $this->dispatch($commandthree);
-return redirect('assistant')->with('status', 'request sent');
+return redirect('assistant')->with('status', 'patient profile update');
 
 }
 
@@ -254,6 +254,7 @@ if($user->role_id==2)
 $patientprofile=$user->patientprofile;
 
 return view('editpatientprofile',compact('user','patientprofile'));
+
 }
 
 if($user->role_id==5)
@@ -265,14 +266,16 @@ return view('changeguestpatienttopatient',compact('user'));
 
 else{
 
-return view('assistantprofile');
+return redirect('/assistant')->with('status', 'this email not found');
 }
 
 
 }
+
+
 else{
 
-return view('assistantprofile');
+return redirect('/assistant')->with('status', 'this email not found');
 }
 
 

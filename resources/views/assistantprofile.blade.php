@@ -6,6 +6,13 @@ assistamt home page
 <a href="/patient/index">show reservation </a>
 
 
+
+@if(Session::has('status'))
+
+<h1>{{Session::get('status')}}<h1>
+@endif
+
+
 <form method="POST" action="{{ url('assistant/searchpatientprofile') }}">
 
 

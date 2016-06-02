@@ -1,63 +1,46 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', function () { return view('welcome');});
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
-//Route::get('auth/logout', 'Auth\AuthController@logout');
-
-
 Route::get('user/logout', 'Auth\AuthController@userlogout');
 Route::get('user/login', 'Auth\AuthController@userlogin');
 Route::get('auth/login', 'Auth\AuthController@getlogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('user/login', 'UsersController@userslogin');
-//put here routes to be acess only by doctor
-Route::group(['middleware' => 'patient'], function () {
 
-  Route::get('/patient', function () {
-    return view('patientprofile');
-} );  
 
-  
-Route::get('/patient/create','ReservationsController@create');
+
+
+
+Route::group(['middleware' => 'reservation'], function () {
+
 Route::post('/patient/store','ReservationsController@store');
-       });
+});
+
+
+
+
+
+
+
+
+
+
+//route acess by patient 
+Route::group(['middleware' => 'patient'], function () {
+  Route::get('/patient', function () {return view('patientprofile');});  
+});
+
+
 
 
 //put here routes to be acess only by doctor
 Route::group(['middleware' => 'physician'], function () {
 Route::get('/physician', 'PhysicianController@index'); 
- 
-
 Route::get('/physician/request/{id}','PhysicianController@requestcompany');
 Route::post('physician/storecompanyrequest','PhysicianController@storecompanyrequest');
-
-       });
-
-
-
-
-
-
-
-
+});
 
 
 
@@ -67,47 +50,21 @@ Route::post('physician/storecompanyrequest','PhysicianController@storecompanyreq
 
 //put here routes to be acess only by assistant
 Route::group(['middleware' => 'assistant'], function () {
-
-  /*Route::get('/assistant', function () {
-    return view('assistantprofile');
-
-
-
-} );*/  
-
-
-
 Route::get('/patient/index','ReservationsController@index');
 Route::get('/patient/show/{id}','ReservationsController@show');
 Route::get('/patient/delayreservation/{id}','ReservationsController@edit');
 Route::delete('/patient/delete/{id}','ReservationsController@destroy');
 Route::put('/patient/update/{id}','ReservationsController@update');
-
-
-
-
-
-
-
-Route::get('/assistant/addnewpatientprofile', function () {
-    return view('addnewpatientprofile');
-
-
-} );  
-
+Route::get('/assistant/addnewpatientprofile', function () {return view('addnewpatientprofile');});  
 Route::post('assistant/addnewpatientprofile','AssistantController@store');
-
 Route::resource('assistant','AssistantController');
 Route::post('assistant/searchpatientprofile',"AssistantController@search");
-
-
-  
-
-       });
+Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
+});
 
 
 
-
+//put here links to be acess only by medicalcompany
 Route::group(['middleware' => 'medicalcompany'], function () {
 Route::group(['middleware'=>'auth:medicalcompany'],function(){Route::get('/medicalcompany', 'MedicalcompanyController@index');});
 
@@ -119,7 +76,24 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 });
 
 
-Route::resource('advices','AdvicesController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Route::get('advices/like',[
      'uses'=>'AdvicesController@adviceLikeAdvice',
      //'as' =>'like'
@@ -152,14 +126,7 @@ Route::resource('answers','AnswersController', ['only' => 'destroy']);
 
 
 
-Route::group(['middleware' => 'reservation'], function () {
 
-Route::get('/patient/create','ReservationsController@create');
-Route::post('/patient/store','ReservationsController@store');
-
-
-
-});
 
 
 //Route::get('answers/{id}','AnswersController@destroy');

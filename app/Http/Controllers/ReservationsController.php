@@ -17,6 +17,7 @@ use App\Commands\DestoryReservationCommand;
 
 use App\Reservation;
 use App\Clinics;
+use App\User;
 //use App\user;
 
 //use DB;
@@ -180,4 +181,36 @@ class ReservationsController extends Controller
                 ->with('message','Reservation is deleted');
         
     }
+
+
+
+
+
+
+ public function createbyassistant( $id)
+    {
+         $username=User::find($id)->name;
+        $clinicNames = array();
+        $clinicIds = array();
+        $clinics = Clinics::all('id','name');
+        foreach ($clinics as $clinic ){ 
+            // Code Here
+            array_push($clinicNames, $clinic->name);
+            array_push($clinicIds, $clinic->id);
+        }
+        $clinicList = array_combine($clinicIds, $clinicNames);
+        return view('Reservation.createforassistant', compact('username','clinicList'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

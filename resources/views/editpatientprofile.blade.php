@@ -116,7 +116,7 @@
 {!! Form::file('main_image');!!}
 
 
-
+{!! link_to("/patient/create/".$user->id, $title = "add reservation to this email", $attributes = array(), $secure = null); !!}
 
 
 {!! Form::submit('Click Me!');!!}
