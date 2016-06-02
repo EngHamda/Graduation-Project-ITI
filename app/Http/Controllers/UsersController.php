@@ -6,10 +6,14 @@ use App\Role;
 use App\User;
 use App\Clinics;
 use App\Speciality;
+use App\Physician_Details;
+use App\Assistant_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
-
+use App\Commands\StoreGeneralUserCommand;
+use App\Commands\StoreAssistantCommand;
+use App\Commands\StorePhysicianCommand;
 
 
 class UsersController extends Controller
@@ -51,7 +55,43 @@ class UsersController extends Controller
         $request = $this->saveFiles($request);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        $user = User::create($input);
+//        $user = User::create($input);
+        $name=$input['name'];
+        $email=$input['email'];
+        $password=$input['password'];
+        $gender=$input['gender'];
+        $birth_date=$input['birth_date'];
+        $phone=$input['phone'];
+        $building_number=$input['buildingnumber'];
+        $street=$input['street'];
+        $city=$input['city'];
+        $country=$input['country'];
+        $profile_picture=$input['profile_picture'];
+        $role_id=$input['role_id'];
+        $clinic_id=$input['clinic_id'];
+        $speciality_id=$input['speciality_id'];
+        $title=$input['title'];
+        $certification=$input['certification'];
+
+
+        $command= new StoreGeneralUserCommand($name,$email,$password,$gender,$birth_date,$phone,$building_number,$street,$city,$country,$profile_picture,$role_id);
+        $this->dispatch($command);
+
+        $user = User::where('email',$email)->first();
+
+        $user_id = $user->id;
+
+        if ($role_id==4) {
+            $command1 = new StorePhysicianCommand( $title, $certification, $user_id,$clinic_id, $speciality_id);
+            $this->dispatch($command1);
+        }
+        elseif($role_id==3) {
+            $command2 = new StoreAssistantCommand($clinic_id, $user_id);
+            $this->dispatch($command2);
+        }
+
+
+
 
         return redirect()->route('users.index')->withMessage(trans('quickadmin::admin.users-controller-successfully_created'));
     }
