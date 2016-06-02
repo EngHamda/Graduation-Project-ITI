@@ -54,7 +54,7 @@
                     <h4>Answer Owner   : {{ $answer->physician->name }}</h4>
                     <h4>Answer Created_at: {{ $answer->created_at }}</h4>
                     <h4>Answer Updated_at: {{ $answer->updated_at }}</h4>
-                    <a href="http://localhost:8000/questions/{{ $question->id }}/answers/{{ $answer->id}}/edit" class="btn btn-success">Edit</a>
+                    <a href="http://localhost:8000/questions/answers/{{ $answer->id}}/edit" class="btn btn-success">Edit</a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['answers.destroy', $answer->id], 'action'=>['QuestionsController@show', $question->id]] ) !!}
                     {!! Form::submit('Cancel', array('class'=>'btn btn-danger')) !!} 
                     {!! Form::close() !!}

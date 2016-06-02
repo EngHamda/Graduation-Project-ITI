@@ -115,7 +115,9 @@ Route::resource('questions','QuestionsController');
 Route::get('answers/{id}/create','AnswersController@create');
 Route::post('answers','AnswersController@store');
 Route::resource('answers','AnswersController', ['only' => 'destroy']);
-
+Route::GET('questions/answers/{id}/edit','AnswersController@edit');
+Route::PUT('questions/answers/{aid}','AnswersController@update');
 //Route::get('answers/{id}','AnswersController@destroy');
 //Route::resource('questions.answers', 'AnswersController');
 //    photos/{photos}/comments/{comments}.
+//questions/1/answers/10/edit
