@@ -10,10 +10,6 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 class Advertisement extends Model {
 
-    
-
-    
-
     protected $table    = 'advertisement';
     
     protected $fillable = [
