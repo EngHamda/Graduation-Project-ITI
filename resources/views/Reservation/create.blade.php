@@ -30,7 +30,8 @@
                         <div class="col-sm-9">
                             {!! Form::select('clinic-name', $clinicList, null, 
                                               array('class'=>' form-control c-select',
-                                                    'placeholder' => 'Clinic Name')) !!}
+                                                    'placeholder' => 'Clinic Name', 
+                                                    'id' => 'clinic-id')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
