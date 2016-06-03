@@ -14,6 +14,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Commands\StoreGeneralUserCommand;
 use App\Commands\StoreAssistantCommand;
 use App\Commands\StorePhysicianCommand;
+use App\Commands\UpdateGeneralUserCommand;
+use App\Commands\UpdateAssistantCommand;
+use App\Commands\UpdatePhysicianCommand;
 
 
 class UsersController extends Controller
@@ -107,8 +110,14 @@ class UsersController extends Controller
     {
         $user  = User::findOrFail($id);
         $roles = Role::lists('title', 'id');
+        $clinics = Clinics::lists('name','id');
+        $specialities = Speciality::pluck('name','id');
+        $physician = Physician_Details::where('user_id',$id)->first();
+        $assistant= Assistant_Details::where('user_id',$id)->first();
 
-        return view('admin.users.edit', compact('user', 'roles'));
+
+
+        return view('admin.users.edit', compact('user', 'roles','clinics','specialities','physician','assistant'));
     }
 
     /**
@@ -122,9 +131,44 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $request = $this->saveFiles($request);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        $user->update($input);
+        //$user->update($input);
+        $name=$input['name'];
+        $email=$input['email'];
+        $password=$input['password'];
+        $gender=$input['gender'];
+        $birth_date=$input['birth_date'];
+        $phone=$input['phone'];
+        $building_number=$input['buildingnumber'];
+        $street=$input['street'];
+        $city=$input['city'];
+        $country=$input['country'];
+        $profile_picture=$input['profile_picture'];
+        $role_id=$input['role_id'];
+        $clinic_id=$input['clinic_id'];
+
+        if($role_id==4){
+                $speciality_id=$input['speciality_id'];
+                $title=$input['title'];
+                $certification=$input['certification'];
+            }
+        $command= new UpdateGeneralUserCommand($id,$name,$email,$password,$gender,$birth_date,$phone,$building_number,$street,$city,$country,$profile_picture,$role_id);
+        $this->dispatch($command);
+
+
+
+        $user_id = $id ;
+
+        if ($role_id==4) {
+            $command1 = new UpdatePhysicianCommand( $title, $certification, $user_id,$clinic_id, $speciality_id);
+            $this->dispatch($command1);
+        }
+        elseif($role_id==3) {
+            $command2 = new UpdateAssistantCommand($clinic_id, $user_id);
+            $this->dispatch($command2);
+        }
 
         return redirect()->route('users.index')->withMessage(trans('quickadmin::admin.users-controller-successfully_updated'));
     }

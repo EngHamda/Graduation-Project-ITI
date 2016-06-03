@@ -122,3 +122,5 @@ Route::PUT('questions/answers/{aid}','AnswersController@update');
 //Route::resource('questions.answers', 'AnswersController');
 //    photos/{photos}/comments/{comments}.
 //questions/1/answers/10/edit
+
+Route::get('/homepage',array('uses' => 'HomePageController@index','as' => 'homepage'));
