@@ -65,7 +65,7 @@
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
                         <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
-                        <li><a href="auth/register">Sign Up</a></li>
+                        <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
                     </ul>
                 </nav>
                 <div class="secondary-nav-wrapper">
@@ -93,6 +93,7 @@
     {{--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>--}}
 
     <!-- Modal -->
+    {{--login Modal--}}
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -137,21 +138,27 @@
                 </div>
                 </p>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">
+
+                    <button  id="medical" type="button" class="btn btn-info ">
+                        <i class="fa fa-btn fa-sign-in"></i>AreYouMedicalCompany?
+                    </button>
+                    <button type="submit" class="btn btn-info">
                         <i class="fa fa-btn fa-sign-in"></i>Login
                     </button>
-                    <p id="medical" ><a>AreYouMedicalCompany?</a></p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
                     </form>
                 </div>
 
 </div>
 </div>
         </div>
+{{--End of login Modal--}}
 
 {{--starting Modal of Medical Company--}}
     <div class="modal fade" id="myModal1" role="dialog">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -168,6 +175,100 @@
     </div>
 </div>
 {{--Ending Modal of Medical Company--}}
+
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Registeration Form</h4>
+            </div>
+            <div class="modal-body">
+                <p> <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+                    {{ csrf_field() }}
+
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Name</label>
+
+                        <div class="col-md-6">
+                            <input type="hidden" name="role_id" value="5">
+                            <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
+                            <div id="nameerror"></div>
+                            @if ($errors->has('name'))
+                                <span class="help-block" >
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">E-Mail Address</label>
+
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
+                            <div id="emailerror">
+
+                            </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Password</label>
+
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" name="password" id="password">
+
+                            <div id="passworderror"></div>
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Confirm Password</label>
+
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" name="password_confirmation" id="passwordconfirm">
+                            <div id="passwordconfirmerror"></div>  <div id="message"></div>
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+               </p>
+            </div>
+            <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-info">
+                            <i class="fa fa-btn fa-user"></i>Register
+                        </button>
+
+                 </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{{--Start of Registeration Modal--}}
+
+{{--End of Registeration Modal--}}
 <header class="hero">
     <div class="carousel js-flickity">
         <div class="carousel-cell" style="background-image: url(img/hero-bg-01.jpg);">
@@ -725,25 +826,14 @@
             <div class="col-md-12 footer-nav">
                 <ul class="footer-primary-nav">
                     <li><a href="#intro">The Collective</a></li>
-                    <li><a href="#team">The Crew</a></li>
-                    <li><a href="#articles">Articles</a></li>
-                    <li><a href="#freebies">Freebies</a></li>
-                    <li><a href="#">Subscribe</a></li>
+                    <li><a href="#team">Our Staff</a></li>
+                    <li><a href="#articles">Questions</a></li>
+                    <li><a href="#freebies">Advices</a></li>
+
                 </ul>
-                <ul class="footer-share">
-                    <li><a href="http://tympanus.net/codrops/licensing/">Licence</a></li>
-                    <li><a href="#" class="share-trigger"><i class="fa fa-share"></i>Share</a></li>
-                </ul>
-                <div class="share-dropdown">
-                    <ul>
-                        <li><a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-                <ul class="footer-secondary-nav">
-                    <li>© Synthetica 2016. A free HTML5/CSS3 Template by <a href="http://www.peterfinlan.com">Peter Finlan</a></li>
-                </ul>
+
+
+
             </div>
         </div>
     </div>
