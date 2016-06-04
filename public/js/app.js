@@ -25,3 +25,61 @@ $('.like').on('click',function(event)
         });
 
     })
+
+
+//$(function()
+//        {
+//            $( "#datepicker-1" ).datepicker();
+//        });
+
+
+$(document).ready(function(){
+
+    $(function() {
+        $( "#datepicker-1" ).datepicker();
+        $( "#datepicker-2" ).datepicker();
+        $("#datepicker-3").datepicker();
+    });
+
+    $("#email").focus(function(){
+        $("#emailerror").html(" ");
+
+    });
+
+    $("#email").blur(function(){
+        var string=$("#email").val();
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var res = re.test(string);
+        if(!res)
+        {
+
+            $("#emailerror").html("<b>not valid email<b>").css({'color':'#891818'});
+
+        }
+    });
+
+
+    $("#password").blur(function(){
+        var password=$("#password").val();
+        var passwordlength = password.length;
+        if(passwordlength<6)
+        {
+
+            $("#passworderror").html("<b>password can't be less than 6 character <b>").css({'color':'#891818'});
+
+        }
+
+    });
+
+
+
+    $("#password").focus(function(){
+
+        $("#passworderror").html(" ");
+    });
+
+});
+
+
+
+

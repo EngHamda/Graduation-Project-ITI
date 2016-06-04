@@ -60,12 +60,17 @@
                 <nav>
                     <ul class="primary-nav">
                         <li><a href="#intro">Home</a></li>
-                        <li><a href="#articles">Questions</a></li>
-                        <li><a href="#freebies">Advices</a></li>
+                        <li><a href="#freebies">Questions</a></li>
+                        <li><a href="#articles">Advices</a></li>
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
-                        <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
-                        <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
+                        @if(!Auth::user())
+                            <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
+                            <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
+                        @endif
+                        @if(Auth::user())
+                            <li><a href="/auth/logout">Log Out</a></li>
+                        @endif
                     </ul>
                 </nav>
                 <div class="secondary-nav-wrapper">
@@ -94,6 +99,7 @@
 
     <!-- Modal -->
     {{--login Modal--}}
+
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -107,7 +113,6 @@
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">E-Mail Address</label>
-
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
 
@@ -199,13 +204,13 @@
 
 
 
-                    </form></p>
+                  </p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">
                         <i class="fa fa-btn fa-sign-in"></i>Login
                     </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  </form>
                 </div>
             </div>
         </div>
@@ -316,7 +321,11 @@
                             <h1 class="wp1">Introducing, Synthetica. A blissful HTML5/CSS3 Template, free forever.</h1>
 
                             <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
-                            <a href="/questions/create" class="btn primary  wp2 mm">Ask Question</a>
+                            @if(Auth::user())
+                                @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
+                                    <a href="patient/questions/create" class="btn primary  wp2 mm">Ask Question</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -551,7 +560,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-4">
-                <h4>Latest Articles</h4>
+                <h4>Latest Advices</h4>
             </div>
             <div class="col-md-8 col-sm-8 sort">
                 <h5>Sort by</h5>
@@ -563,7 +572,8 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div class="row"><!--row of advices list-->
+            @foreach($latestAdvices as $latestAdvice)
             <div class="col-md-4">
                 <article class="article-post">
                     <a href="#">
@@ -572,8 +582,8 @@
                         </div>
                         <figure>
                             <figcaption>
-                                <h2>8 solid tips when working with front-end developers</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
+
+                                <p>{{$latestAdvice->advice}}</p>
                             </figcaption>
                         </figure>
                     </a>
@@ -587,121 +597,9 @@
                     </ul>
                 </article>
             </div>
-            <div class="col-md-4">
-                <article class="article-post">
-                    <a href="#">
-                        <div class="article-image has-overlay" style="background-image: url(img/article-02.jpg)">
-                        </div>
-                        <figure>
-                            <figcaption>
-                                <h2>The 10 best traits of a awesome design leaders</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
-                            </figcaption>
-                        </figure>
-                    </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">Teams</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 42</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-            <div class="col-md-4">
-                <article class="article-post">
-                    <a href="#">
-                        <div class="article-image has-overlay" style="background-image: url(img/article-03.jpg)">
-                        </div>
-                        <figure>
-                            <figcaption>
-                                <h2>How to design well collaboratively with an agile product team</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
-                            </figcaption>
-                        </figure>
-                    </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">Teams</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 58</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-        <div class="row has-top-margin">
-            <div class="col-md-4">
-                <article class="article-post">
-                    <a href="#">
-                        <div class="article-image has-overlay" style="background-image: url(img/article-04.jpg)">
-                        </div>
-                        <figure>
-                            <figcaption>
-                                <h2>The essentials of modern interaction design (mobile + tablet)</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
-                            </figcaption>
-                        </figure>
-                    </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">UX Design</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 14</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-            <div class="col-md-4">
-                <article class="article-post">
-                    <a href="#">
-                        <div class="article-image has-overlay" style="background-image: url(img/article-05.jpg)">
-                        </div>
-                        <figure>
-                            <figcaption>
-                                <h2>Overcoming barriers encountered in the pitch process (part 1)</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
-                            </figcaption>
-                        </figure>
-                    </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">Product</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 55</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-            <div class="col-md-4">
-                <article class="article-post">
-                    <a href="#">
-                        <div class="article-image has-overlay" style="background-image: url(img/article-06.jpg)">
-                        </div>
-                        <figure>
-                            <figcaption>
-                                <h2>10 things we've learnt about our users (Case Study)</h2>
-                                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus...</p>
-                            </figcaption>
-                        </figure>
-                    </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">UX Design</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 20</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-        </div>
+        @endforeach
         <div class="row is-centered">
-            <a href="#intro" class="btn secondary view-more">View more</a>
+            <a href="/advices" class="btn secondary view-more">View more</a>
         </div>
     </div>
 </section>
@@ -711,7 +609,7 @@
     <div class="container freebies-intro">
         <div class="row">
             <div class="col-md-12">
-                <h4>Freshest Advices</h4>
+                <h4>Freshest Questions</h4>
             </div>
         </div>
         <div class="row">
@@ -724,7 +622,9 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
+
+        <div class="row"><!--row of question list-->
+            @foreach ($latestQuestions as $latestQuestion)
             <div class="col-md-6 no-padding">
                 <article class="item wp5">
                     <figure class="has-overlay">
@@ -739,57 +639,33 @@
                                     </li>
                                 </ul>
                             </div>
-                            {{--@foreach ($latestAdvices as $latestAdvice)--}}
-                                {{--<div class="freebie-content">--}}
-                                    {{--<span class="date">03/01/2016</span>--}}
-                                    {{--<h2>{{$latestAdvice}}</h2>--}}
-                                    {{--<div class="group">--}}
-                                        {{--<a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                        {{--</figcaption>--}}
-                        {{--<img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">--}}
-                    {{--</figure>--}}
-                {{--</article>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="row">--}}
-            {{--<div class="col-md-6 no-padding">--}}
-                {{--<article class="item wp7">--}}
-                    {{--<figure class="has-overlay">--}}
-                        {{--<figcaption class="overlay">--}}
-                            {{--<div class="like-share-wrapper">--}}
-                                {{--<ul>--}}
-                                    {{--<li>--}}
-                                        {{--<div class="like-button-wrapper">--}}
-                                            {{--<a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>--}}
-                                            {{--<span class="count">0</span>--}}
-                                        {{--</div>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
 
-                            {{--@endforeach--}}
-                            <div class="freebie-content">
-                                <span class="date">03/01/2016</span>
-                                <h2>Free logo concepts by Koby West</h2>
-                                <div class="group">
-                                    <a href="#" class="btn secondary">Download</a>
+                                <div class="freebie-content">
+                                    <span class="date">03/01/2016</span>
+                                    <h2>{{$latestQuestion->question_specific}}</h2>
+                                    <h2>{{$latestQuestion->answers}}</h2>
+
+                                    <div class="group">
+                                        <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
+                                    </div>
                                 </div>
-                            </div>
                         </figcaption>
-                        <img src="img/freebie-04.jpg" alt="Synthetica by Freebie Peter Finlan">
+                        <img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">
                     </figure>
                 </article>
             </div>
+            @endforeach
+        </div>
+
+
             <div class="is-centered">
-                <a href="/advices" class="btn secondary view-more">View more</a>
+                <a href="/questions" class="btn secondary view-more">View more</a>
             </div>
         </div>
     </div>
 </section>
+</body>
 <!-- END SECTION: Freebies -->
-
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">
     <div class="container">
@@ -804,8 +680,8 @@
                 <ul class="footer-primary-nav">
                     <li><a href="#intro">The Collective</a></li>
                     <li><a href="#team">Our Staff</a></li>
-                    <li><a href="#articles">Questions</a></li>
-                    <li><a href="#freebies">Advices</a></li>
+                    <li><a href="#freebies">Questions</a></li>
+                    <li><a href="#articles">Advices</a></li>
 
                 </ul>
 
@@ -817,8 +693,8 @@
 </footer>
 <!-- END SECTION: Footer -->
 <!-- JS CDNs -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+{{--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>--}}
 <script src="http://vjs.zencdn.net/5.4.6/video.min.js"></script>
 <!-- jQuery local fallback -->
 <script>
@@ -830,7 +706,17 @@
 <script src="js/min/retina.min.js"></script>
 <script src="js/min/jquery.waypoints.min.js"></script>
 <script src="js/min/flickity.pkgd.min.js"></script>
-<script src="js/min/scripts-min.js"></script>
+{{--<script src="js/min/scripts-min.js"></script>--}}
+<!-- Bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+{!! Html::script('js/app.js') !!}
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+{!! Html::script('js/bootstrap.min.js') !!}
+{{--{!! Html::script('js/custom/multi-upload/jquery.filer.min.js') !!}--}}
+        <!--    {!! Html::script('js/custom/script.js') !!} for Q Index -->
+<!--<script src="js/bootstrap.min.js"></script>-->
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--
 <script>
@@ -863,3 +749,4 @@ ga('send', 'pageview');
 
     })
 </script>
+

@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class PatientMiddleware
+use App\Question;
+class questionownerdestroy
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,8 @@ class PatientMiddleware
 
 
     {  
-
+ $id = $request->id;
+$question =Question::findOrFail($id);
 if(!Auth::user())
 {
 
@@ -25,7 +27,7 @@ return redirect('/');
 }
 
 if (Auth::user())
-        {  if(Auth::user()->role_id!=2)
+        {  if(Auth::user()->role_id!=2 && $question->user_id != auth()->user()->id && $question->is_answered=="unanswered" && Auth::user()->role_id!=5)
            {
              return redirect('/');
            } 

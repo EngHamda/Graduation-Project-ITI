@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Advice;
+use App\Question;
 class HomePageController extends Controller
 {
     /**
@@ -15,7 +16,9 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        return view('homepage');
+        $latestAdvices = Advice::orderBy('created_at', 'desc')->take(5)->get();
+        $latestQuestions = Question::where('is_answered','answered')->orderBy('created_at', 'desc')->take(5)->get();
+        return view('homepage', compact('latestAdvices','latestQuestions'));
     }
 
     /**

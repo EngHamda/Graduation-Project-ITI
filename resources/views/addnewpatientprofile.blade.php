@@ -1,101 +1,6 @@
+@extends('layouts.main')
 
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="/js/jquery-1.12.4.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="/js/bootstrap.min.js"></script> 
-<head>
- <meta charset="utf-8">
-      <title>jQuery UI Datepicker functionality</title>
-
-      <link href="/css/jquery-ui.min.css" rel="stylesheet">
-      <script src="/js/jquery-1.12.4.min.js"></script>
-      <script src="/js/jquery-ui.min.js"></script>
- <script>
-       
-
-
-
-$(document).ready(function(){
-
-
-
-
-
-  $(function() {
-            $( "#datepicker-1" ).datepicker();
-         $( "#datepicker-2" ).datepicker();
-         });
-   
-$("#email").focus(function(){
-	$("#emailerror").html(" ");      
-
-});
-
-$("#email").blur(function(){
-        var string=$("#email").val();
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	var res = re.test(string);
-	if(!res)
-	{
-
-	$("#emailerror").html("<b>not valid email<b>").css({'color':'#891818'});
-	
-	}
-});
-
-
-$("#password").blur(function(){
-	var password=$("#password").val();
-	var passwordlength = password.length;
-	if(passwordlength<6)
-	{
-
-	$("#passworderror").html("<b>password can't be less than 6 character <b>").css({'color':'#891818'});
-
-	}
-
-});
-
-
-
-$("#password").focus(function(){
-       
-	$("#passworderror").html(" ");
-});
-
-
-
-
-
-
-
-
-
-       
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </script>
-	<title>requestform</title>
-</head>
+@section('content')
 <body>
 
 <form method="POST" action="{{ url('assistant/addnewpatientprofile') }}" enctype="multipart/form-data"  >
@@ -181,11 +86,11 @@ $("#password").focus(function(){
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
-    
+  
   
  
-   </body>
-</html>
+
+
 
   <button type="submit" class="btn btn-primary">submit </button>
 
@@ -194,4 +99,4 @@ $("#password").focus(function(){
 
 </form>
 </body>
-</html>
+@stop

@@ -59,6 +59,11 @@ class Kernel extends HttpKernel
         'physician'=>\App\Http\Middleware\PhysicianMiddleware::class,
         'assistant'=>\App\Http\Middleware\AssistantMiddleware::class,
         'role' => \Laraveldaily\Quickadmin\Middleware\HasPermissions::class,
-
+        'reservation'=>\App\Http\Middleware\ReservationMiddleware::class,
+        'questionowneredit'=>\App\Http\Middleware\questionowneredit::class,
+        'questionownerdestroy'=>\App\Http\Middleware\questionownerdestroy::class,
+        'answerowner'=>\App\Http\Middleware\answerowner::class,
+        'adviceeditdestroy'=>\App\Http\Middleware\adviceeditdestroy::class,
+        'askquestion'=>\App\Http\Middleware\askquestion::class,
     ];
 }

@@ -12,14 +12,15 @@
             <div class="row">
                 {{-- This comment will not be present in the rendered HTML --}}
                 <div class="col-md-12">
-                    {!! Form::open(array('action' => 'ReservationsController@store')
+                    {!! Form::open(array('url' => '/patient/store','method' =>'post')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
-                                {!! Form::text('patient-name', 'User_Name', 
+
+                                {!! Form::text('patient-name', auth()->user()->name, 
                                                 array('class'=>' form-control', 'readonly')) !!}
                             <!--</fieldset>-->
                         </div>

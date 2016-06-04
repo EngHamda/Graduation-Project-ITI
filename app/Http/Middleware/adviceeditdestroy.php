@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Middleware;
-
+use App\Advice;
 use Closure;
 use Auth;
-class PatientMiddleware
+
+class adviceeditdestroy
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,8 @@ class PatientMiddleware
 
 
     {  
-
+ $id = $request->id;
+$advice =Advice::findOrFail($id);
 if(!Auth::user())
 {
 
@@ -25,7 +26,7 @@ return redirect('/');
 }
 
 if (Auth::user())
-        {  if(Auth::user()->role_id!=2)
+        {  if( $advice->user_id!=Auth::user()->id)
            {
              return redirect('/');
            } 

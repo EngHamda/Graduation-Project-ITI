@@ -1,27 +1,6 @@
+@extends('layouts.main')
 
-
-
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="css/bootstrap.min.css">
-
- <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
-<script src="js/jquery-1.12.4.min.js "></script>
- <script src="js/bootstrap.min.js"></script>
-  <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-  }
-  </style>
-</head>
-<body>
-doctor home page
-<a href="/auth/logout">logout</a>
-
+@section('content')
 <div class="container">
   <br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -77,4 +56,4 @@ doctor home page
         {!! Form::close() !!}
     </div>
 </div>
-</body>
+@stop

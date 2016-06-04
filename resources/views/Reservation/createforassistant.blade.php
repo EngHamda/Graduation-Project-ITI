@@ -1,27 +1,27 @@
 @extends('layouts.main')
-@section('title','Edit')
+@section('title','Create')
 @section('sidebar')
-    edit Sidebar
+    create Sidebar
 @stop
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Edit Reservation</h3>
+          <h3 class="panel-title">Create Reservation</h3>
         </div>
         <div class="panel-body">
             <div class="row">
                 {{-- This comment will not be present in the rendered HTML --}}
                 <div class="col-md-12">
-
-
-
-                  {{Form::open(array("url"=>"/patient/update/".$reservation->id,"method"=>'PUT'))}}
+                    {!! Form::open(array('url' => '/patient/store','method' =>'post')
+                                , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
-                                {!! Form::text('patient-name', $reservation->patient->name,array('class'=>' form-control', 'readonly')) !!}
+
+                                {!! Form::text('patient-name', $username, 
+                                                array('class'=>' form-control', 'readonly')) !!}
                             <!--</fieldset>-->
                         </div>
                     </div>
@@ -29,9 +29,9 @@
                         {!! Form::label('clinic-name', 'Clinic Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('clinic-name', $clinicList
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Choose Clinic')) !!}
+                            {!! Form::select('clinic-name', $clinicList, null, 
+                                              array('class'=>' form-control c-select',
+                                                    'placeholder' => 'Clinic Name')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -39,8 +39,8 @@
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
                             {!! Form::select('physician-name', array('1' => 'doctor', 'S' => 'Small')
-                                            , $reservation->physician->name, array('class'=>' form-control c-select',
-                                                          'placeholder' => $reservation->physician->name)) !!}
+                                            , null, array('class'=>' form-control c-select',
+                                                          'placeholder' => 'Physician Name')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,8 +50,8 @@
                             {!! Form::select('clinic-day', array('saturday' => 'Saturday', 
                                                                  'sunday' => 'Sunday', 
                                                                  'monday' => 'Monday')
-                                            , $reservation->reservation_day, array('class'=>' form-control c-select',
-                                                          'placeholder' => $reservation->reservation_day)) !!}
+                                            , null, array('class'=>' form-control c-select',
+                                                          'placeholder' => 'Reservation Day')) !!}
                         </div>
                         <div class="col-sm-5">
                             {!! Form::select('clinic-time', array('01.00am' => '01.00 pm - 03.00 pm', 
@@ -60,28 +60,10 @@
                                                           'placeholder' => 'Reservation hour')) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        {!! Form::label('reservation-status', 'Reservation Status'  
-                                        ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            <label class="col-sm-6 ">
-                                {!! Form::checkbox('reservation-confirmed', 'confirmed', true) !!}
-                                Confirm Reservation
-                            </label>
-                            
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        {!! Form::label('reservation-number', 'Number of Reservation'  
-                                ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            {!! Form::number('reservation-number', $reservation->reservation_number, 
-                                              array('class'=>' form-control',
-                                                    'placeholder' => $reservation->reservation_number)) !!}
-                        </div>
-                    </div>
+                    
+                    
                     <div class='col-sm-10 col-sm-offset-2'>
-                        {!! Form::submit('Edit Reservation', array('class'=>'btn btn-success col-sm-offset-2')) !!}                               
+                        {!! Form::submit('Create Reservation', array('class'=>'btn btn-success col-sm-offset-2')) !!}                               
                         {!! Form::reset('Cancel Reservation', array('class'=>'btn btn-danger col-sm-offset-5')) !!}                               
                     </div>
                     {!! Form::close() !!} 

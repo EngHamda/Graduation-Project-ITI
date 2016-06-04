@@ -1,6 +1,7 @@
-@extends('layouts.main1')
+@extends('layouts.main')
 
 @section('content')
+
 <div class="container">
 
        <div class="row">
@@ -19,10 +20,12 @@
                                 <br>{{--</a>--}}
                                 <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice->id)->first()->liked==1?'You like this post':'Like':'Like'}}</a>
                                 <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice->id)->first()->liked==0?'You don\'t like this post':'Dislike':'Dislike'}}</a>
-                                <a href="advices/{{$advice->id}}/edit" class="btn btn-default">Edit</a>
+                                @if($advice->user_id==auth()->user()->id)
+                                    <a href="advices/{{$advice->id}}/edit" class="btn btn-default">Edit</a>
 
-                                {!! Form::open(array('route' => ['advices.destroy',$advice->id],'method'=>'DELETE'))!!}
-                                {!! Form::submit('Delete',$attributes=['class'=>'btn btn-danger']) !!}
+                                    {!! Form::open(array('route' => ['advices.destroy',$advice->id],'method'=>'DELETE'))!!}
+                                    {!! Form::submit('Delete',$attributes=['class'=>'btn btn-danger']) !!}
+                                @endif
                             </div>
                         </article>
 
@@ -31,6 +34,8 @@
            </div>
        </div>
 </div>
+
+
 
 @stop
 

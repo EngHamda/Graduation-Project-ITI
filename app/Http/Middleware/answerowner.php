@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class PatientMiddleware
+use App\Answer;
+class answerowner
 {
     /**
      * Handle an incoming request.
@@ -17,6 +18,8 @@ class PatientMiddleware
 
 
     {  
+ $id = $request->id;
+$answer =Answer::findOrFail($id);
 
 if(!Auth::user())
 {
@@ -25,10 +28,13 @@ return redirect('/');
 }
 
 if (Auth::user())
-        {  if(Auth::user()->role_id!=2)
+
+        { 
+         if($answer->physician_id!=Auth::user()->id)
            {
              return redirect('/');
-           } 
+          
+            } 
         }
 
 

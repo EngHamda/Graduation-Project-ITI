@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class PatientMiddleware
+use App\Question;
+class askquestion
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,7 @@ class PatientMiddleware
 
 
     {  
-
+ 
 if(!Auth::user())
 {
 
@@ -25,7 +26,7 @@ return redirect('/');
 }
 
 if (Auth::user())
-        {  if(Auth::user()->role_id!=2)
+        {  if(Auth::user()->role_id!=2 &&Auth::user()->role_id!=5)
            {
              return redirect('/');
            } 

@@ -177,10 +177,6 @@ class AdvicesController extends Controller
         return 'this is a return';
     }
 
-    public function latestAdvices()
-    {
-        $latestAdvices = DB::table('advices')->orderBy('created_at', 'desc')->take(5)->get();
-        return view('homepage', compact('latestAdvices'));
 
-    }
+
 }

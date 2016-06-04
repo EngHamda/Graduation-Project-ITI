@@ -15,6 +15,7 @@ use App\Commands\UpdatePatientProfile;
 use App\Http\Requests\storeRequest;
 use App\User;
 use App\Patientprofile;
+use App\Reservation;
 class AssistantController extends Controller
 {
     /**
@@ -23,8 +24,16 @@ class AssistantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
+
     {
-        return view('assistantprofile');
+        $reservations = Reservation::orderBy('reservation_day', 'asc')
+                ->orderBy('reservation_confirmed', 'asc')
+               ->orderBy('reservation_number', 'asc')
+                ->get();//array of selected columns
+
+     return view('assistantprofile', compact('reservations'));//,'patient_names'));
+
     }
 
     /**
@@ -100,7 +109,7 @@ $profileid=$profile->id;
 var_dump($profileid);
 $command3=new StoreDmissiontime($Dmissiontime,$profileid);
 $this->dispatch($command3);
- return redirect('assistant')->with('status', 'request sent');
+ return redirect('assistant')->with('status', 'patient profile update');
 
 
 
@@ -204,7 +213,7 @@ $commandtwo=new UpdatePatientProfile($profileid,$user_id,$patientweight,$patient
 $this->dispatch($commandtwo);
 $commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
 $this->dispatch($commandthree);
-return redirect('assistant')->with('status', 'request sent');
+return redirect('assistant')->with('status', 'patient profile update');
 }
 
 
@@ -216,7 +225,7 @@ $user=User::find($id);
 $profileid=$user->patientprofile->id;
 $commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
 $this->dispatch($commandthree);
-return redirect('assistant')->with('status', 'request sent');
+return redirect('assistant')->with('status', 'patient profile update');
 
 }
 
@@ -254,6 +263,7 @@ if($user->role_id==2)
 $patientprofile=$user->patientprofile;
 
 return view('editpatientprofile',compact('user','patientprofile'));
+
 }
 
 if($user->role_id==5)
@@ -265,14 +275,16 @@ return view('changeguestpatienttopatient',compact('user'));
 
 else{
 
-return view('assistantprofile');
+return redirect('/assistant')->with('status', 'this email not found');
 }
 
 
 }
+
+
 else{
 
-return view('assistantprofile');
+return redirect('/assistant')->with('status', 'this email not found');
 }
 
 

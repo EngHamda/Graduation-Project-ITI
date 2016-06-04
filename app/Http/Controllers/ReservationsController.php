@@ -17,6 +17,7 @@ use App\Commands\DestoryReservationCommand;
 
 use App\Reservation;
 use App\Clinics;
+use App\User;
 //use App\user;
 
 //use DB;
@@ -33,16 +34,16 @@ class ReservationsController extends Controller
     {
         //
 //        $reservations = Reservation::all();
-        $reservations = Reservation:://where('clinic_id', 1)
-                                    //clinic_id for assistant login
-                //->
-                orderBy('reservation_day', 'asc')
-                ->orderBy('reservation_time', 'asc')
-                ->orderBy('reservation_confirmed', 'asc')
-                ->orderBy('reservation_number', 'asc')
-                ->get();//array of selected columns
-//        return compact('reservations');//,'patient_names');
-        return view('Reservation.index', compact('reservations'));//,'patient_names'));
+//        $reservations = Reservation:://where('clinic_id', 1)
+//                                    //clinic_id for assistant login
+//                //->
+//                orderBy('reservation_day', 'asc')
+//                ->orderBy('reservation_time', 'asc')
+//                ->orderBy('reservation_confirmed', 'asc')
+//                ->orderBy('reservation_number', 'asc')
+//                ->get();//array of selected columns
+////        return compact('reservations');//,'patient_names');
+//        return view('assistantprofile', compact('reservations'));//,'patient_names'));
     }
 
     /**
@@ -80,16 +81,16 @@ class ReservationsController extends Controller
     {
         //
         //get data from view
-        $patient_id            = 3;//$request->input('patient-name');
+        $patient_id            = auth()->user()->id;//$request->input('patient-name');
         $clinic_id             = $request->input('clinic-name');
-        $physician_id          = 1;//$request->input('physician-name');
+        $physician_id          = 20;//$request->input('physician-name');
         $reservation_day       = 'Saturday';//$request->input('clinic-day').$request->input('clinic-time');
         $reservation_time       = '04:00-08:00';
         //create command
         $command = new StoreReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('reservations.index')
+        return redirect('/patient/index')
                 ->with('message','New Reservation is added');
     }
 
@@ -140,9 +141,9 @@ class ReservationsController extends Controller
     {
         //
         //get data from view
-        $patient_id            = 3;//$request->input('patient-name');
+        $patient_id            = Reservation::find($id)->patient_id;
         $clinic_id             = $request->input('clinic-name');
-        $physician_id          = 1;//$request->input('physician-name');
+        $physician_id          = 20;//$request->input('physician-name');
         $reservation_day       = 'Saturday';//$request->input('clinic-day').$request->input('clinic-time');
         $reservation_time      = '04:00-08:00';
         $reservation_confirmed = $request->input('reservation-confirmed');
@@ -159,7 +160,7 @@ class ReservationsController extends Controller
         $command = new UpdateReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time, $reservation_confirmed, $reservation_number, $id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('reservations.index')
+        return redirect('/patient/index')
                 ->with('message','Reservation Number '.$reservation_number.' is updated');
         
     }
@@ -176,8 +177,40 @@ class ReservationsController extends Controller
         $command = new DestoryReservationCommand($id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('reservations.index')
+        return redirect('/patient/index')
                 ->with('message','Reservation is deleted');
         
     }
+
+
+
+
+
+
+ public function createbyassistant( $id)
+    {
+         $username=User::find($id)->name;
+        $clinicNames = array();
+        $clinicIds = array();
+        $clinics = Clinics::all('id','name');
+        foreach ($clinics as $clinic ){ 
+            // Code Here
+            array_push($clinicNames, $clinic->name);
+            array_push($clinicIds, $clinic->id);
+        }
+        $clinicList = array_combine($clinicIds, $clinicNames);
+        return view('Reservation.createforassistant', compact('username','clinicList'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
