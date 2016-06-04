@@ -17,6 +17,8 @@ use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
 use App\Role;
 use App\Advertisementsrequest;
 use App\Like;
+use App\Physician_Details;
+use App\Assistant_Details;
 
 
 class User extends Model implements AuthenticatableContract,
@@ -104,7 +106,15 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('\App\Advertisementsrequest');
     }
 
+    public function physician_details()
+    {
+        return $this->hasOne('App\Physician_Details');
+    }
 
+    public function assistant_details()
+    {
+        return $this->hasOne('App\Assistant_Details');
+    }
 
 
 
