@@ -162,12 +162,49 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Medical Company Login</h4>
                 </div>
                 <div class="modal-body">
-                    <p>This is a small modal.</p>
+                    <p><form class="form-horizontal" role="form" method="POST" action="{{ url('/medicalcompany/login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password">
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
+                    </form></p>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-btn fa-sign-in"></i>Login
+                    </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -674,7 +711,7 @@
     <div class="container freebies-intro">
         <div class="row">
             <div class="col-md-12">
-                <h4>Freshest Freebies</h4>
+                <h4>Freshest Advices</h4>
             </div>
         </div>
         <div class="row">
@@ -702,86 +739,37 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="freebie-content">
-                                <span class="date">03/01/2016</span>
-                                <h2>Sedna HTML CSS Template</h2>
-                                <div class="group">
-                                    <a href="http://tympanus.net/codrops/2015/08/11/freebie-sedna-one-page-website-template/" class="btn secondary">Download</a>
-                                </div>
-                            </div>
-                        </figcaption>
-                        <img src="img/sedna-freebie.jpg" alt="Sedna Freebie Peter Finlan">
-                    </figure>
-                </article>
-            </div>
-            <div class="col-md-6 no-padding">
-                <article class="item wp6">
-                    <figure class="has-overlay">
-                        <figcaption class="overlay">
-                            <div class="like-share-wrapper">
-                                <ul>
-                                    <li>
-                                        <div class="like-button-wrapper">
-                                            <a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>
-                                            <span class="count">0</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="freebie-content">
-                                <span class="date">03/01/2016</span>
-                                <h2>Land.io Sketch Template</h2>
-                                <div class="group">
-                                    <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
-                                </div>
-                            </div>
-                        </figcaption>
-                        <img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">
-                    </figure>
-                </article>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 no-padding">
-                <article class="item wp7">
-                    <figure class="has-overlay">
-                        <figcaption class="overlay">
-                            <div class="like-share-wrapper">
-                                <ul>
-                                    <li>
-                                        <div class="like-button-wrapper">
-                                            <a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>
-                                            <span class="count">0</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="freebie-content">
-                                <span class="date">03/01/2016</span>
-                                <h2>Synthetica HTML5/CSS3 Template</h2>
-                                <div class="group">
-                                    <a href="http://tympanus.net/codrops/?p=26570" class="btn secondary">Download</a>
-                                </div>
-                            </div>
-                        </figcaption>
-                        <img src="img/freebie-03.jpg" alt="Synthetica Freebie by Peter Finlan">
-                    </figure>
-                </article>
-            </div>
-            <div class="col-md-6 no-padding">
-                <article class="item wp8">
-                    <figure class="has-overlay">
-                        <figcaption class="overlay">
-                            <div class="like-share-wrapper">
-                                <ul>
-                                    <li>
-                                        <div class="like-button-wrapper">
-                                            <a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>
-                                            <span class="count">0</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            {{--@foreach ($latestAdvices as $latestAdvice)--}}
+                                {{--<div class="freebie-content">--}}
+                                    {{--<span class="date">03/01/2016</span>--}}
+                                    {{--<h2>{{$latestAdvice}}</h2>--}}
+                                    {{--<div class="group">--}}
+                                        {{--<a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                        {{--</figcaption>--}}
+                        {{--<img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">--}}
+                    {{--</figure>--}}
+                {{--</article>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-md-6 no-padding">--}}
+                {{--<article class="item wp7">--}}
+                    {{--<figure class="has-overlay">--}}
+                        {{--<figcaption class="overlay">--}}
+                            {{--<div class="like-share-wrapper">--}}
+                                {{--<ul>--}}
+                                    {{--<li>--}}
+                                        {{--<div class="like-button-wrapper">--}}
+                                            {{--<a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>--}}
+                                            {{--<span class="count">0</span>--}}
+                                        {{--</div>--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+
+                            {{--@endforeach--}}
                             <div class="freebie-content">
                                 <span class="date">03/01/2016</span>
                                 <h2>Free logo concepts by Koby West</h2>
@@ -795,24 +783,13 @@
                 </article>
             </div>
             <div class="is-centered">
-                <a href="http://tympanus.net/codrops/author/pfinlan/" class="btn secondary view-more">View more</a>
+                <a href="/advices" class="btn secondary view-more">View more</a>
             </div>
         </div>
     </div>
 </section>
 <!-- END SECTION: Freebies -->
-<!-- SECTION: Get started -->
-<section class="get-started has-padding text-center" id="get-started">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 wp4">
-                <h2>Get started now. Download Synthetica <a href="http://tympanus.net/codrops/?p=26570">FREE</a>, via Codrops.</h2>
-                <a href="http://tympanus.net/codrops/?p=26570" class="btn secondary-white">Get started</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END SECTION: Get started -->
+
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">
     <div class="container">

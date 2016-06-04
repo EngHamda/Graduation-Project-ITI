@@ -124,3 +124,4 @@ Route::PUT('questions/answers/{aid}','AnswersController@update');
 //questions/1/answers/10/edit
 
 Route::get('/homepage',array('uses' => 'HomePageController@index','as' => 'homepage'));
+Route::get('latestAdvices',array('uses' => 'AdvicesController@latestAdvices'));
