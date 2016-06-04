@@ -18,7 +18,8 @@
 @if(auth()->user()->role_id==2)
 <a href="/auth/logout"> logout </a>homepage for patient
 <a href="/patient/create"> reservation </a>
-
+<a href="/questions">showquestions</a>
+<a href="/advices">show advices</a>
 
 @endif
 @endif

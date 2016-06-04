@@ -4,15 +4,22 @@
 
    @foreach($advices as $advice)
     <article  data-adviceid="{{$advice->id}}">
-        <a href="advices/{{$advice->id}}" >
+        <a href="/advices/{{$advice->id}}" >
             {{$advice->advice}}
             <br>
         </a>
         <div>
+
             <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice->id)->first()->liked==1?'You like this post':'Like':'Like'}}</a>
             <a href="#" class="like">{{Auth::user()->likes()->where('advice_id',$advice->id)->first()?Auth::user()->likes()->where('advice_id',$advice->id)->first()->liked==0?'You don\'t like this post':'Dislike':'Dislike'}}</a>
         </div>
     </article>
+@if($advice->user_id==auth()->user()->id)
+    <a href="/{{$advice->id}}/edit" class="btn btn-default">Edit</a>
+
+    {!! Form::open(array('route' => ['advices.destroy',$advice->id],'method'=>'DELETE'))!!}
+    {!! Form::submit('Delete',$attributes=['class'=>'btn btn-danger']) !!}
+@endif
     <br>
     @endforeach
 

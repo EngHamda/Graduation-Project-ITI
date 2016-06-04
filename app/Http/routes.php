@@ -8,17 +8,70 @@ Route::get('user/login', 'Auth\AuthController@userlogin');
 Route::get('auth/login', 'Auth\AuthController@getlogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('user/login', 'UsersController@userslogin');
+Route::get('questions','QuestionsController@index');
+Route::get('questions/{id}','QuestionsController@show');
+Route::get('/advices/{id}','AdvicesController@show');
+Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
+Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 
 
 
+//put here routes to be acess only by doctor
+Route::group(['middleware' => 'patient'], function () {   
 
-
-Route::group(['middleware' => 'reservation'], function () {
-
-Route::post('/patient/store','ReservationsController@store');
+Route::get('/patient', function () {return view('patientprofile');} );    
+    
 });
 
 
+
+//onlyquestionowner
+Route::group(['middleware' => 'questionowneredit'], function () {   
+
+Route::get('questions/{id}/edit','QuestionsController@edit');
+Route::put('questions/update/{id}','QuestionsController@update');
+
+   
+  });
+
+
+
+//patientandguestpatient
+Route::group(['middleware' => 'askquestion'], function () {   
+
+Route::get('patient/questions/create','QuestionsController@create');
+Route::post('questions/save','QuestionsController@store');
+
+   
+  });
+
+
+
+
+
+
+
+
+
+//questionownerandquestionnotansweredyet
+Route::group(['middleware' => 'questionownerdestroy'], function () {   
+
+Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
+
+
+   
+  });
+
+
+
+
+
+
+
+//acess by assistant and patient
+Route::group(['middleware' => 'reservation'], function () {
+Route::post('/patient/store','ReservationsController@store');
+});
 
 
 
@@ -40,7 +93,22 @@ Route::group(['middleware' => 'physician'], function () {
 Route::get('/physician', 'PhysicianController@index'); 
 Route::get('/physician/request/{id}','PhysicianController@requestcompany');
 Route::post('physician/storecompanyrequest','PhysicianController@storecompanyrequest');
+Route::get('/answers/{id}/create','AnswersController@create');
+Route::post('/answers/store','AnswersController@store');
+ Route::post('/advices/create','AdvicesController@store');
+
+
 });
+
+//adviceowner
+Route::group(['middleware' => 'adviceeditdestroy'], function () {
+Route::get('{id}/edit','AdvicesController@edit');
+
+Route::put('/advices/update/{id}','AdvicesController@update');
+ Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
+});
+
+
 
 
 
@@ -82,6 +150,13 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 
+//answerowner
+Route::group(['middleware' => 'answerowner'], function () {
+Route::delete('/answers/destroy/{id}','AnswersController@destroy');
+Route::GET('questions/answers/{id}/edit','AnswersController@edit');
+Route::PUT('questions/answers/{id}','AnswersController@update');
+
+});
 
 
 
@@ -92,13 +167,16 @@ Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController
 
 
 
-
-
-/*Route::get('advices/like',[
+/*
+Route::get('advices/like',[
      'uses'=>'AdvicesController@adviceLikeAdvice',
      //'as' =>'like'
 ]);*/
-Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
+
+//Route::resource('advices','AdvicesController');
+
+
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -110,15 +188,14 @@ Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice')
 //Reservation Routes
 //Route::resource('reservations','ReservationsController');
 
-//Question Routes
-Route::resource('questions','QuestionsController');
 
 //Answer Routes
 //Route::resource('answers','AnswersController');
 //Route::post('answers/{question}/create','AnswersController@create');
-Route::get('answers/{id}/create','AnswersController@create');
-Route::post('answers','AnswersController@store');
-Route::resource('answers','AnswersController', ['only' => 'destroy']);
+
+
+
+
 
 
 
@@ -132,3 +209,10 @@ Route::resource('answers','AnswersController', ['only' => 'destroy']);
 //Route::get('answers/{id}','AnswersController@destroy');
 //Route::resource('questions.answers', 'AnswersController');
 //    photos/{photos}/comments/{comments}.
+
+
+//Route::get('answers/{id}','AnswersController@destroy');
+//Route::resource('questions.answers', 'AnswersController');
+//    photos/{photos}/comments/{comments}.
+//questions/1/answers/10/edit
+

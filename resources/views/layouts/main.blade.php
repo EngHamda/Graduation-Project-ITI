@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="http://localhost:8000/">Home</a></li>
               <li><a href="/patient/create">Add Reservation</a></li>             
-              <li><a href="http://localhost:8000/questions/create">Add Question</a></li>             
+              <li><a href="patient/questions/create">Add Question</a></li>             
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

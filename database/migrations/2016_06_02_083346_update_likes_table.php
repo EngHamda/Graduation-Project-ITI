@@ -14,9 +14,9 @@ class UpdateLikesTable extends Migration
     {
         Schema::table('likes', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('advice_id')->unsigned();
-            $table->foreign('advice_id')->references('id')->on('advices');
+            $table->foreign('advice_id')->references('id')->on('advices')->onDelete('cascade');
         });
 
     }
@@ -30,7 +30,7 @@ class UpdateLikesTable extends Migration
     {
         Schema::table('likes', function (Blueprint $table) {
 
-            //$table->dropForeign('likes_user_id_foreign');
+            $table->dropForeign('likes_user_id_foreign');
             $table->dropForeign('likes_advice_id_foreign');
 
         });
