@@ -97,7 +97,7 @@ public function postLogin(Request $request)
         ]);*/
 
 
-print_r($request->all());
+//print_r($request->all());
 
       /*  if ($validator->fails()) {
             return redirect('/medicalcompany/login')

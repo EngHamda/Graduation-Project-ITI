@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Advertisement;
 use App\Medicalcompany;
 use App\user;
+
 use App\Commands\StoreDoctorRequestCommand;
 use App\Http\Requests\StoreCompanyAppointmentRequest;
 class PhysicianController extends Controller
@@ -131,6 +132,15 @@ $this->dispatch($command);
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
