@@ -275,7 +275,7 @@ return view('changeguestpatienttopatient',compact('user'));
 
 else{
 
-return redirect('/assistant')->with('status', 'this email not found');
+return redirect('/assistant')->with('status', 'This email does not exist');
 }
 
 
@@ -284,7 +284,7 @@ return redirect('/assistant')->with('status', 'this email not found');
 
 else{
 
-return redirect('/assistant')->with('status', 'this email not found');
+return redirect('/assistant')->with('status', 'This email does not exist');
 }
 
 

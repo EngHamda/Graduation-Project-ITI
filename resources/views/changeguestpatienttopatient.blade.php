@@ -87,7 +87,7 @@
 
 
 {!!  Form::label('patientnationality', 'patientnationality') !!}
-{!! Form::text('patientnationality',$value=null!!}
+{!! Form::text('patientnationality',$value=null)!!}
 <br>
 
 {!!  Form::label('patientnationalid', 'patientnationalid') !!}

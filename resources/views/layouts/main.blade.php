@@ -64,9 +64,13 @@
                 <nav>
                     <ul class="primary-nav">
                         <li><a href="/">Home</a></li>
+                        @if(Auth::user())
+                            @if(Auth::user()->role_id==3)
+                                <li><a href="/assistant">My Profile</a></li>
+                            @endif
+                        @endif
                         <li><a href="/questions">Questions</a></li>
                         <li><a href="/advices">Advices</a></li>
-                        <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
                         @if(!Auth::user())
                             <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
@@ -126,7 +130,6 @@
         <div class="row">
             <div class="col-md-4 footer-branding">
                 <img class="footer-branding-logo" src="/img/synthetica-logo.png" alt="Synthetica freebie html5 css3 template peter finlan logo">
-                <p>A free HTML5/CSS3 template by <a href="http://www.peterfinlan.com">Peter Finlan</a>, exclusively for <span class="bold-italic">Codrops</span></p>
             </div>
         </div>
         <div class="row">

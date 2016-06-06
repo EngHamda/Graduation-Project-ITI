@@ -81,5 +81,10 @@ $(document).ready(function(){
 });
 
 
+$('#medical').on('click',function(){
+
+    $('#myModal').hide();
+    $('#myModal1').modal('show');
 
 
+})

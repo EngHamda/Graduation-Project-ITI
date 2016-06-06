@@ -204,7 +204,7 @@ class UsersController extends Controller
 //print_r($request->all());
 
         if ($validator->fails()) {
-            return redirect('/user/login')
+            return redirect('/#myModal')
             ->withErrors($validator)
                     ->withInput();
             }
@@ -235,7 +235,7 @@ return redirect('/');
 
 
 else{
-    return redirect('/user/login')
+    return redirect('/#myModal')
        ->withErrors(['error'=>'login invalid'])
        ->withInput() ;  
     

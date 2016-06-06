@@ -5,27 +5,45 @@
 <div class="container">
  <div style="margin-top: 50px;"></div>
  <div class="row">
-  <div class="col-sm-offset-3  col-sm-6">
+  <div class="col-sm-offset-2">
+   <div class="col-sm-9">
 
-<a href="/assistant/addnewpatientprofile" class="btn btn-info btn-lg"> AddNewPatient</a>
-
+<a href="/assistant/addnewpatientprofile" class="btn btn-info btn-block btn-lg"> AddNewPatient</a>
+    <a href="/patient/create" class="btn btn-danger btn-block btn-lg"> Add Reservation</a>
   </div>
   </div>
+</div>
 
- <div class="row">
 @if(Session::has('status'))
+  <div class="alert alert-info">
+   <h1>{{Session::get('status')}}<h1>
+  </div>
+ @endif
 
-<h1>{{Session::get('status')}}<h1>
-@endif
+  <div style="margin-top: 50px;"></div>
+  <form  class="form-horizontal" method="POST" action="{{ url('assistant/searchpatientprofile') }}">
+    <div class="row">
 
+      <div class="col-lg-offset-3 col-md-6">
 
-<form method="POST" action="{{ url('assistant/searchpatientprofile') }}">
+          <div class="form-group">
+              <input type="text" name="email" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
 
+      </div>
+    </div>
 
-<input type="text" name="email" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
-<button type="submit" class="btn btn-info btn-md">Search Patient By Email </button>
- </form>
- </div>
+    <div class="row">
+
+     <div class="col-lg-offset-3 col-md-6">
+           <div class="form-group">
+               <button type="submit" class="btn btn-info btn-block btn-lg">Search Patient By Email </button>
+           </div>
+     </div>
+    </div>
+
+  </form>
+
 
 
 
@@ -94,5 +112,6 @@
    </div><!--./panel-body -->
   </div><!--./panel-->
   <!--Test Index-->
+
  </div>
 @stop

@@ -57,7 +57,10 @@ class AdvicesController extends Controller
     public function store(StoreAdviceRequest $request)
     {
         $advice = $request->input('advice');
-        $physician_id = $request->input('user_id');
+
+            if(Auth::user()) {
+                $physician_id = Auth::user()->id;
+            }
 
         $command = new StoreAdviceCommand($advice, $physician_id);
         $this->dispatch($command);

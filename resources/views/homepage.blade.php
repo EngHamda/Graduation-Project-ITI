@@ -71,6 +71,12 @@
                         @if(Auth::user())
                             <li><a href="/auth/logout">Log Out</a></li>
                         @endif
+
+                        @if(Auth::user())
+                            @if(Auth::user()->role_id==3)
+                                <li><a href="/assistant">My Profile</a></li>
+                            @endif
+                        @endif
                     </ul>
                 </nav>
                 <div class="secondary-nav-wrapper">
@@ -313,27 +319,33 @@
 {{--End of Registeration Modal--}}
 <header class="hero">
     <div class="carousel js-flickity">
-        <div class="carousel-cell" style="background-image: url(img/hero-bg-01.jpg);">
+        <div class="carousel-cell" style="background-image: url(img/clinic4.jpg);">
             <div class="hero-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1 class="wp1">Introducing, Synthetica. A blissful HTML5/CSS3 Template, free forever.</h1>
-
-                            <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
+                            <h1 class="wp1"> </h1>
+                            <div style="margin-top: 250px;"></div>
                             @if(Auth::user())
+                                    <a href="/patient/create" class="btn primary wp2">Reserve Online</a>
+
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
-                                    <a href="patient/questions/create" class="btn primary  wp2 mm">Ask Question</a>
+                                    <a href="patient/questions/create" class="btn primary wp2 mm">Ask Question</a>
                                 @endif
+                            @else
+                                <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2 mm">Ask Question</a></span>
+
+                                <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2">Reserve Online</a></span>
                             @endif
+                        </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
-                            <p>Synthetica is a <span class="bold italic">FREE</span>, HTML5/CSS3 template by Peter Finlan, available for download exclusively via Codrops. </p>
+                            <p><span class="bold italic"></span> </p>
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
         <div class="carousel-cell" style="background-image: url(img/hero-bg-02.jpg);">
@@ -341,7 +353,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1 class="wp1">Get a head start, with the Synthetica Sketch file.</h1>
+                            <h1 class="wp1"></h1>
                             <a href="http://tympanus.net/codrops/?p=26570" class="btn primary wp2">Download Sketch File</a>
                         </div>
                     </div>
@@ -672,7 +684,7 @@
         <div class="row">
             <div class="col-md-4 footer-branding">
                 <img class="footer-branding-logo" src="img/synthetica-logo.png" alt="Synthetica freebie html5 css3 template peter finlan logo">
-                <p>A free HTML5/CSS3 template by <a href="http://www.peterfinlan.com">Peter Finlan</a>, exclusively for <span class="bold-italic">Codrops</span></p>
+
             </div>
         </div>
         <div class="row">
@@ -692,9 +704,8 @@
     </div>
 </footer>
 <!-- END SECTION: Footer -->
-<!-- JS CDNs -->
-
-{{--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>--}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 <script src="http://vjs.zencdn.net/5.4.6/video.min.js"></script>
 <!-- jQuery local fallback -->
 <script>
@@ -706,17 +717,7 @@
 <script src="js/min/retina.min.js"></script>
 <script src="js/min/jquery.waypoints.min.js"></script>
 <script src="js/min/flickity.pkgd.min.js"></script>
-{{--<script src="js/min/scripts-min.js"></script>--}}
-<!-- Bootstrap -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-{!! Html::script('js/app.js') !!}
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-{!! Html::script('js/bootstrap.min.js') !!}
-{{--{!! Html::script('js/custom/multi-upload/jquery.filer.min.js') !!}--}}
-        <!--    {!! Html::script('js/custom/script.js') !!} for Q Index -->
-<!--<script src="js/bootstrap.min.js"></script>-->
+<script src="js/min/scripts-min.js"></script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--
 <script>
@@ -740,13 +741,6 @@ ga('send', 'pageview');
 
 </html>
 
-<script>
-    $('#medical').on('click',function(){
-
-        $('#myModal').hide();
-        $('#myModal1').modal('show');
 
 
-    })
-</script>
 
