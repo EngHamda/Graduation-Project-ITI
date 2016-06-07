@@ -1,5 +1,20 @@
 <?php
+
+Route::get('/', function () { return view('welcome');});
+
+Route::get('/nextpage', function () { return view('secondpagepatient');});
+
+
+
+
+
+
+
+
+
+
 Route::get('/',array('uses' => 'HomePageController@index','as' => 'homepage'));
+
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
@@ -15,6 +30,31 @@ Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 Route::get('/medicalcompany/login', 'MedicalcompanyController@login');
 Route::post('/medicalcompany/login', 'MedicalcompanyController@postLogin');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //put here routes to be acess only by doctor
@@ -54,7 +94,7 @@ Route::post('questions/save','QuestionsController@store');
 
 
 
-//questionownerandquestionnotansweredyet
+//questionowner and questionnotansweredyet
 Route::group(['middleware' => 'questionownerdestroy'], function () {   
 
 Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
@@ -69,10 +109,14 @@ Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
 
 
 
-//acess by assistant and patient
+//acess by assistant and patient and guestpatient
 Route::group(['middleware' => 'reservation'], function () {
 Route::post('/patient/store','ReservationsController@store');
-    Route::get('/patient/create','ReservationsController@create');
+
+Route::get('/patient/create','ReservationsController@create');
+
+ 
+
 });
 
 
@@ -98,8 +142,11 @@ Route::post('physician/storecompanyrequest','PhysicianController@storecompanyreq
 Route::get('/answers/{id}/create','AnswersController@create');
 Route::post('/answers/store','AnswersController@store');
  Route::post('/advices/create','AdvicesController@store');
+Route::get('/add', function () { return view('doctorpatientprofile');});
+Route::post('/test','PatientprofilesController@insertpatientprofile');
+Route::get('/prescription', function () { return view('prescription');});
 
-
+Route::post('/addprescription','PatientprofilesController@insertprescription');
 });
 
 //adviceowner
