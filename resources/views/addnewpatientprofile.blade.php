@@ -1,197 +1,108 @@
+@extends('layouts.main')
 
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+@section('content')
 
-<!-- jQuery library -->
-<script src="/js/jquery-1.12.4.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="/js/bootstrap.min.js"></script> 
-<head>
- <meta charset="utf-8">
-      <title>jQuery UI Datepicker functionality</title>
-
-      <link href="/css/jquery-ui.min.css" rel="stylesheet">
-      <script src="/js/jquery-1.12.4.min.js"></script>
-      <script src="/js/jquery-ui.min.js"></script>
- <script>
-       
-
-
-
-$(document).ready(function(){
-
-
-
-
-
-  $(function() {
-            $( "#datepicker-1" ).datepicker();
-         $( "#datepicker-2" ).datepicker();
-         });
-   
-$("#email").focus(function(){
-	$("#emailerror").html(" ");      
-
-});
-
-$("#email").blur(function(){
-        var string=$("#email").val();
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	var res = re.test(string);
-	if(!res)
-	{
-
-	$("#emailerror").html("<b>not valid email<b>").css({'color':'#891818'});
-	
-	}
-});
-
-
-$("#password").blur(function(){
-	var password=$("#password").val();
-	var passwordlength = password.length;
-	if(passwordlength<6)
-	{
-
-	$("#passworderror").html("<b>password can't be less than 6 character <b>").css({'color':'#891818'});
-
-	}
-
-});
-
-
-
-$("#password").focus(function(){
-       
-	$("#passworderror").html(" ");
-});
-
-
-
-
-
-
-
-
-
-       
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </script>
-	<title>requestform</title>
-</head>
-<body>
 
 <form method="POST" action="{{ url('assistant/addnewpatientprofile') }}" enctype="multipart/form-data"  >
 
+ <div class="form-group">
+   <label>Name</label>
+  <input type="text" name="name" class="form-control" >
+ </div>
 
- <label>name</label>
-<input type="text"   name="name" >
+ <div class="form-group">
+   <label>E-Mail Address</label>
+  <input type="text"   name="email" id="email" class="form-control" >
+  <div id="emailerror"></div>
+ </div>
 
-<br>
- <label>E-Mail Address</label>
-<input type="text"   name="email" id="email" >
-<div id="emailerror"></div>
-<br>
-<label>password</label>
-<input type="password"   name="password" id="password" >
-<div id="passworderror"> </div> 
-<br>
-<label>phone</label>
-<input type="text"   name="phone" >
-<br>
+ <div class="form-group">
+   <label>Password</label>
+   <input type="password"   name="password" id="password" class="form-control">
+   <div id="passworderror"> </div>
+ </div>
 
-<label>gender</label>
-<input type="text"   name="gender" >
-<br>
-<label>birthdate</label>
- <input type="text" id="datepicker-1" name="dateofbirth">
-<br>
+ <div class="form-group">
+   <label>Phone</label>
+   <input type="text" name="phone" class="form-control">
+ </div>
 
-<label>building number</label>
- <input type="text"  name="buildingnumber">
+ <div class="form-group">
+   <label>Gender</label>
+   <input type="text" name="gender" class="form-control" >
+ </div>
 
-<br>
- 
+ <div class="form-group">
+   <label>Birthdate</label>
+   <input type="text" id="datepicker-1" name="dateofbirth" class="form-control">
+ </div>
 
-  <label>street</label>
- <input type="text" name="street">
-<br>
-  <label>city</label>
- <input type="text" name="city">
-
- 
-  <br>
-  
- <label>country</label>
- <input type="text" name="country">
+ <div class="form-group">
+   <label>Building Number</label>
+   <input type="text"  name="buildingnumber" class="form-control">
+ </div>
 
  
-  <br>
+ <div class="form-group">
+    <label>Street</label>
+    <input type="text" name="street" class="form-control">
+ </div>
 
- <label>profilepicture</label>
- <input type="file" name="profilepicture">
-<br>
- <label>weight</label>
- <input type="text" name="patientweight">
-<br>
-<label>height</label>
- <input type="text" name="patientheight">
-<br>
-<label>bloodgroup</label>
- <input type="text" name="bloodgroup">
-<br>
+ <div class="form-group">
+   <label>City</label>
+   <input type="text" name="city" class="form-control">
+ </div>
 
-<label>emergencyphone</label>
- <input type="text" name="emergencyphone">
-<br>
-<label>nationality</label>
- <input type="text" name="nationality">
-<br>
-
-<label>nationalid</label>
- <input type="text" name="nationalid">
-
-<br>
-
-
-<label>Dmissiontime</label>
-<input type="text" id="datepicker-2" name="Dmissiontime">
-
-
-<br>
-
-
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-
-  
-  
+ <div class="form-group">
+   <label>Country</label>
+   <input type="text" name="country" class="form-control">
+ </div>
  
-   </body>
-</html>
 
-  <button type="submit" class="btn btn-primary">submit </button>
+ <div class="form-group">
+   <label>Profile Picture</label>
+   <input type="file" name="profilepicture" class="form-control">
+ </div>
+
+ <div class="form-group">
+   <label>Weight</label>
+   <input type="text" name="patientweight" class="form-control">
+ </div>
+
+ <div class="form-group">
+   <label>Height</label>
+   <input type="text" name="patientheight" class="form-control">
+ </div>
+
+ <div class="form-group">
+   <label>Blood Group</label>
+   <input type="text" name="bloodgroup" class="form-control">
+ </div>
+
+ <div class="form-group">
+   <label>Emergency Phone</label>
+   <input type="text" name="emergencyphone" class="form-control">
+ </div>
+
+ <div class="form-group">
+   <label>Nationality</label>
+   <input type="text" name="nationality" class="form-control">
+ </div>
+
+ <div class="form-group">
+    <label>National Id</label>
+    <input type="text" name="nationalid" class="form-control">
+ </div>
+
+{{--<label>Admissiontime</label>--}}
+{{--<input type="text" id="datepicker-2" name="Dmissiontime">--}}
 
 
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+ <button type="submit" class="btn btn-info">Submit </button>
 
 </form>
-</body>
-</html>
+
+
+@stop

@@ -34,7 +34,7 @@ class AdvicesController extends Controller
 
         $advices = Advice::all();
         $allLikes = Like::all();
-        return view('advice.index',compact('advices','allLikes'));
+        return view('advice.index', compact('advices', 'allLikes'));
     }
 
     /**
@@ -51,15 +51,18 @@ class AdvicesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAdviceRequest $request)
     {
-        $advice=$request->input('advice');
-        $physician_id=$request->input('user_id');
+        $advice = $request->input('advice');
 
-        $command= new StoreAdviceCommand($advice,$physician_id);
+            if(Auth::user()) {
+                $physician_id = Auth::user()->id;
+            }
+
+        $command = new StoreAdviceCommand($advice, $physician_id);
         $this->dispatch($command);
         return \Redirect::route('advices.index');
 
@@ -68,40 +71,41 @@ class AdvicesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $advice = Advice::find($id);
-        return view('advice.show',compact('advice'));
+    {
+        $advice = Advice::find($id);
+        return view('advice.show', compact('advice'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
 
     {
         $advice = Advice::find($id);
-        return view('advice.edit',compact('advice'));
+        return view('advice.edit', compact('advice'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateAdviceRequest $request, $id)
     {
-        $advice=$request->input('advice');
+        $advice = $request->input('advice');
 
 
-        $command= new UpdateAdviceCommand($id,$advice);
+        $command = new UpdateAdviceCommand($id, $advice);
         $this->dispatch($command);
         return \Redirect::route('advices.index');
     }
@@ -109,12 +113,12 @@ class AdvicesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $command=new DestroyAdviceCommand($id);
+        $command = new DestroyAdviceCommand($id);
         $this->dispatch($command);
         return \Redirect::route('advices.index');
     }
@@ -122,37 +126,34 @@ class AdvicesController extends Controller
     public function adviceLikeAdvice(Request $request)
     {
         $advice_id = intval($request['adviceId']);
-        $is_Like = $request['isLike']=='true';
-        $update ='false';
+        $is_Like = $request['isLike'] == 'true';
+        $update = 'false';
 
         // Retrieve advice object from database
         $advice = Advice::find($advice_id);
 
-            if(!$advice) {
-                return 'there is not any advice';
-            }
+        if (!$advice) {
+            return 'there is not any advice';
+        }
         //Retrieve loggined user
-        $user=Auth::user();
+        $user = Auth::user();
 
 
         //Retrieve like from database
 
-        $like = $user->likes()->where('advice_id',$advice_id)->first();
+        $like = $user->likes()->where('advice_id', $advice_id)->first();
 
 
-
-        if($like)//The user liked or disliked this advice
+        if ($like)//The user liked or disliked this advice
         {
             $already_liked = $like->liked;
-            $update='true';
-            if($already_liked==$is_Like){
+            $update = 'true';
+            if ($already_liked == $is_Like) {
                 $like->delete(); //if user pressed the same link like or dislike twice delete the row
                 return 'like deleted';
             }
 
-        }
-        else
-        {
+        } else {
             $like = new Like();
 
         }
@@ -164,20 +165,21 @@ class AdvicesController extends Controller
         $like->advice_id = $advice->id;
 
 
-        if($update=='true'){
+        if ($update == 'true') {
 
-            Like::where('id',$like->id)->update(array('liked'=>$like->liked));
-        }
-        else
-        {
+            Like::where('id', $like->id)->update(array('liked' => $like->liked));
+        } else {
 
             Like::create([
-                'liked'=>$like->liked,
-                'user_id'=>$like->user_id,
-                'advice_id'=>$like->advice_id
-                ]);
+                'liked' => $like->liked,
+                'user_id' => $like->user_id,
+                'advice_id' => $like->advice_id
+            ]);
         }
 
         return 'this is a return';
     }
+
+
+
 }

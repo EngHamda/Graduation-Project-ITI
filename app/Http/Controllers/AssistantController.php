@@ -15,6 +15,7 @@ use App\Commands\UpdatePatientProfile;
 use App\Http\Requests\storeRequest;
 use App\User;
 use App\Patientprofile;
+use App\Reservation;
 class AssistantController extends Controller
 {
     /**
@@ -23,8 +24,16 @@ class AssistantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
+
     {
-        return view('assistantprofile');
+        $reservations = Reservation::orderBy('reservation_day', 'asc')
+                ->orderBy('reservation_confirmed', 'asc')
+               ->orderBy('reservation_number', 'asc')
+                ->get();//array of selected columns
+
+     return view('assistantprofile', compact('reservations'));//,'patient_names'));
+
     }
 
     /**
@@ -266,7 +275,7 @@ return view('changeguestpatienttopatient',compact('user'));
 
 else{
 
-return redirect('/assistant')->with('status', 'this email not found');
+return redirect('/assistant')->with('status', 'This email does not exist');
 }
 
 
@@ -275,7 +284,7 @@ return redirect('/assistant')->with('status', 'this email not found');
 
 else{
 
-return redirect('/assistant')->with('status', 'this email not found');
+return redirect('/assistant')->with('status', 'This email does not exist');
 }
 
 

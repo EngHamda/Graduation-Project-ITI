@@ -56,7 +56,7 @@ public function logout()
 {
 
 auth()->guard('medicalcompany')->logout();
-return redirect('/medicalcompany/login');
+return redirect('/');
 }
 
 

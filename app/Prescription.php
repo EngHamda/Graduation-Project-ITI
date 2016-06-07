@@ -1,0 +1,18 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+
+
+class Prescription extends Model
+{
+    protected $table="prescriptions";
+    protected $fillable=['date','patientprofile_id','drug','frequency','duration'];
+    protected $hidden=[];
+
+  
+
+    
+}

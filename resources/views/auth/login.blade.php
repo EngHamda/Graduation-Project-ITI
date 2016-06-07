@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 3cacdf923e975a110182604b9d55ddac5ca4738e
 @include('admin.partials.header')
 <div style="margin-top: 10%;"></div>
 <div class="container-fluid">

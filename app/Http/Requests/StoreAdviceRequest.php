@@ -26,7 +26,7 @@ class StoreAdviceRequest extends Request
     {
         return [
             'advice'=>'required',
-            'user_id'=>'required',
+
 
         ];
     }

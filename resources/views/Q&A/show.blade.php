@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Q&A-Show')
-@section('sidebar')
-    show Sidebar
-@stop
+{{--@section('title','Q&A-Show')--}}
+{{--@section('sidebar')--}}
+    {{--show Sidebar--}}
+{{--@stop--}}
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">

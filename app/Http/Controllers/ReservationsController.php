@@ -34,16 +34,16 @@ class ReservationsController extends Controller
     {
         //
 //        $reservations = Reservation::all();
-        $reservations = Reservation:://where('clinic_id', 1)
-                                    //clinic_id for assistant login
-                //->
-                orderBy('reservation_day', 'asc')
-                ->orderBy('reservation_time', 'asc')
-                ->orderBy('reservation_confirmed', 'asc')
-                ->orderBy('reservation_number', 'asc')
-                ->get();//array of selected columns
-//        return compact('reservations');//,'patient_names');
-        return view('Reservation.index', compact('reservations'));//,'patient_names'));
+//        $reservations = Reservation:://where('clinic_id', 1)
+//                                    //clinic_id for assistant login
+//                //->
+//                orderBy('reservation_day', 'asc')
+//                ->orderBy('reservation_time', 'asc')
+//                ->orderBy('reservation_confirmed', 'asc')
+//                ->orderBy('reservation_number', 'asc')
+//                ->get();//array of selected columns
+////        return compact('reservations');//,'patient_names');
+//        return view('assistantprofile', compact('reservations'));//,'patient_names'));
     }
 
     /**

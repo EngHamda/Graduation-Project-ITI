@@ -33,11 +33,25 @@
 {{--</div>--}}
 
 
-<div class="form-group">
-{!! Form::label('Paying Status', 'Advertisement', ['class'=>'col-sm-2 control-label']) !!}
-<div class="col-sm-10">
-    {!!  Form::select('advertisement_id', array('0' => 'NotPaid', '1' => 'Paid'),old('advertisement_id'), ['required','class'=>'form-control']) !!}
-</div>
+{{--<div class="form-group">--}}
+{{--{!! Form::label('Paying Status', 'Advertisement', ['class'=>'col-sm-2 control-label']) !!}--}}
+{{--<div class="col-sm-10">--}}
+    {{--{!!  Form::select('advertisement_id', array('0' => 'NotPaid', '1' => 'Paid'),old('advertisement_id'), ['required','class'=>'form-control']) !!}--}}
+{{--</div>--}}
+{{--</div>--}}
+
+<div class="form-group row">
+    {!! Form::label('Paying Status', 'Paying Status'
+            ,array('class'=>'col-sm-3 control-label'))!!}
+    <div class="col-sm-9">
+
+            <label class="col-sm-6 ">
+
+                {{ Form::radio('is_paid', 0) }} NotPaid<br>
+                {{ Form::radio('is_paid', 1) }} Paid
+            </label>
+
+    </div>
 </div>
 
 <div class="form-group">

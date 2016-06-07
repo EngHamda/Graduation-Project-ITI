@@ -25,7 +25,10 @@ return redirect('/');
 }
 
 if (Auth::user())
+
         {  if(Auth::user()->role_id!=3  && Auth::user()->role_id!=2  && Auth::user()->role_id!=5  )
+
+       
            {
 
              return redirect('/');
