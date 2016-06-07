@@ -1,6 +1,6 @@
-welcome {{auth()->guard('medicalcompany')->user()->name}}
-<a href="/medicalcompany/logout">logout</a>
+@extends('layouts.main')
 
+@section('content')
 <div>
 @foreach($requests as $request)
 <p>{{$request->user->name}}<p>
@@ -16,30 +16,37 @@ welcome {{auth()->guard('medicalcompany')->user()->name}}
 
 
 @endforeach
-<div>
 
-<div>
 
-upload advertisement
+</div>
 
 
 
-<br>
 <form method="POST" action="{{ url('/medicalcompany/storead') }}" enctype="multipart/form-data">
-
-<input type="file" name="path">
-<br>
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-<br>
-<input type="hidden" name="medicalcompany_id" value="{{auth()->guard('medicalcompany')->user()->id}}"  >
+ <input type="hidden" name="medicalcompany_id" value="{{auth()->guard('medicalcompany')->user()->id}}"  >
+    <div class="form-group">
+     <label>Upload Advertisement</label>
+     <input type="file" name="path" class="form-control">
+    </div>
 
- name:<input type="text" name="name" >
+    <div class="form-group">
 
-<button type="submit" class="btn btn-primary"> submit</button>
- </form>
+     <label>Name</label>
+     <input type="text" name="name" class="form-control" >
+
+    </div>
+     <button type="submit" class="btn btn-info"> submit</button>
 
 
+</form>
 
+<div class="container">
+@foreach($allAds as $ad)
+ <img src="/images/{{$ad->path}}" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+ @endforeach
+</div>
+@stop
 
 
 

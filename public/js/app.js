@@ -27,10 +27,7 @@ $('.like').on('click',function(event)
     })
 
 
-//$(function()
-//        {
-//            $( "#datepicker-1" ).datepicker();
-//        });
+
 
 
 $(document).ready(function(){
@@ -81,10 +78,14 @@ $(document).ready(function(){
 });
 
 
-$('#medical').on('click',function(){
+$("#validemail").click(function(){
+        $('#alert').hide();
+    });
 
-    $('#myModal').hide();
+$('#medicalcompany').on('click', function () {
+
+    $('#myModal').modal('hide');
     $('#myModal1').modal('show');
 
 
-})
+});

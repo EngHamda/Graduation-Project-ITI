@@ -59,32 +59,43 @@
             <div class="primary-nav-wrapper">
                 <nav>
                     <ul class="primary-nav">
+                        @if(Auth::user())
+                        <li><strong>Welcome {{Auth::user()->name}}</strong></li>
+                            @elseif(auth()->guard('medicalcompany')->user())
+                            <li><strong>Welcome {{auth()->guard('medicalcompany')->user()->name}}</strong></li>
+                        @endif
                         <li><a href="#intro">Home</a></li>
+                        @if(Auth::user())
+                            @if(Auth::user()->role_id==3)
+                                <li><a href="/assistant">My Profile</a></li>
+                            @elseif(Auth::user()->role_id==4)
+                                <li><a href="/physician">My Profile</a></li>
+
+                            @endif
+                        @endif
+                            @if(auth()->guard('medicalcompany')->user())
+                                <li><a href="/medicalcompany">My Profile</a></li>
+                            @endif
                         <li><a href="#freebies">Questions</a></li>
                         <li><a href="#articles">Advices</a></li>
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
-                        @if(!Auth::user())
+                        @if(!Auth::user() && !auth()->guard('medicalcompany')->user())
+
                             <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
                             <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
                         @endif
                         @if(Auth::user())
                             <li><a href="/auth/logout">Log Out</a></li>
+                        @elseif(auth()->guard('medicalcompany')->user())
+                            <li><a href="/medicalcompany/logout">Log Out</a></li>
                         @endif
 
-                        @if(Auth::user())
-                            @if(Auth::user()->role_id==3)
-                                <li><a href="/assistant">My Profile</a></li>
-                            @endif
-                        @endif
+
+
                     </ul>
                 </nav>
-                <div class="secondary-nav-wrapper">
-                    <ul class="secondary-nav">
-                        <li class="subscribe"><a href="#get-started">Subscribe</a></li>
-                        <li class="search"><a href="#search" class="show-search"><i class="fa fa-search"></i></a></li>
-                    </ul>
-                </div>
+
                 <div class="search-wrapper">
                     <ul class="search">
                         <li>
@@ -147,10 +158,10 @@
                             </div>
                         </div>
                 </div>
-                </p>
+               </p>
                 <div class="modal-footer">
 
-                    <button  id="medical" type="button" class="btn btn-info ">
+                    <button  id="medicalcompany" type="button" class="btn btn-default">
                         <i class="fa fa-btn fa-sign-in"></i>AreYouMedicalCompany?
                     </button>
                     <button type="submit" class="btn btn-info">
@@ -210,7 +221,7 @@
 
 
 
-                  </p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">
@@ -224,6 +235,7 @@
 </div>
 {{--Ending Modal of Medical Company--}}
 
+{{--Start of Registeration Modal--}}
 <div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -314,7 +326,7 @@
 </div>
 </div>
 
-{{--Start of Registeration Modal--}}
+
 
 {{--End of Registeration Modal--}}
 <header class="hero">
@@ -718,6 +730,7 @@
 <script src="js/min/jquery.waypoints.min.js"></script>
 <script src="js/min/flickity.pkgd.min.js"></script>
 <script src="js/min/scripts-min.js"></script>
+{!! Html::script('/js/app.js') !!}
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--
 <script>
