@@ -31,33 +31,36 @@
                         <div class="col-sm-9">
                             {!! Form::select('clinic-name', $clinicList, null, 
                                               array('class'=>' form-control c-select',
-                                                    'placeholder' => 'Clinic Name')) !!}
+                                                    'placeholder' => 'Clinic Name', 
+                                                    'id' => 'clinic_id')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('physician-name', 'Physician Name'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('physician-name', array('1' => 'doctor', 'S' => 'Small')
+                            {!! Form::select('physician-name', array()
                                             , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Physician Name')) !!}
+                                                          'placeholder' => 'Physician Name', 
+                                                          'id' => 'physician_id')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('clinic-day', 'Reservation Time'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-4">
-                            {!! Form::select('clinic-day', array('saturday' => 'Saturday', 
-                                                                 'sunday' => 'Sunday', 
-                                                                 'monday' => 'Monday')
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Reservation Day')) !!}
+                            {!! Form::text('clinic-day', null, 
+                                                    array('class'=>' form-control',
+                                                          'placeholder' => 'Reservation Day', 
+                                                          'id' => 'reserve_day', 
+                                                          'readonly')) !!}
                         </div>
                         <div class="col-sm-5">
-                            {!! Form::select('clinic-time', array('01.00am' => '01.00 pm - 03.00 pm', 
-                                                                  '07.00am' => '07.00 pm - 10.00 pm')
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Reservation hour')) !!}
+                            {!! Form::select('clinic-time', array(), null, 
+                                              array('class'=>' form-control c-select', 
+                                                    'placeholder' => 'Reservation hour', 
+                                                    'id' => 'reserve_time' 
+                                                    )) !!}
                         </div>
                     </div>
                     

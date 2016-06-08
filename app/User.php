@@ -116,6 +116,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\Assistant_Details');
     }
 
+    public function clinic_times() {
+        
+        return $this->hasMany('\App\ClinicTimes');
+    }
+    
 
 
 

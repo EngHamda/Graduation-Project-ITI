@@ -339,7 +339,7 @@
                             <h1 class="wp1"> </h1>
                             <div style="margin-top: 250px;"></div>
                             @if(Auth::user())
-                                    <a href="/patient/create" class="btn primary wp2">Reserve Online</a>
+                                    <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
 
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
                                     <a href="patient/questions/create" class="btn primary wp2 mm">Ask Question</a>
@@ -753,7 +753,6 @@ ga('send', 'pageview');
 </body>
 
 </html>
-
 
 
 

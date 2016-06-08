@@ -33,7 +33,10 @@ class Clinics extends Model {
         
         return $this->hasMany('\App\Reservation');
     }
-    
-    
+    public function clinic_times() {
+        
+        return $this->hasMany('\App\ClinicTimes');
+    }   
     
 }
+
