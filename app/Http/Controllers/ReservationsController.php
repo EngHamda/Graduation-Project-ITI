@@ -19,6 +19,7 @@ use App\Reservation;
 use App\Clinics;
 
 use App\User;
+use Auth;
 
 use App\Physician_Details;
 use App\ClinicTimes;
@@ -96,9 +97,13 @@ class ReservationsController extends Controller
         $command = new StoreReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time);
         //run command
         $this->dispatch($command);
-        return redirect('Reservation.index')
-//        return redirect('/patient/index')
+        if(Auth::user()->role_id == 3){
+            return redirect('/reservations')
                 ->with('message','New Reservation is added');
+        }elseif (Auth::user()->role_id == 2 || Auth::user()->role_id == 5) {
+            return redirect('/')->with('message','New Reservation is added');
+        }
+        
     }
 
     /**
@@ -159,7 +164,7 @@ class ReservationsController extends Controller
         $command = new UpdateReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time, $reservation_confirmed, $reservation_number, $id);
         //run command
         $this->dispatch($command);
-        return redirect('Reservation.index')
+        return redirect('/reservations')
 //        return redirect('/patient/index')
                 ->with('message','Reservation Number '.$reservation_number.' is updated');
         
@@ -177,7 +182,7 @@ class ReservationsController extends Controller
         $command = new DestoryReservationCommand($id);
         //run command
         $this->dispatch($command);
-        return redirect('Reservation.index')
+        return redirect('/reservations')
 //        return redirect('/patient/index')
                 ->with('message','Reservation is deleted');
         

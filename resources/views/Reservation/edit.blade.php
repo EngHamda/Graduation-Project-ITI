@@ -15,7 +15,8 @@
 
 
 
-                  {{Form::open(array("url"=>"/patient/update/".$reservation->id,"method"=>'PUT'))}}
+                  {{Form::open(array('action' => ['ReservationsController@update', $reservation->id], 'method' => 'PUT' )
+                             , array('class'=>'form-horizontal')) }}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}

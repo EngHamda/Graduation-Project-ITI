@@ -48,8 +48,15 @@ Route::group(['middleware' => 'questionownerdestroy'], function () {
 
 //acess by assistant and patient and guestpatient
 Route::group(['middleware' => 'reservation'], function () {
-    Route::post('/patient/store','ReservationsController@store');
-    Route::get('/patient/create','ReservationsController@create');
+    //for ajax
+    //create
+    Route::get ('reservations/create', 'ReservationsController@create');
+    Route::get ('reservations/create/{id}', 'ReservationsController@show');
+    Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+    Route::get('reservations/days', 'ReservationsController@getdays');
+    Route::resource('reservations','ReservationsController', 
+        ['except' => ['create', 'show','edit', 'update', 'destroy', 'index']]);
+    
 
 });
 
@@ -82,11 +89,20 @@ Route::group(['middleware' => 'adviceeditdestroy'], function () {
 
 //put here routes to be acess only by assistant
 Route::group(['middleware' => 'assistant'], function () {
-    Route::get('/assistant','ReservationsController@index');
-    Route::get('/patient/show/{id}','ReservationsController@show');
-    Route::get('/patient/delayreservation/{id}','ReservationsController@edit');
-    Route::delete('/patient/delete/{id}','ReservationsController@destroy');
-    Route::put('/patient/update/{id}','ReservationsController@update');
+    /*Reservation*/
+    //for ajax
+//    //create
+//    Route::get ('reservations/create', 'ReservationsController@create');
+//    Route::get ('reservations/create/{id}', 'ReservationsController@show');
+//    Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+//    Route::get('reservations/days', 'ReservationsController@getdays');
+    Route::resource('reservations','ReservationsController', 
+        ['except' => ['create', 'show','edit', 'store']]);
+    //edit
+    Route::get ('reservations/{id}/edit', 'ReservationsController@edit');
+    Route::get('reservations/{id}/physicians', 'ReservationsController@getphysicians');
+    Route::get('reservations/{id}/days', 'ReservationsController@getdays');
+    
     Route::get('/assistant/addnewpatientprofile', function () {
         return view('addnewpatientprofile');
         
@@ -133,23 +149,23 @@ Route::get('advices/like',[
 
 //Route::get('/','ReservationsController@index');
 
-
+/**/
 //Reservation Routes
-Route::resource('reservations','ReservationsController', 
-        ['except' => ['create', 'show','edit']]);
+//Route::resource('reservations','ReservationsController', 
+//        ['except' => ['create', 'show','edit']]);
 //Route::get ('reservations/{id}', 'ReservationsController@show');
 
 //for ajax
 //create
-Route::get ('reservations/create', 'ReservationsController@create');
-Route::get ('reservations/create/{id}', 'ReservationsController@show');
-Route::get('reservations/physicians', 'ReservationsController@getphysicians');
-Route::get('reservations/days', 'ReservationsController@getdays');
-//edit
-Route::get ('reservations/{id}/edit', 'ReservationsController@edit');
-Route::get('reservations/{id}/physicians', 'ReservationsController@getphysicians');
-Route::get('reservations/{id}/days', 'ReservationsController@getdays');
-
+//Route::get ('reservations/create', 'ReservationsController@create');
+//Route::get ('reservations/create/{id}', 'ReservationsController@show');
+//Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+//Route::get('reservations/days', 'ReservationsController@getdays');
+////edit
+//Route::get ('reservations/{id}/edit', 'ReservationsController@edit');
+//Route::get('reservations/{id}/physicians', 'ReservationsController@getphysicians');
+//Route::get('reservations/{id}/days', 'ReservationsController@getdays');
+/**/
 
 //Route::resource('reservations','ReservationsController');
 

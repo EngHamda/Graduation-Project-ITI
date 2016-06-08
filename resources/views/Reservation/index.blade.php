@@ -44,13 +44,13 @@
                                     <td>{{ $reservation->physician->name }}</td>
                                     <td>{{ $reservation->clinic->name }}</td>
                                     <td>
-                                        <a href="/patient/delayreservation/{{ $reservation->id}}" class="btn btn-info">
+                                        <a href="/reservations/{{ $reservation->id}}/edit" class="btn btn-info">
                                             Edit
                                         </a>
                                     </td>
                                     <td>
 
-                                        {!! Form::open( array('url' => "/patient/delete/".$reservation->id, 'method' => 'delete')) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['reservations.destroy', $reservation->id]] ) !!}
                                         {!! Form::submit('Cancel', array('class'=>'btn btn-danger')) !!} 
                                         {!! Form::close() !!} 
 
