@@ -107,7 +107,7 @@ class QuestionsController extends Controller
         $command = new StoreQuestionCommand($question_code, $question_specific, $question_detail, $patient_id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('questions.index')
+        return redirect('/questions')
                 ->with('message','New Question is added');
 //        
     }
@@ -152,12 +152,12 @@ class QuestionsController extends Controller
         //
         $question_specific  = $request->input('question-specific');
         $question_detail    = $request->input('question-detail');
-        $patient_id         = 3;//$request->input('patient-id');
+        $patient_id         = Auth::user()->id;//$request->input('patient-id');
         //create command
         $command = new UpdateQuestionCommand($id, $question_specific, $question_detail, $patient_id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('questions.index')
+        return redirect('/questions')
                 ->with('message','Question is updated');
     }
 
@@ -173,7 +173,7 @@ class QuestionsController extends Controller
         $command = new DestoryQuestionCommand($id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('questions.index')
+        return redirect('/questions')
                 ->with('message','Question is deleted');
         
     }

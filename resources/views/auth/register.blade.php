@@ -1,7 +1,7 @@
  <link rel="stylesheet" href="/css/bootstrap.min.css">
-<script src="/js/jquery-1.12.4.min.js"></script>
+{{--<script src="/js/jquery-1.12.4.min.js"></script>--}}
 
-<script src="/js/custom/Registration.js"></script>
+{{--<script src="/js/custom/Registration.js"></script>--}}
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

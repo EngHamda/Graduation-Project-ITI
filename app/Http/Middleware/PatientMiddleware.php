@@ -25,7 +25,7 @@ return redirect('/');
 }
 
 if (Auth::user())
-        {  if(Auth::user()->role->id!=2)
+        {  if(Auth::user()->role_id!=2)
            {
              return redirect('/');
            } 

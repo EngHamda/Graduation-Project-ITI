@@ -60,7 +60,7 @@ class AnswersController extends Controller
         $answer_detail       = $request->input('answer-detail');
         $answer_speciality   = $request->input('answer-speciality');
         $question_id         = $request->input('id-question');
-        $physician_id        = 1;//$request->input('id-question');
+        $physician_id        = auth()->user()->id;//$request->input('id-question');
 //        echo "$question_specific";
         //create command
         $commandCreate = new StoreAnswerCommand($answer_specific, $answer_detail, $answer_speciality, $question_id, $physician_id);
@@ -68,7 +68,7 @@ class AnswersController extends Controller
         //run command
         $this->dispatch($commandCreate);
         $this->dispatch($commandUpdate);
-        return \Redirect::route('questions.index')
+        return redirect('/questions')
                 ->with('message','New Answer is added');
     }
 
@@ -113,12 +113,12 @@ class AnswersController extends Controller
         $answer_detail       = $request->input('answer-detail');
         $answer_speciality   = $request->input('answer-speciality');
         $question_id         = $request->input('id-question');
-        $physician_id        = 1;//$request->input('id-question');
+        $physician_id        = auth()->user()->id;//$request->input('id-question');
         //create command
         $command = new UpdateAnswerCommand($id, $answer_specific, $answer_detail, $answer_speciality, $question_id, $physician_id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('questions.index')
+        return redirect('/questions')
                 ->with('message','The Answer is updated');
         
     }
@@ -149,7 +149,7 @@ class AnswersController extends Controller
         $command = new DestoryAnswerCommand($id);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('questions.show', ['id' => $answer->question_id])
+        return redirect('/questions/'.$answer->question_id)
                 ->with('message','Answer is deleted');
     }
 }

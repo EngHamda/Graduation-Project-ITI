@@ -79,14 +79,10 @@
 
         <div class="row">
 
-
             {!! Form::label('City', null, ['class'=>' col-sm-offset-2 col-sm-2 control-label']) !!}
             <div class="col-sm-2">
                 {!! Form::text('city',old('city',$user->city), ['class'=>'form-control']) !!}
             </div>
-
-
-
 
             {!! Form::label('Country', null, ['class'=>'col-sm-2 control-label']) !!}
             <div class="col-sm-2">
@@ -103,9 +99,6 @@
         </div>
     </div>
 
-
-
-
     <div class="form-group">
         {!! Form::label('role_id', trans('quickadmin::admin.users-edit-role'), ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
@@ -113,6 +106,46 @@
         </div>
     </div>
 
+    @if($user->role_id==4)
+
+    <div class="form-group" id="clinic">
+        {!! Form::label('clinic_id', 'Clinic', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('clinic_id', $clinics, old('clinic_id',$physician->clinic_id), ['required','class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group" id="physpeciality">
+        {!! Form::label('speciality_id', 'Speciality', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('speciality_id', $specialities, old('speciality_id',$physician->speciality_id), ['required','class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group" id="phytitle">
+        {!! Form::label('title', null, ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('title',old('title',$physician->title), ['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group" id="phycertificates">
+        {!! Form::label('certification', null, ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('certification',old('certification',$physician->certification), ['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+
+
+    @elseif($user->role_id==3)
+        <div class="form-group" id="clinic">
+            {!! Form::label('clinic_id', 'Clinic', ['class'=>'col-sm-2 control-label']) !!}
+            <div class="col-sm-10">
+                {!! Form::select('clinic_id', $clinics, old('clinic_id',$assistant->clinic_id), ['required','class'=>'form-control']) !!}
+            </div>
+        </div>
+    @endif
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
             {!! Form::submit(trans('quickadmin::admin.users-edit-btnupdate'), ['class' => 'btn btn-primary']) !!}

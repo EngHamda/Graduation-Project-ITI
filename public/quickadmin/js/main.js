@@ -101,7 +101,7 @@ $(document).ready(function () {
     $('#phycertificates').hide();
 
 
-    $('#role_id').change(function(){
+    $('#role_id').on('click',function(){
 
         var value = $(this).val();
         if(value=="4"||value=="3"){

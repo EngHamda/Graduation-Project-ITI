@@ -31,7 +31,9 @@
                                 @foreach($reservations as $reservation)
                                 <tr>
                                     <th scope="row">
-                                        <a href="http://localhost:8000/reservations/{{ $reservation->id}}">
+                                        <!--<a href="#show_reservation">-->
+                                        <a href="http://localhost:8000/reservations/{{ $reservation->id }}" >
+                                        <!--<a href="/patient/show/{{-- $reservation->id--}}">-->
                                             {{ $reservation->reservation_number }}
                                         </a>
                                     </th>
@@ -42,12 +44,13 @@
                                     <td>{{ $reservation->physician->name }}</td>
                                     <td>{{ $reservation->clinic->name }}</td>
                                     <td>
-                                        <a href="http://localhost:8000/reservations/{{ $reservation->id}}/edit" class="btn btn-info">
+                                        <a href="/patient/delayreservation/{{ $reservation->id}}" class="btn btn-info">
                                             Edit
                                         </a>
                                     </td>
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['reservations.destroy', $reservation->id]] ) !!}
+
+                                        {!! Form::open( array('url' => "/patient/delete/".$reservation->id, 'method' => 'delete')) !!}
                                         {!! Form::submit('Cancel', array('class'=>'btn btn-danger')) !!} 
                                         {!! Form::close() !!} 
 
@@ -65,5 +68,8 @@
             </div><!--./row-->
         </div><!--./panel-body -->
     </div><!--./panel-->
+    <!---->
+    
+    <!---->
     <!--Test Index-->
 @stop

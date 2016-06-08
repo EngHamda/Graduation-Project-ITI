@@ -42,6 +42,14 @@ return redirect('/admin');
 }
 
 
+if(Auth::user()->role_id==2)
+{
+return redirect('/');
+
+}
+
+
+
 }
 
 

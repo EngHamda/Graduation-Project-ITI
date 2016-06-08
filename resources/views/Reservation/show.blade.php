@@ -4,7 +4,7 @@
     show Sidebar
 @stop
 @section('content')
-    <div class="panel panel-default">
+    <div class="panel panel-default" id='show_reservation'>
         <div class="panel-heading">
           <h3 class="panel-title">
               Reservation Number {{ $reservation->reservation_number }} Details

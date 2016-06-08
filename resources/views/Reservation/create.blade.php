@@ -12,14 +12,15 @@
             <div class="row">
                 {{-- This comment will not be present in the rendered HTML --}}
                 <div class="col-md-12">
-                    {!! Form::open(array('action' => 'ReservationsController@store')
+                    {!! Form::open(array('url' => '/patient/store','method' =>'post')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
-                                {!! Form::text('patient-name', 'User_Name', 
+
+                                {!! Form::text('patient-name', auth()->user()->name, 
                                                 array('class'=>' form-control', 'readonly')) !!}
                             <!--</fieldset>-->
                         </div>
@@ -31,33 +32,35 @@
                             {!! Form::select('clinic-name', $clinicList, null, 
                                               array('class'=>' form-control c-select',
                                                     'placeholder' => 'Clinic Name', 
-                                                    'id' => 'clinic-id')) !!}
+                                                    'id' => 'clinic_id')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('physician-name', 'Physician Name'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-9">
-                            {!! Form::select('physician-name', array('1' => 'doctor', 'S' => 'Small')
+                            {!! Form::select('physician-name', array()
                                             , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Physician Name')) !!}
+                                                          'placeholder' => 'Physician Name', 
+                                                          'id' => 'physician_id')) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         {!! Form::label('clinic-day', 'Reservation Time'  
                                 ,array('class'=>'col-sm-3 control-label'))!!}
                         <div class="col-sm-4">
-                            {!! Form::select('clinic-day', array('saturday' => 'Saturday', 
-                                                                 'sunday' => 'Sunday', 
-                                                                 'monday' => 'Monday')
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Reservation Day')) !!}
+                            {!! Form::text('clinic-day', null, 
+                                                    array('class'=>' form-control',
+                                                          'placeholder' => 'Reservation Day', 
+                                                          'id' => 'reserve_day', 
+                                                          'readonly')) !!}
                         </div>
                         <div class="col-sm-5">
-                            {!! Form::select('clinic-time', array('01.00am' => '01.00 pm - 03.00 pm', 
-                                                                  '07.00am' => '07.00 pm - 10.00 pm')
-                                            , null, array('class'=>' form-control c-select',
-                                                          'placeholder' => 'Reservation hour')) !!}
+                            {!! Form::select('clinic-time', array(), null, 
+                                              array('class'=>' form-control c-select', 
+                                                    'placeholder' => 'Reservation hour', 
+                                                    'id' => 'reserve_time' 
+                                                    )) !!}
                         </div>
                     </div>
                     

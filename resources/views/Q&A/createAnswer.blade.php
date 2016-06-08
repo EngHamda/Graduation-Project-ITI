@@ -34,7 +34,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
-                    {!! Form::open(array('action' => 'AnswersController@store')
+                    {!! Form::open(array('url' => '/answers/store','method'=>'POST')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('answer-specific', 'Specific Answer'  
