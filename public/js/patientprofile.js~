@@ -469,7 +469,7 @@ console.log(misdatejson);
              
             },
             data: {"_token":token,pasthistoryjson ,pasthistorydatejson,patientemailjson,surgicalhistoryjson,surgicalhistorydatejson,allergiesjson,allergiesdatejson,accedentjson,accedentdatejson,
-specialneedsjson,familyhistoryjson,bloodtransferjson,bloodtransferdatejson,misjson,misdatejson}
+specialneedsjson,familyhistoryjson,bloodtransferjson,bloodtransferdatejson}
         });
     }
 
@@ -669,6 +669,7 @@ alert("hii")
          count_mis--;
     });
     
+
 
 
 

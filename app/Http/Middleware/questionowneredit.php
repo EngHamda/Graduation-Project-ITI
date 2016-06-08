@@ -15,29 +15,18 @@ class questionowneredit
      * @return mixed
      */
     public function handle($request, Closure $next)
-
-
     {  
- $id = $request->id;
-$question =Question::findOrFail($id);
-if(!Auth::user())
-{
-
-return redirect('/');
-}
-
-if (Auth::user())
-    {  if( Auth::user()->role_id != 2 && $question->user_id != auth()->user()->id && Auth::user()->role_id != 5 )
-       {
-         return redirect('/');
-       } 
+        $id = $request->id;
+        $question =Question::findOrFail($id);
+        if(!Auth::user())
+            {return redirect('/');}
+        if (Auth::user())
+            {
+             if( Auth::user()->role_id != 2 && $question->user_id != auth()->user()->id && Auth::user()->role_id != 5 )
+                {
+                  return redirect('/');
+                } 
+            }
+        return $next($request);
     }
-
-
- return $next($request);
-}
-
-
-
-
 }
