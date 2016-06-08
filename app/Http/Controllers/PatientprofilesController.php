@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Commands\Storepatientprofile;
-use App\Commands\Storesurgicalhistory;
-use App\Commands\Storeallergies;
-use App\Commands\Storeaccedent;
-use App\Commands\Storespecialneeds;
-use App\Commands\Storefamilyhistory;
-use App\Commands\Storebloodtransfer;
-use App\Commands\Storeprescription;
+use App\Commands\StorePastHistoryCommand;
+use App\Commands\StoresurgicalhistoryCommand;
+use App\Commands\StoreallergiesCommand;
+use App\Commands\StoreaccidentCommand;
+use App\Commands\StorespecialneedsCommand;
+use App\Commands\StorefamilyhistoryCommand;
+use App\Commands\StorebloodtransferCommand;
+use App\Commands\StoreprescriptionCommand;
 use App\Http\Requests;
 use App\User;
-use App\Commands\Storemiscarriages;
+use App\Commands\StoremiscarriagesCommand;
 use App\Patientprofile;
 use Illuminate\Support\Facades\Session;
 class PatientprofilesController extends Controller
@@ -50,7 +50,7 @@ for($i=0; $i<$pasthistoryCount  ;$i++)
 
 {
 
-$command=new Storepatientprofile($pasthistorydatearray[$i],$pasthistoryarray[$i],$profileid);
+$command=new StorePastHistoryCommand($pasthistorydatearray[$i],$pasthistoryarray[$i],$profileid);
 
 $this->dispatch($command);
 

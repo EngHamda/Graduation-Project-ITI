@@ -5,8 +5,8 @@ use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\User;
 use App\Patientprofile;
-use App\Dmissiontime;
-class AddnewAdmissionCommand extends Command implements SelfHandling{
+use App\Admissiontime;
+class StoreAdmissiontimeCommand extends Command implements SelfHandling{
 
 
 
@@ -33,8 +33,8 @@ public function handle()
 
 
 
-return Dmissiontime::create([
-'dmissiondate'=>$this->Dmissiontime,
+return admissiontime::create([
+'admissiondate'=>$this->admissiontime,
 'patientprofile_id'=>$this->profile_id,
 
 
