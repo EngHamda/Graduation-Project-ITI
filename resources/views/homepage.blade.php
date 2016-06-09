@@ -54,7 +54,7 @@
     <div class="row">
         <div class="header-nav-wrapper">
             <div class="logo">
-                <a href="/index.html"><img src="img/synthetica-logo.png" alt="Synthetica Freebie Peter Finlan"></a>
+                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -586,15 +586,15 @@
             <div class="col-md-4 col-sm-4">
                 <h4>Latest Advices</h4>
             </div>
-            <div class="col-md-8 col-sm-8 sort">
-                <h5>Sort by</h5>
-                <select name="article-sort" id="inputArticle-Sort" class="">
-                    <option value="">Experience Design</option>
-                    <option value="">Visual Design</option>
-                    <option value="">UI Patterns</option>
-                    <option value="">Product Design</option>
-                </select>
-            </div>
+            {{--<div class="col-md-8 col-sm-8 sort">--}}
+                {{--<h5>Sort by</h5>--}}
+                {{--<select name="article-sort" id="inputArticle-Sort" class="">--}}
+                    {{--<option value="">Experience Design</option>--}}
+                    {{--<option value="">Visual Design</option>--}}
+                    {{--<option value="">UI Patterns</option>--}}
+                    {{--<option value="">Product Design</option>--}}
+                {{--</select>--}}
+            {{--</div>--}}
         </div>
         <div class="row"><!--row of advices list-->
             @foreach($latestAdvices as $latestAdvice)
@@ -611,14 +611,14 @@
                             </figcaption>
                         </figure>
                     </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">Product</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 51</span>
-                        </li>
-                    </ul>
+                    {{--<ul class="article-footer">--}}
+                        {{--<li class="article-category">--}}
+                            {{--<a href="#">Product</a>--}}
+                        {{--</li>--}}
+                        {{--<li class="article-comments">--}}
+                            {{--<span><i class="fa fa-comments"></i> 51</span>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
                 </article>
             </div>
         @endforeach
