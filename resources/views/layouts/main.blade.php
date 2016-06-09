@@ -74,7 +74,7 @@
         <div class="header-nav-wrapper">
 
             <div class="logo">
-                <a href="/index.html"><img src="/img/synthetica-logo.png" alt="Synthetica Freebie Peter Finlan"></a>
+                <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -445,7 +445,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 footer-branding">
-                                <img class="footer-branding-logo" src="/img/synthetica-logo.png" alt="Synthetica freebie html5 css3 template peter finlan logo">
+                                <img class="footer-branding-logo" src="/img/logo.png" height="80" width="150" alt="Soft Management logo">
                             </div>
                         </div>
                         <div class="row">
