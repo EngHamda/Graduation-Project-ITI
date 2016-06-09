@@ -1,6 +1,9 @@
 
 <form name="input" id="patient_profile_form" method="POST" action="/addprescription"  class="form-inline"  >
 
+email:
+ <input  id="mis" type="text" value={{$email}} name="email" placeholder="content" class="form-control"/>
+
 drug name:
  <input  id="mis" type="text" name="drug" placeholder="content" class="form-control"/>
 
@@ -30,5 +33,7 @@ duration:
   <option value="every day">every day</option>
  <option value="everyhour">everyhour</option>
 </select> 
+
+
 
 </form>

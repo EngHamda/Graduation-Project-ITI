@@ -175,6 +175,7 @@
 {{--{!! Html::script('js/custom/multi-upload/jquery.filer.min.js') !!}--}}
         <!--    {!! Html::script('/js/custom/script.js') !!} for Q Index -->
 {!! Html::script('/js/app.js') !!}
+{!! Html::script('/js/patientprofile.js') !!}
 <!--<script src="js/bootstrap.min.js"></script>-->
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--

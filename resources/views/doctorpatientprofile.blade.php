@@ -1,12 +1,8 @@
 @extends("layouts.main")
 @section("content")
-<head>
-
-
-<script src="/js/jquery-1.12.4.min.js"></script>
-
-</head>
-
+<div id="updateMessage" style="display:none;">patient profile Updates</div>
+<div id="successMessage" style="display:none;">Email doesn't Exist</div>
+<div id="errorMessage" style="display:none;">patient profile doexn't Exist</div>
 
 
 email:<input type="text" class="patientemail">
@@ -109,9 +105,9 @@ miscarriage:
 
 
 
-<a href="/prescription">add prescription </a>
 
 
+ 
 
 
 
@@ -121,7 +117,25 @@ miscarriage:
 
 
 
+
+
+
+<button onclick="sendemail()">Click mefdrefre</button> 
+
+
+
+
+
+
+
+
+
+
+
+
   <button onclick="send()">Click me</button> 
+
+
 
 
 
