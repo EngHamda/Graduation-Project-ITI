@@ -9,7 +9,7 @@ var value_src2 = $('#pasthistorydate');
 var containerofsurgical = $('.copiesofsurgicalhistory'),
   value_src_surgical = $('#surgicalhistory');
 var count_surgical=1;
-var value_src2_surgical = $('#surgicalhistorydate')
+var value_src2_surgical = $('#surgicalhistorydate');
 var surgicalhistoryassociativearray= {};
 var surgicalhistorydateassociativearray={};
 var containerofallergies = $('.copiesofallergies'),
@@ -48,6 +48,12 @@ var misdateassociativearray={};
 
 
 
+var containerofbirth = $('.copiesofbirth'),
+  value_src_birth = $('#birth');
+var count_birth=1;
+var value_src2_birth=$('#birthdate') ;
+var birthassociativearray= {};
+var birthdateassociativearray={};
 
 
 
@@ -59,6 +65,12 @@ var misdateassociativearray={};
 
 
 
+
+$("#check").change(function() {
+    if(this.checked) {
+      alert("hi");
+    }
+});
 
 
 
@@ -100,7 +112,8 @@ bloodtransferassociativearray[0]=$("#bloodtransfer").val()  ;
 bloodtransferdateassociativearray[0]=$("#bloodtransferdate").val()   ;
 misassociativearray[0]=$("#mis").val()  ;
 misdateassociativearray[0]=$("#misdate").val()   ;
-
+birthassociativearray[0]=$("#birth").val()  ;
+birthdateassociativearray[0]=$("#birthdate").val()   ;
 for(var i=1;i<count;i++)
 {
 var valueofpasthistory= $('#id' + i).val() ;
@@ -196,6 +209,30 @@ misdateassociativearray[y]=valueofmisdate
 }
 
 
+
+
+
+
+for(var y=1;y<count_birth;y++)
+{
+
+var valueofmis= $('#birth' + y).val() ;
+
+var valueofmisdate=$('#bir' + y).val() ;
+birthassociativearray[y]=valueofbirth
+birthdateassociativearray[y]=valueofbirthdate
+
+}
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////
 var pasthistoryjson= JSON.stringify(pasthistoryassociativearray);
 var pasthistorydatejson = JSON.stringify( pasthistorydateassociativearray);
@@ -241,8 +278,21 @@ var misdatejson=JSON.stringify(misdateassociativearray);
 
 
             },
-            data: {"_token":token,pasthistoryjson ,pasthistorydatejson,patientemailjson,surgicalhistoryjson,surgicalhistorydatejson,allergiesjson,allergiesdatejson,accedentjson,accedentdatejson,
-specialneedsjson,familyhistoryjson,bloodtransferjson,bloodtransferdatejson,misjson,misdatejson}
+data: {"_token":token, 
+    "pastpasthistorydatejson":pasthistorydatejson,
+    "patientemailjson":patientemailjson,
+    "surgicalhistoryjson":surgicalhistoryjson,
+    "surgicalhistorydatejson":surgicalhistorydatejson,
+    "allergiesjson":allergiesjson,
+    "allergiesdatejson":allergiesdatejson,
+    "accedentjson":accedentjson,
+    "accedentdatejson":accedentdatejson,
+    "specialneedsjson":specialneedsjson ,
+     "familyhistory":familyhistoryjson ,
+     "bloodtransferjson":bloodtransferjson ,
+      "bloodtransferdatejson":bloodtransferdatejson ,
+       "misjson":misjson ,
+        "misdatejson":misdatejson }
         });
     }
 
@@ -449,6 +499,29 @@ $('#patient_profile_form') .on('click', '#addmis', function(){
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
          count_mis--;
+    });
+    
+
+
+
+$('#patient_profile_form') .on('click', '#addbirth', function(){
+
+        var value = $('#birth').val();
+        var value2=$('#birthdate').val();
+     var html = '<div id="line">' +
+            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="birth'+ count +'" />' 
++'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="bi'+ count +'" />' +
+            '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
+        '</div>'+'<br>';
+        
+        $(html).appendTo($('.copiesofbirth'));
+        value_src_birth.val('');
+ value_src2_birth.val('');
+         count_birth++;
+        
+    }).on('click', '#remove', function(){
+        $(this).parents('#line').remove();
+         count_birth--;
     });
     
 

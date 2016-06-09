@@ -11,15 +11,15 @@ class AddnewAdmissionCommand extends Command implements SelfHandling{
 
 
 
-public $Dmissiontime;
+public $admissiontime;
 public $profile_id;
 
 
 
 
-public function __construct($Dmissiontime,$profile_id)
+public function __construct($admissiontime,$profile_id)
 {
-$this->Dmissiontime=$Dmissiontime;
+$this->admissiontime=$admissiontime;
 $this->profile_id=$profile_id;
 
 
@@ -34,7 +34,7 @@ public function handle()
 
 
 return Dmissiontime::create([
-'dmissiondate'=>$this->Dmissiontime,
+'dmissiondate'=>$this->admissiontime,
 'patientprofile_id'=>$this->profile_id,
 
 

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Hash;
 use App\Http\Requests;
-use App\Commands\StorePatientProfile;
-use App\Commands\StorePatientProfiletwo;
-use App\Commands\StoreDmissiontime;
-use App\Commands\UpdatePatientProfileCommand;
+use App\Commands\StorePatientBasicinfoCommand;
+use App\Commands\StorePatientProfileInfoCommand;
+use App\Commands\StoreAdmissiontimeCommand;
+use App\Commands\UpdateGuestPatientCommand;
 use App\Commands\AddnewAdmissionCommand;
-use App\Commands\InsertPatientProfile;
-use App\Commands\UpdatePatientProfile;
+use App\Commands\StorePatientProfileCommand;
+use App\Commands\UpdatePatientProfileCommand;
 use App\Http\Requests\storeRequest;
 use App\User;
 use App\Patientprofile;
@@ -92,7 +92,7 @@ $nationalid=$request->input('nationalid');
 $gender=$request->input('gender');
  $Dmissiontime=$request->input('Dmissiontime');
  $Dmissiontime= date('Y-m-d', strtotime($Dmissiontime));
-$command=new StorePatientProfile($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$profilepicture,$roleid,$country);
+$command=new StorePatientBasicinfoCommand($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$profilepicture,$roleid,$country);
 
 
 
@@ -101,14 +101,12 @@ $this->dispatch($command);
 $user=User::where('email',$email)->first();
 //var_dump($user->id);
 $userid=$user->id;
-$command2=new StorePatientProfiletwo($patientwheight,$userid,$patientheight,$bloodgroup,$emergencyphone,$nationality,$nationalid);
+$command2=new StorePatientProfileInfoCommand($patientwheight,$userid,$patientheight,$bloodgroup,$emergencyphone,$nationality,$nationalid);
 $this->dispatch($command2);
 
 $profile=Patientprofile::where('user_id',$userid)->first();
 $profileid=$profile->id;
-var_dump($profileid);
-$command3=new StoreDmissiontime($Dmissiontime,$profileid);
-$this->dispatch($command3);
+
  return redirect('assistant')->with('status', 'patient profile update');
 
 
@@ -202,14 +200,14 @@ $main_image_filename=$current_image_filename;
 $user_id=$id;
 $user=User::find($id);
 $profileid=$user->patientprofile;
-$command=new UpdatePatientProfileCommand($role_id,$name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id);
+$command=new UpdateGuestPatientCommand($role_id,$name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id);
 
 $this->dispatch($command);
 
 if($profileid)
 {
 $profileid=$profileid->id;
-$commandtwo=new UpdatePatientProfile($profileid,$user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
+$commandtwo=new UpdatePatientProfileCommand($profileid,$user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
 $this->dispatch($commandtwo);
 $commandthree=new AddnewAdmissionCommand($Dmissiontime,$profileid);
 $this->dispatch($commandthree);
@@ -219,7 +217,7 @@ return redirect('assistant')->with('status', 'patient profile update');
 
 if(!$profileid)
 {
-$commandtwo=new InsertPatientProfile($user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
+$commandtwo=new StorePatientProfileCommand($user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid);
 $this->dispatch($commandtwo);
 $user=User::find($id);
 $profileid=$user->patientprofile->id;

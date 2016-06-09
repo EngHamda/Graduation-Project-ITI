@@ -3,54 +3,42 @@
 namespace App\Commands;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
-use App\User;
-
+use App\Patientprofile;
 class UpdatePatientProfileCommand extends Command implements SelfHandling{
 
-public $name;
-public $birth_date;
-public $gender;
-public $phone;
-public $buildingnumber;
-public $street;
-public $city;
-public $country;
-public $current_image_filename;
 public $id;
-public $role_id;
-public function __construct($role_id,$name,$birth_date,$gender, $phone,$buildingnumber, $street,$city,$country,$current_image_filename,$id)
+public $patientweight;
+public $patientheight;
+public $patientbloodgroup;
+public $patientemergencyphone;
+public $patientnationality;
+public $patientnationalid;
+public function __construct($profileid,$user_id,$patientweight,$patientheight,$patientbloodgroup,$patientemergencyphone,$patientnationality,$patientnationalid)
 {
-$this->id=$id;
-$this->name=$name;
-$this->birth_date=$birth_date;
-$this->gender=$gender;
-$this->phone=$phone;
-$this->buildingnumber=$buildingnumber;
-$this->street=$street;
-$this->city=$city;
-$this->country=$country;
-$this->role_id=$role_id;
-$this->current_image_filename=$current_image_filename;
+$this->profileid=$profileid;
+$this->user_id=$user_id;
+$this->patientweight=$patientweight;
+$this->patientheight=$patientheight;
+$this->patientbloodgroup=$patientbloodgroup;
+$this->patientemergencyphone=$patientemergencyphone;
+$this->patientnationality=$patientnationality;
+$this->patientnationalid=$patientnationalid;
+
+
 }
 
 public function handle()
 {
 
-return User::where('id',$this->id)->update(array(
+return Patientprofile::where('id',$this->profileid)->update(array(
 
-'name'=>$this->name,
-'birth_date'=>$this->birth_date,
-'gender'=>$this->gender,
-'phone'=>$this->phone,
-'buildingnumber'=>$this->buildingnumber,
-'street'=>$this->street,
-'city'=>$this->city,
-'country'=>$this->country,
-'profile_picture'=>$this->current_image_filename,
-
-'role_id'=>$this->role_id,
-
-
+'user_id'=>$this->user_id,
+'patientweight'=>$this->patientweight,
+'patientheight'=>$this->patientheight,
+'patientbloodgroup'=>$this->patientbloodgroup,
+'patientemergencyphone'=>$this->patientemergencyphone,
+'patientnationality'=>$this->patientnationality,
+'patientnationalid'=>$this->patientnationalid,
 
 
 

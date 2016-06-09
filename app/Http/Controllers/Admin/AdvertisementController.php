@@ -12,18 +12,19 @@ use Illuminate\Http\Request;
 
 
 
-class AdvertisementController extends Controller {
+class AdvertisementController extends Controller
+{
 
 	/**
 	 * Display a listing of advertisement
 	 *
-     * @param Request $request
-     *
-     * @return \Illuminate\View\View
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
 	 */
 	public function index(Request $request)
-    {
-        $advertisement = Advertisement::all();
+	{
+		$advertisement = Advertisement::all();
 
 		return view('admin.advertisement.index', compact('advertisement'));
 	}
@@ -31,23 +32,23 @@ class AdvertisementController extends Controller {
 	/**
 	 * Show the form for creating a new advertisement
 	 *
-     * @return \Illuminate\View\View
+	 * @return \Illuminate\View\View
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.advertisement.create');
+
+
+		return view('admin.advertisement.create');
 	}
 
 	/**
 	 * Store a newly created advertisement in storage.
 	 *
-     * @param CreateAdvertisementRequest|Request $request
+	 * @param CreateAdvertisementRequest|Request $request
 	 */
 	public function store(CreateAdvertisementRequest $request)
 	{
-	    
+
 		Advertisement::create($request->all());
 
 		return redirect()->route('admin.advertisement.index');
@@ -56,28 +57,27 @@ class AdvertisementController extends Controller {
 	/**
 	 * Show the form for editing the specified advertisement.
 	 *
-	 * @param  int  $id
-     * @return \Illuminate\View\View
+	 * @param  int $id
+	 * @return \Illuminate\View\View
 	 */
 	public function edit($id)
 	{
 		$advertisement = Advertisement::find($id);
-	    
-	    
+
+
 		return view('admin.advertisement.edit', compact('advertisement'));
 	}
 
 	/**
 	 * Update the specified advertisement in storage.
-     * @param UpdateAdvertisementRequest|Request $request
-     *
-	 * @param  int  $id
+	 * @param UpdateAdvertisementRequest|Request $request
+	 *
+	 * @param  int $id
 	 */
 	public function update($id, UpdateAdvertisementRequest $request)
 	{
 		$advertisement = Advertisement::findOrFail($id);
 
-        
 
 		$advertisement->update($request->all());
 
@@ -87,7 +87,7 @@ class AdvertisementController extends Controller {
 	/**
 	 * Remove the specified advertisement from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 */
 	public function destroy($id)
 	{
@@ -96,22 +96,24 @@ class AdvertisementController extends Controller {
 		return redirect()->route('admin.advertisement.index');
 	}
 
-    /**
-     * Mass delete function from index page
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function massDelete(Request $request)
-    {
-        if ($request->get('toDelete') != 'mass') {
-            $toDelete = json_decode($request->get('toDelete'));
-            Advertisement::destroy($toDelete);
-        } else {
-            Advertisement::whereNotNull('id')->delete();
-        }
+	/**
+	 * Mass delete function from index page
+	 * @param Request $request
+	 *
+	 * @return mixed
+	 */
+	public function massDelete(Request $request)
+	{
+		if ($request->get('toDelete') != 'mass') {
+			$toDelete = json_decode($request->get('toDelete'));
+			Advertisement::destroy($toDelete);
+		} else {
+			Advertisement::whereNotNull('id')->delete();
+		}
 
-        return redirect()->route('admin.advertisement.index');
-    }
+		return redirect()->route('admin.advertisement.index');
+	}
+
+
 
 }

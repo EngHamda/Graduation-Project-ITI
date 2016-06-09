@@ -112,6 +112,7 @@ miscarriage:
 
 
 
+
 </form>
 
 
@@ -120,7 +121,6 @@ miscarriage:
 
 
 
-<button onclick="sendemail()">Click mefdrefre</button> 
 
 
 
@@ -130,6 +130,7 @@ miscarriage:
 
 
 
+<a href="/addprescription"> Add Prescription </a>
 
 
 

@@ -1,6 +1,8 @@
 <?php
 
-Route::get('/', function () { return view('welcome');});
+
+//Route::get('/', function () { return view('welcome');});
+
 Route::get('/',array('uses' => 'HomePageController@index','as' => 'homepage'));
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
@@ -15,14 +17,18 @@ Route::get('questions/{id}','QuestionsController@show');
 Route::get('/advices/{id}','AdvicesController@show');
 Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
-Route::get('/medicalcompany/login', 'MedicalcompanyController@login');
-Route::post('/medicalcompany/login', 'MedicalcompanyController@postLogin');
+
+Route::get('/medicalcompany/login', 'AuthMedicalcompanyController@login');
+Route::post('/medicalcompany/login', 'AuthMedicalcompanyController@postLogin');
+
+
 //put here routes to be acess only by doctor
 Route::group(['middleware' => 'patient'], function () {   
-
-Route::get('/patient', function () {return view('patientprofile');} );    
-    
+    Route::get('/patient', function () {
+        return view('patientprofile');   
+    });    
 });
+
 //onlyquestionowner
 Route::group(['middleware' => 'questionowneredit'], function () {   
 
@@ -46,28 +52,56 @@ Route::group(['middleware' => 'questionownerdestroy'], function () {
 Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
   });
 
+
+
+//onlyquestionowner
+Route::group(['middleware' => 'questionowneredit'], function () {   
+    Route::get('questions/{id}/edit','QuestionsController@edit');
+    Route::put('questions/update/{id}','QuestionsController@update');   
+});
+
+
+//patientandguestpatient
+Route::group(['middleware' => 'askquestion'], function () {   
+    Route::get('patient/questions/create','QuestionsController@create');
+    Route::post('questions/save','QuestionsController@store');   
+});
+
+
+//questionowner and questionnotansweredyet
+Route::group(['middleware' => 'questionownerdestroy'], function () {   
+    Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
+});
+
+
 //acess by assistant and patient and guestpatient
 Route::group(['middleware' => 'reservation'], function () {
-Route::post('/patient/store','ReservationsController@store');
-
-Route::get('/patient/create','ReservationsController@create');
-
- 
+    //for ajax
+    //create
+    Route::get ('reservations/create', 'ReservationsController@create');
+    Route::get ('reservations/create/{id}', 'ReservationsController@show');
+    Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+    Route::get('reservations/days', 'ReservationsController@getdays');
+    Route::resource('reservations','ReservationsController', 
+        ['except' => ['create', 'show','edit', 'update', 'destroy', 'index']]);
+    
 
 });
+
+
+
 
 
 
 //route acess by patient 
 Route::group(['middleware' => 'patient'], function () {
-  Route::get('/patient', function () {return view('patientprofile');});  
+    Route::get('/patient', function () {return view('patientprofile');});  
 });
-
-
 
 
 //put here routes to be acess only by doctor
 Route::group(['middleware' => 'physician'], function () {
+
 Route::get('/physician', 'PhysicianController@index'); 
 Route::get('/physician/request/{id}','PhysicianController@requestcompany');
 Route::post('physician/storecompanyrequest','PhysicianController@storecompanyrequest');
@@ -80,69 +114,66 @@ Route::get('/prescription', function () { return view('prescription');});
 
 Route::post('/addprescription','PatientprofilesController@insertprescription');
 Route::post('/sendemail','PatientprofilesController@sendemailtoprescriptionpage');
-Route::get('/showprescription/{id}','PatientprofilesController@showprescription');
+Route::get('/addprescription','PatientprofilesController@showprescription');
+
 });
 
 
 //adviceowner
 Route::group(['middleware' => 'adviceeditdestroy'], function () {
-Route::get('{id}/edit','AdvicesController@edit');
-
-Route::put('/advices/update/{id}','AdvicesController@update');
- Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
+    Route::get('{id}/edit','AdvicesController@edit');
+    Route::put('/advices/update/{id}','AdvicesController@update');
+    Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
 });
-
 
 
 
 
 //put here routes to be acess only by assistant
 Route::group(['middleware' => 'assistant'], function () {
-Route::get('/assistant','ReservationsController@index');
-Route::get('/patient/show/{id}','ReservationsController@show');
-Route::get('/patient/delayreservation/{id}','ReservationsController@edit');
-Route::delete('/patient/delete/{id}','ReservationsController@destroy');
-Route::put('/patient/update/{id}','ReservationsController@update');
-Route::get('/assistant/addnewpatientprofile', function () {return view('addnewpatientprofile');});  
-Route::post('assistant/addnewpatientprofile','AssistantController@store');
-Route::resource('assistant','AssistantController');
-Route::post('assistant/searchpatientprofile',"AssistantController@search");
-Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
+    /*Reservation*/
+    //for ajax
+//    //create
+//    Route::get ('reservations/create', 'ReservationsController@create');
+//    Route::get ('reservations/create/{id}', 'ReservationsController@show');
+//    Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+//    Route::get('reservations/days', 'ReservationsController@getdays');
+    Route::resource('reservations','ReservationsController', 
+        ['except' => ['create', 'show','edit', 'store']]);
+    //edit
+    Route::get ('reservations/{id}/edit', 'ReservationsController@edit');
+    Route::get('reservations/{id}/physicians', 'ReservationsController@getphysicians');
+    Route::get('reservations/{id}/days', 'ReservationsController@getdays');
+    
+    Route::get('/assistant/addnewpatientprofile', function () {
+        return view('addnewpatientprofile');
+        
+    });  
+    Route::post('assistant/addnewpatientprofile','AssistantController@store');
+    Route::resource('assistant','AssistantController');
+    Route::post('assistant/searchpatientprofile',"AssistantController@search");
+    Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
 });
 
 
 
 //put here links to be acess only by medicalcompany
 Route::group(['middleware' => 'medicalcompany'], function () {
-Route::group(['middleware'=>'auth:medicalcompany'],function(){Route::get('/medicalcompany', 'MedicalcompanyController@index');});
-    Route::get('/medicalcompany/logout', 'MedicalcompanyController@logout');
-Route::post('/medicalcompany/storead', 'MedicalcompanyController@uploaded');
-Route::get('/medicalcompany/confirmdoctorrequest/{id}','MedicalcompanyController@confirm');
+
+Route::group(['middleware'=>'auth:medicalcompany'],function(){Route::get('/medicalcompany', 'AuthMedicalcompanyController@index');});
+    Route::get('/medicalcompany/logout', 'AuthMedicalcompanyController@logout');
+Route::post('/medicalcompany/storead', 'AdvertisementController@uploaded');
+Route::get('/medicalcompany/confirmdoctorrequest/{id}','AdvertisementController@confirm');
+
 });
-
-
-
-
-
-
 
 
 //answerowner
 Route::group(['middleware' => 'answerowner'], function () {
-Route::delete('/answers/destroy/{id}','AnswersController@destroy');
-Route::GET('questions/answers/{id}/edit','AnswersController@edit');
-Route::PUT('questions/answers/{id}','AnswersController@update');
-
+    Route::delete('/answers/destroy/{id}','AnswersController@destroy');
+    Route::GET('questions/answers/{id}/edit','AnswersController@edit');
+    Route::PUT('questions/answers/{id}','AnswersController@update');
 });
-
-
-
-
-
-
-
-
-
 
 /*
 Route::get('advices/like',[
@@ -153,33 +184,35 @@ Route::get('advices/like',[
 //Route::resource('advices','AdvicesController');
 
 
-
-
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 
 //Route::get('/','ReservationsController@index');
 
-
+/**/
 //Reservation Routes
-//Route::resource('reservations','ReservationsController');
+//Route::resource('reservations','ReservationsController', 
+//        ['except' => ['create', 'show','edit']]);
+//Route::get ('reservations/{id}', 'ReservationsController@show');
 
+//for ajax
+//create
+//Route::get ('reservations/create', 'ReservationsController@create');
+//Route::get ('reservations/create/{id}', 'ReservationsController@show');
+//Route::get('reservations/physicians', 'ReservationsController@getphysicians');
+//Route::get('reservations/days', 'ReservationsController@getdays');
+////edit
+//Route::get ('reservations/{id}/edit', 'ReservationsController@edit');
+//Route::get('reservations/{id}/physicians', 'ReservationsController@getphysicians');
+//Route::get('reservations/{id}/days', 'ReservationsController@getdays');
+/**/
+
+//Route::resource('reservations','ReservationsController');
 
 //Answer Routes
 //Route::resource('answers','AnswersController');
 //Route::post('answers/{question}/create','AnswersController@create');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -193,5 +226,5 @@ Route::get('advices/like',[
 //    photos/{photos}/comments/{comments}.
 //questions/1/answers/10/edit
 
-
-
+//ClinicTimes
+Route::resource('clinictimes','ClinicTimesController');
