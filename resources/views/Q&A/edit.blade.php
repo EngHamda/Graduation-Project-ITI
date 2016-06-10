@@ -4,7 +4,7 @@
     edit Sidebar
 @stop
 @section('content')
-<div style="margin-top: 50px;"></div>
+<!--<div style="margin-top: 50px;"></div>-->
 <!--    <div class="row"></div>-->
     <div class="panel panel-default">
         <div class="panel-heading">
