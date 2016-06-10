@@ -13,7 +13,7 @@ Route::get('auth/login', 'Auth\AuthController@getlogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('user/login', 'UsersController@userslogin');
 Route::get('questions','QuestionsController@index');
-Route::get('questions/{id}','QuestionsController@show');
+Route::get('question/{id}','QuestionsController@show');
 Route::get('/advices/{id}','AdvicesController@show');
 Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
@@ -37,14 +37,6 @@ Route::put('questions/update/{id}','QuestionsController@update');
 
    
   });
-//patientandguestpatient
-//Route::group(['middleware' => 'askquestion'], function () {
-//
-////Route::get('questions/create','QuestionsController@create');
-////Route::post('questions/save','QuestionsController@store');
-//
-//
-//  });
 
 //questionowner and questionnotansweredyet
 Route::group(['middleware' => 'questionownerdestroy'], function () {   
@@ -63,7 +55,7 @@ Route::group(['middleware' => 'questionowneredit'], function () {
 //patientandguestpatient
 Route::group(['middleware' => 'askquestion'], function () {   
     Route::get('/questions/create','QuestionsController@create');
-    Route::post('questions','QuestionsController@store');
+    Route::post('/questions','QuestionsController@store');
 });
 
 
