@@ -14,6 +14,10 @@ class UpdateAnswerRequest extends Request
     }
     public function rules() {
         
-        return [];//'answer-specific'=> 'required'        
+        return [
+            'answer-specific'   => 'required',
+            'answer-detail'     => 'required', 
+            'answer-speciality' => 'required'
+        ];//'answer-specific'=> 'required'        
     }
 }

@@ -439,7 +439,7 @@ $('#myModal2').modal('show');
                                     <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
 
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
-                                    <a href="patient/questions/create" class="btn primary wp2 mm">Ask Question</a>
+                                    <a href="/questions/create" class="btn primary wp2 mm">Ask Question</a>
                                 @endif
                             @else
                                 <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2 mm">Ask Question</a></span>
