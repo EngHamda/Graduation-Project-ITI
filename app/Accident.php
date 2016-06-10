@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 
 
-class Accedent extends Model
+class Accident extends Model
 {
     protected $table="accedents";
     protected $fillable=['accedentdate','patientprofile_id','accedentinformation'];

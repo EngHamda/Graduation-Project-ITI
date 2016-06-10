@@ -55,8 +55,8 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
 
-        $request = $this->saveFiles($request);
-        $input = $request->all();
+       // $request = $this->saveFiles($request);
+        $input = $request;
         $input['password'] = Hash::make($input['password']);
 //        $user = User::create($input);
         $name=$input['name'];
@@ -69,7 +69,21 @@ class UsersController extends Controller
         $street=$input['street'];
         $city=$input['city'];
         $country=$input['country'];
-        $profile_picture=$input['profile_picture'];
+
+        $profile_picture_image=$input->file('profile_picture');;
+
+        if($profile_picture_image){
+            $profile_picture=$profile_picture_image->getClientOriginalName();
+            $profile_picture_image->move(public_path('images'),$profile_picture);
+        }
+
+
+
+        else{
+
+            $profile_picture="none.jpg";
+
+        }
         $role_id=$input['role_id'];
         $clinic_id=$input['clinic_id'];
         $speciality_id=$input['speciality_id'];

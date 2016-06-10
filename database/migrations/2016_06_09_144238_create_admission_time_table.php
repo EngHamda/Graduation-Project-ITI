@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDmissiontimeTable extends Migration
+class CreateAdmissionTimeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,31 +12,14 @@ class CreateDmissiontimeTable extends Migration
      */
     public function up()
     {
-      
-
-Schema::create('dmissiontimes', function (Blueprint $table) {
+        Schema::create('admissiontimes', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('dmissiondate');
-            
-            $table->integer('patientprofile_id')->unsigned();
+            $table->date('admissiondate');
+
+            $table->integer('patientprofile_id')->unsigned()->onDelete('cascade');
             $table->foreign('patientprofile_id')->references('id')->on('patientprofiles');
             $table->timestamps();
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     /**
@@ -46,20 +29,6 @@ Schema::create('dmissiontimes', function (Blueprint $table) {
      */
     public function down()
     {
-       
-
- $table->dropForeign('dmissiontimes_patientprofile_id_foreign');
-            $table->dropForeign('dmissiontimes_patientprofile_id_foreign');
-            
-            
-
-
-
-
-
-
-
-
-
+        Schema::drop('admissiontimes');
     }
 }

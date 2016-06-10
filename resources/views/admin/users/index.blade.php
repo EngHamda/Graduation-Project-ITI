@@ -26,7 +26,7 @@
                             <td>{{$user->role->title}}</td>
                             <td></td>
 
-                            <td>@if($user->profile_picture != '')<img src="{{ asset('uploads/thumb') . '/'.  $user->profile_picture }}">@endif</td>
+                            <td>@if($user->profile_picture != '')<img src="{{ URL::to('/')}}/images/{{$user->profile_picture }}" width="50" height="50">@endif</td>
 
                             <td>
                                 {!! link_to_route('users.edit', trans('quickadmin::admin.users-index-edit'), [$user->id], ['class' => 'btn btn-xs btn-info']) !!}

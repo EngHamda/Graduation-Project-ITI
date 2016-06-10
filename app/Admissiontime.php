@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dmissiontime extends Model
+class Admissiontime extends Model
 {
-    
 
+    protected $table='admissiontimes';
 
-protected $fillable = [
- 'dmissiondate','patientprofile_id'   
+   protected $fillable = [
+ 'admissiondate','patientprofile_id'
     ];
 
    

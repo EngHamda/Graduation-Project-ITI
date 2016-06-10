@@ -228,3 +228,5 @@ Route::get('advices/like',[
 
 //ClinicTimes
 Route::resource('clinictimes','ClinicTimesController');
+Route::get('/profile','PatientprofilesController@index');
+Route::post('searchpatient','PatientprofilesController@index');

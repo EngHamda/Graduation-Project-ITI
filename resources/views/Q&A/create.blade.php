@@ -34,15 +34,15 @@
                                                     'placeholder' => 'Question Details')) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        {!! Form::label('question_attach', 'Question Attachments'  
-                                ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            {{--{!! Form::file('question-attach', null, 
-                                              array('class'=>' form-control', 'multiple'=>'multiple'
-                                                    'placeholder' => 'Upload Attachment')) !!}--}}
-                        </div>
-                    </div>
+                    {{--<div class="form-group row">--}}
+                        {{--{!! Form::label('question_attach', 'Question Attachments'  --}}
+                                {{--,array('class'=>'col-sm-3 control-label'))!!}--}}
+                        {{--<div class="col-sm-9">--}}
+                            {{--{!! Form::file('question-attach', null, --}}
+                                              {{--array('class'=>' form-control', 'multiple'=>'multiple'--}}
+                                                    {{--'placeholder' => 'Upload Attachment')) !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 <!--                    <form action="./php/upload.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="files[]" id="filer_input" multiple="multiple">
                             <input type="submit" value="Submit">
