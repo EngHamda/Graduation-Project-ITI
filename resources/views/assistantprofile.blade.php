@@ -4,21 +4,25 @@
 
 <div class="container">
  <div style="margin-top: 50px;"></div>
+
+    @if(Session::has('status'))
+        <div id="alert" class="alert alert-danger">
+            {{Session::get('status')}}
+        </div>
+    @endif
  <div class="row">
   <div class="col-sm-offset-2">
    <div class="col-sm-9">
 
 <a href="/assistant/addnewpatientprofile" class="btn btn-info btn-block btn-lg"> AddNewPatient</a>
     <a href="/patient/create" class="btn btn-danger btn-block btn-lg"> Add Reservation</a>
+       <a href="" class="btn btn-info btn-block btn-lg"> AddClinicTimes</a>
   </div>
   </div>
 </div>
 
-@if(Session::has('status'))
-  <div class="alert alert-info">
-   <h1>{{Session::get('status')}}<h1>
-  </div>
- @endif
+
+
 
   <div style="margin-top: 50px;"></div>
   <form  class="form-horizontal" method="POST" action="{{ url('assistant/searchpatientprofile') }}">
@@ -27,7 +31,7 @@
       <div class="col-lg-offset-3 col-md-6">
 
           <div class="form-group">
-              <input type="text" name="email" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input  id='validemail' type="text" name="email" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
 
       </div>
@@ -37,7 +41,7 @@
 
      <div class="col-lg-offset-3 col-md-6">
            <div class="form-group">
-               <button type="submit" class="btn btn-info btn-block btn-lg">Search Patient By Email </button>
+               <button type="submit" class="btn btn-success btn-block btn-lg">Search Patient By Email </button>
            </div>
      </div>
     </div>
@@ -117,3 +121,4 @@
 
  </div>
 @stop
+

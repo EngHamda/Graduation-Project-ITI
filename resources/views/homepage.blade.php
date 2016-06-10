@@ -54,37 +54,48 @@
     <div class="row">
         <div class="header-nav-wrapper">
             <div class="logo">
-                <a href="/index.html"><img src="img/synthetica-logo.png" alt="Synthetica Freebie Peter Finlan"></a>
+                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
                     <ul class="primary-nav">
+                        @if(Auth::user())
+                        <li><strong>Welcome {{Auth::user()->name}}</strong></li>
+                            @elseif(auth()->guard('medicalcompany')->user())
+                            <li><strong>Welcome {{auth()->guard('medicalcompany')->user()->name}}</strong></li>
+                        @endif
                         <li><a href="#intro">Home</a></li>
+                        @if(Auth::user())
+                            @if(Auth::user()->role_id==3)
+                                <li><a href="/assistant">My Profile</a></li>
+                            @elseif(Auth::user()->role_id==4)
+                                <li><a href="/physician">My Profile</a></li>
+
+                            @endif
+                        @endif
+                            @if(auth()->guard('medicalcompany')->user())
+                                <li><a href="/medicalcompany">My Profile</a></li>
+                            @endif
                         <li><a href="#freebies">Questions</a></li>
                         <li><a href="#articles">Advices</a></li>
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
-                        @if(!Auth::user())
+                        @if(!Auth::user() && !auth()->guard('medicalcompany')->user())
+
                             <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
                             <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
                         @endif
                         @if(Auth::user())
                             <li><a href="/auth/logout">Log Out</a></li>
+                        @elseif(auth()->guard('medicalcompany')->user())
+                            <li><a href="/medicalcompany/logout">Log Out</a></li>
                         @endif
 
-                        @if(Auth::user())
-                            @if(Auth::user()->role_id==3)
-                                <li><a href="/assistant">My Profile</a></li>
-                            @endif
-                        @endif
+
+
                     </ul>
                 </nav>
-                <div class="secondary-nav-wrapper">
-                    <ul class="secondary-nav">
-                        <li class="subscribe"><a href="#get-started">Subscribe</a></li>
-                        <li class="search"><a href="#search" class="show-search"><i class="fa fa-search"></i></a></li>
-                    </ul>
-                </div>
+
                 <div class="search-wrapper">
                     <ul class="search">
                         <li>
@@ -147,10 +158,10 @@
                             </div>
                         </div>
                 </div>
-                </p>
+               </p>
                 <div class="modal-footer">
 
-                    <button  id="medical" type="button" class="btn btn-info ">
+                    <button  id="medicalcompany" type="button" class="btn btn-default">
                         <i class="fa fa-btn fa-sign-in"></i>AreYouMedicalCompany?
                     </button>
                     <button type="submit" class="btn btn-info">
@@ -210,7 +221,7 @@
 
 
 
-                  </p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">
@@ -224,6 +235,7 @@
 </div>
 {{--Ending Modal of Medical Company--}}
 
+{{--Start of Registeration Modal--}}
 <div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -314,7 +326,7 @@
 </div>
 </div>
 
-{{--Start of Registeration Modal--}}
+
 
 {{--End of Registeration Modal--}}
 <header class="hero">
@@ -574,15 +586,15 @@
             <div class="col-md-4 col-sm-4">
                 <h4>Latest Advices</h4>
             </div>
-            <div class="col-md-8 col-sm-8 sort">
-                <h5>Sort by</h5>
-                <select name="article-sort" id="inputArticle-Sort" class="">
-                    <option value="">Experience Design</option>
-                    <option value="">Visual Design</option>
-                    <option value="">UI Patterns</option>
-                    <option value="">Product Design</option>
-                </select>
-            </div>
+            {{--<div class="col-md-8 col-sm-8 sort">--}}
+                {{--<h5>Sort by</h5>--}}
+                {{--<select name="article-sort" id="inputArticle-Sort" class="">--}}
+                    {{--<option value="">Experience Design</option>--}}
+                    {{--<option value="">Visual Design</option>--}}
+                    {{--<option value="">UI Patterns</option>--}}
+                    {{--<option value="">Product Design</option>--}}
+                {{--</select>--}}
+            {{--</div>--}}
         </div>
         <div class="row"><!--row of advices list-->
             @foreach($latestAdvices as $latestAdvice)
@@ -599,14 +611,14 @@
                             </figcaption>
                         </figure>
                     </a>
-                    <ul class="article-footer">
-                        <li class="article-category">
-                            <a href="#">Product</a>
-                        </li>
-                        <li class="article-comments">
-                            <span><i class="fa fa-comments"></i> 51</span>
-                        </li>
-                    </ul>
+                    {{--<ul class="article-footer">--}}
+                        {{--<li class="article-category">--}}
+                            {{--<a href="#">Product</a>--}}
+                        {{--</li>--}}
+                        {{--<li class="article-comments">--}}
+                            {{--<span><i class="fa fa-comments"></i> 51</span>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
                 </article>
             </div>
         @endforeach
@@ -718,6 +730,7 @@
 <script src="js/min/jquery.waypoints.min.js"></script>
 <script src="js/min/flickity.pkgd.min.js"></script>
 <script src="js/min/scripts-min.js"></script>
+{!! Html::script('/js/app.js') !!}
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--
 <script>

@@ -65,7 +65,7 @@
 
 
 
-<input type="submit" value="Add Prescription" id="prescription" class="btn btn-default" />
+<input type="button" value="Add Prescription" id="prescription" class="btn btn-default" />
 
 </form>
 @stop
