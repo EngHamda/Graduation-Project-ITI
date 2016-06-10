@@ -38,7 +38,33 @@
     </div>
 
     <div style="margin-top: 50px;"></div>
+
   <a href="/add" class="btn btn-info btn-block btn-lg"> Add Patient Profile</a>
+
+    <div style="margin-top: 50px;"></div>
+
+    <form  class="form-horizontal" method="POST" action="{{ url('searchpatient') }}">
+        <div class="row">
+
+            <div class="col-lg-offset-3 col-md-6">
+
+                <div class="form-group">
+                    <input  id='national_id' type="text" name="national_id" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-offset-3 col-md-6">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block btn-lg">Search Patient By Email </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
     <div style="margin-top: 50px;"></div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -58,4 +84,6 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+
 @stop

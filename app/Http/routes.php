@@ -221,5 +221,5 @@ Route::get('advices/like',[
 
 
 Route::get('/profile','PatientprofilesController@index');
-Route::post('searchpatient','PatientprofilesController@index');
+Route::post('/searchpatient','PatientprofilesController@searchPatient');
 

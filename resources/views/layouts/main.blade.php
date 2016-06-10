@@ -432,8 +432,8 @@
                     <div class="row">
                         <div class="col-md-12 footer-nav">
                             <ul class="footer-primary-nav">
-                                <li><a href="#intro">The Collective</a></li>
-                                <li><a href="#team">Our Staff</a></li>
+                                <li><a href="/#intro">The Collective</a></li>
+                                <li><a href="/#team">Our Staff</a></li>
                                 <li><a href="/questions">Questions</a></li>
                                 <li><a href="/advices">Advices</a></li>
                             </ul>

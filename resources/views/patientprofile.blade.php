@@ -2,28 +2,7 @@
 @section('content')
 
     <div style="margin-top: 50px;"></div>
-    <form  class="form-horizontal" method="POST" action="{{ url('searchpatient') }}">
-        <div class="row">
 
-            <div class="col-lg-offset-3 col-md-6">
-
-                <div class="form-group">
-                    <input  id='validemail' type="text" name="email" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-lg-offset-3 col-md-6">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block btn-lg">Search Patient By Email </button>
-                </div>
-            </div>
-        </div>
-
-    </form>
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#basicinfo">Basic information</a></li>
     <li><a data-toggle="tab" href="#pasthistory">Past History</a></li>

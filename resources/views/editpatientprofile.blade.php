@@ -88,7 +88,7 @@
 
 
 {!!  Form::label('main_image', 'Main_image') !!}
-{!! Form::file('main_image'),['class'=>'form-control']!!}
+{!! Form::file('main_image')!!}
 
 
 {!! link_to("/patient/create/".$user->id, $title = "add reservation", $attributes = array(), $secure = null)!!}
