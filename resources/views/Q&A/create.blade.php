@@ -4,7 +4,7 @@
     create Sidebar
 @stop
 @section('content')
-    <div style="margin-top: 50px;"></div>
+    <!--<div style="margin-top: 50px;"></div>-->
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Create Question</h3>
@@ -15,7 +15,7 @@
                 {{--  question_code, question_specific, question_detail
                       is_private, is_answered, patient_id--}}
                 <div class="col-md-12">
-                    {!! Form::open(array('url' => '/questions/save','method'=>'POST', 'enctype' =>'multipart/form-data')
+                    {!! Form::open(array('url' => '/questions','method'=>'POST')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('question-specific', 'Specific Question'  

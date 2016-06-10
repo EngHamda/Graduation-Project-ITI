@@ -40,8 +40,8 @@ Route::put('questions/update/{id}','QuestionsController@update');
 //patientandguestpatient
 Route::group(['middleware' => 'askquestion'], function () {   
 
-Route::get('patient/questions/create','QuestionsController@create');
-Route::post('questions/save','QuestionsController@store');
+//Route::get('questions/create','QuestionsController@create');
+//Route::post('questions/save','QuestionsController@store');
 
    
   });
@@ -63,8 +63,8 @@ Route::group(['middleware' => 'questionowneredit'], function () {
 
 //patientandguestpatient
 Route::group(['middleware' => 'askquestion'], function () {   
-    Route::get('patient/questions/create','QuestionsController@create');
-    Route::post('questions/save','QuestionsController@store');   
+    Route::get('questions/create','QuestionsController@create');
+    Route::post('questions','QuestionsController@store');
 });
 
 
