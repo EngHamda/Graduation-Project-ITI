@@ -421,29 +421,27 @@
             </div>
 
 
-
-                <!-- SECTION: Footer -->
-                <footer class="has-padding footer-bg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 footer-branding">
-                                <img class="footer-branding-logo" src="/img/logo.png" height="80" width="150" alt="Soft Management logo">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 footer-nav">
-                                <ul class="footer-primary-nav">
-                                    <li><a href="#intro">The Collective</a></li>
-                                    <li><a href="#team">Our Staff</a></li>
-                                    <li><a href="/questions">Questions</a></li>
-                                    <li><a href="/advices">Advices</a></li>
-                                </ul>
-                            </div>
+           <!-- SECTION: Footer -->
+            <footer class="has-padding footer-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 footer-branding">
+                            <img class="footer-branding-logo" src="/img/logo.png" height="80" width="150" alt="Soft Management logo">
                         </div>
                     </div>
-                </footer>
-
-                <!-- END SECTION: Footer -->
+                    <div class="row">
+                        <div class="col-md-12 footer-nav">
+                            <ul class="footer-primary-nav">
+                                <li><a href="#intro">The Collective</a></li>
+                                <li><a href="#team">Our Staff</a></li>
+                                <li><a href="/questions">Questions</a></li>
+                                <li><a href="/advices">Advices</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- END SECTION: Footer -->
                 <!-- JS CDNs -->
 
                 {{--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>--}}

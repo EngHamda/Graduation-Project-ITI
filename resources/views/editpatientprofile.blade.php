@@ -24,7 +24,7 @@
 
 
 
-{!!  Form::label('phone', 'phone'); !!}
+{!!  Form::label('phone', 'phone')!!}
 {!! Form::text('phone',$value=$user->phone,['class' => 'form-control']);!!}
 
 
@@ -87,13 +87,13 @@
 
 
 {!!  Form::label('main_image', 'Main_image') !!}
-{!! Form::file('main_image')!!}
+{!! Form::file('main_image'),['class'=>'form-control']!!}
 
 
 {!! link_to("/patient/create/".$user->id, $title = "add reservation", $attributes = array(), $secure = null)!!}
 
 
-{!! Form::submit('Click Me!')!!}
+{!! Form::submit('Update')!!}
 
 
 {!! Form::close() !!}

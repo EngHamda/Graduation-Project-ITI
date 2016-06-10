@@ -96,7 +96,7 @@
 
 
 
-{!! Form::submit('Click Me!')!!}
+{!! Form::submit('Update')!!}
 
 
 
