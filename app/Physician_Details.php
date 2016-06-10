@@ -16,4 +16,9 @@ class Physician_Details extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function speciality()
+    {
+        return $this->belongsTo('App\Speciality');
+    }
 }

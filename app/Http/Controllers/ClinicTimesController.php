@@ -45,6 +45,7 @@ class ClinicTimesController extends Controller
         //
 //        $x=10;
 //        return compact('x');
+        return view('ClinicTimes.create');//, compact('clinicList'));
     }
 
     /**

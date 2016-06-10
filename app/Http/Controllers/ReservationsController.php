@@ -195,6 +195,7 @@ class ReservationsController extends Controller
         $physicianIds = array();
         $physicians = Physician_Details::where('clinic_id',$clinic_id)->select('user_id')->get();//->get();
         foreach ($physicians as $physician ){
+//            $data = $physician->user->name." - ".$physician->user->physiciandetail->speciality->name;
             array_push($physicianNames, $physician->user->name);
             array_push($physicianIds, $physician->user_id);           
             

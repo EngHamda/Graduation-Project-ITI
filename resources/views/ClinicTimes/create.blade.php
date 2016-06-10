@@ -6,13 +6,12 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Create Reservation</h3>
+          <h3 class="panel-title">Add New Clinic Times</h3>
         </div>
         <div class="panel-body">
             <div class="row">
-                {{-- This comment will not be present in the rendered HTML --}}
                 <div class="col-md-12">
-                    {!! Form::open(array('url' => '/reservations','method' =>'post')
+                    {!! Form::open(array('url' => '/patient/store','method' =>'post')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('patient-name', 'Patient Name'  
