@@ -47,15 +47,7 @@ class ClinicTimesController extends Controller
 //        $x=10;
 //        return compact('x');
 
-$clinicsname=Clinics::all();
-$physiciannames=User::where('role_id','=',4)->get();
-  return view('addclinictimes', compact('clinicsname', 'physiciannames'));
-
-
-
-
-
-
+        return view('ClinicTimes.create');//, compact('clinicList'));
 
     }
 

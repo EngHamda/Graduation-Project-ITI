@@ -26,5 +26,10 @@ class Speciality extends Model {
         
         return $this->hasMany('\App\Answer');
     }
+    
+    public function physician() {
+        
+        return $this->hasMany('\App\Physician_Details');
+    }
 
 }
