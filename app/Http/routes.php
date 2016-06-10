@@ -44,7 +44,6 @@ Route::group(['middleware' => 'questionownerdestroy'], function () {
   });
 
 
-
 //onlyquestionowner
 Route::group(['middleware' => 'questionowneredit'], function () {   
     Route::get('questions/{id}/edit','QuestionsController@edit');
@@ -144,6 +143,9 @@ Route::group(['middleware' => 'assistant'], function () {
     Route::resource('assistant','AssistantController');
     Route::post('assistant/searchpatientprofile',"AssistantController@search");
     Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
+    //ClinicTimes
+    Route::resource('clinictimes','ClinicTimesController');
+
 });
 
 
@@ -217,7 +219,7 @@ Route::get('advices/like',[
 //    photos/{photos}/comments/{comments}.
 //questions/1/answers/10/edit
 
-//ClinicTimes
-Route::resource('clinictimes','ClinicTimesController');
+
 Route::get('/profile','PatientprofilesController@index');
 Route::post('searchpatient','PatientprofilesController@index');
+
