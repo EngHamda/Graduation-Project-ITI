@@ -5,12 +5,26 @@
 
 
 
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
 <form   method="POST" action="/addprescription"  class="form-inline"  >
 
 
 <div class="form-group">
     <label for="email">Email address:</label>
-    <input  type="text" value="email" name="email" placeholder="content" class="form-control"/>
+    <input  type="text" value=" {{ $email}}  " name="email" placeholder="content" class="form-control"/>
   </div>
 
 <br>

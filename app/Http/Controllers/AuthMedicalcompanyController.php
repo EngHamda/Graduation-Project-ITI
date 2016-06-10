@@ -41,71 +41,46 @@ class AuthMedicalcompanyController extends Controller
    
 
 
-    public function login()
+  /*/  public function login()
     {
 
         return view('medicalcompany.auth.medicalcompanylogin');
     }
-
+*/
 
     public function postLogin(Request $request)
     {
 
 
-        /*$validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
                     'email' => 'required|unique:posts|max:255',
                     'password' => 'required',
-                ]);*/
+                ]);
 
 
-//print_r($request->all());
 
-        /*  if ($validator->fails()) {
-              return redirect('/medicalcompany/login')
-                          ->withErrors($validator)
-                          ->withInput();
+
+         if ($validator->fails()) {
+             //return redirect('/')
+                        //->withErrors($validator)
+                        //->withInput()
+                       // ->with('error_code', 5);
+       
+
+                   return redirect('/')->with('status', 'Not Valid Email OR Password');    
+
           }
 
-  */
 
 
-        /*
-        $validator=Validator($request->all(),
-        [
-        'email'=>'required',
-        'password'=>'required'
-
-        ]);
-
-        if($validator->fails())
-        {
-        return redirect('/medicalcompany/login')
-               ->withErrors($validator)
-               ->withInput() ;
-
-
-
-
-
-        /
-          //    $this->validate($request,[
-            //     'username'=>'required|max:8',
-               //  'password'=>'required'
-             // ]);
-
-
-
-
-
-        }
-        */
         $credientials = ['email' => $request->get('email'), 'password' => $request->get('password')];
         if (auth()->guard('medicalcompany')->attempt($credientials)) {
             return redirect('/medicalcompany');
         } else {
-            return redirect('/')
-                ->withErrors(['error' => 'login invalid'])
-                ->withInput();
+            //return redirect('/')
+              //  ->withErrors(['error' => 'login invalid'])
+                //->withInput();
+return redirect('/')->with('status', 'Email doesnt Exist'); 
 
         }
 

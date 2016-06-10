@@ -164,12 +164,7 @@ return $Response;
 }
 
 
-public function show()
-{
 
-
-
-}
 
 
 
@@ -181,12 +176,33 @@ $drug=$request->input('drug');
 $frequency=$request->input('frequency');
 $duration=$request->input('duration');
 $date=$request->input('date');
+$email=$request->input('email');
+$user=User::where('email',$email)->first();
+$email=$request->input('email');
+
+//if($user){
+//$userid=$user->id;
+//$profile=Patientprofile::where('user_id',$userid)->first();
+
+
+//if($profile)
+//{
+//$id=$profile->$id;
+//$command=new StoreprescriptionCommand($drug,$frequency,$duration,$date,$id);
+
+//$this->dispatch($command);
+
+return redirect("/hdifej");
+//}
 
 
 
-$command=new StoreprescriptionCommand($drug,$frequency,$duration,$date);
 
-$this->dispatch($command);
+
+
+
+
+//}
 
 
 
@@ -198,10 +214,30 @@ $this->dispatch($command);
 
 
 
-public function showprescription()
+public function sendemailtoprescriptionpage(Request $request)
 {
 
-return view('prescription');
+$emailjson=$request->input('patientemailjson');
+$emailarray  = json_decode($emailjson, true);
+$email=$emailarray[0];
+/*
+$Response   = array(
+            'success' => $email,
+        );
+return $Response;
+
+*/
+
+return redirect('/');
+
+}
+
+
+public function showprescription($id)
+{
+
+$email=$id;
+return view('prescription', compact('email'));
 
 
 }
