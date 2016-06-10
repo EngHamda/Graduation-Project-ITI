@@ -81,15 +81,15 @@
    <label>Blood Group</label>
    
 
- <select>
-  <option value="volvo">A+</option>
-  <option value="saab">B+</option>
-  <option value="mercedes">AB+</option>
-  <option value="audi">O+</option>
-  <option value="audi">A-</option>
-  <option value="audi">B-</option>
-  <option value="audi">AB-</option>
-   <option value="audi">O-</option>
+ <select name="bloodgroup">
+  <option value="A+">A+</option>
+  <option value="B+">B+</option>
+  <option value="AB+">AB+</option>
+  <option value="O+">O+</option>
+  <option value="A-">A-</option>
+  <option value="B-">B-</option>
+  <option value="AB-">AB-</option>
+   <option value="0-">O-</option>
 </select> 
 
 
