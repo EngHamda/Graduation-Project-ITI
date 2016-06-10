@@ -121,7 +121,7 @@ Route::get('/addprescription','PatientprofilesController@showprescription');
 
 //adviceowner
 Route::group(['middleware' => 'adviceeditdestroy'], function () {
-    Route::get('{id}/edit','AdvicesController@edit');
+    Route::get('/advices/{id}/edit','AdvicesController@edit');
     Route::put('/advices/update/{id}','AdvicesController@update');
     Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
 });

@@ -24,7 +24,7 @@ class AuthMedicalcompanyController extends Controller
     {
         $id = auth()->guard('medicalcompany')->user()->id;
         $requests = Advertisementsrequest::where('medicalcompany_id', '=', $id)->get();
-        $allAds = Advertisement::all();
+        $allAds = Advertisement::where('medicalcompany_id', '=', $id)->get();
         return view('medicalcompany.index', compact('requests', 'id','allAds'));
 
     }

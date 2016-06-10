@@ -15,3 +15,6 @@
     margin-bottom:20px;
     padding:20px;
 }
+.pull-right form{
+    display:inline-block;
+}

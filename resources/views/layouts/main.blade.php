@@ -421,25 +421,7 @@
             </div>
 
 
-            <!-- SECTION: Footer -->
-            <footer class="has-padding footer-bg">
 
-                <div class="container">
-                    <div class="col-md-12">
-                        @if(Session::has('message'))
-                            <div class="alert alert-info">
-                                {{Session::get('message')}}
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <ul>
-                                {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-                            </ul>
-                        @endif
-
-
-                    </div>
-                </div><!-- /.container -->
                 <!-- SECTION: Footer -->
                 <footer class="has-padding footer-bg">
                     <div class="container">

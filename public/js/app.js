@@ -2,9 +2,9 @@
 // Like and Dislike
 $('.like').on('click',function(event)
     {
-            //console.log(event);
+            console.log('hi');
         // Prevent default behavior
-        var adviceId =event.target.parentNode.parentNode.dataset['adviceid'];
+        var adviceId =event.target.parentNode.parentNode.parentNode.dataset['adviceid'];
         event.defaultPrevented;
 
        var isLike = event.target.previousElementSibling==null;
