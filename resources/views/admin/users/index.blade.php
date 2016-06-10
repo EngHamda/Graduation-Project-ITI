@@ -14,7 +14,9 @@
                     <thead>
                     <tr>
                         <th>{{ trans('quickadmin::admin.users-index-name') }}</th>
-                        <th>&nbsp;</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Profile Picture</th>
                     </tr>
                     </thead>
 
@@ -24,8 +26,6 @@
                             <td>{{ $user->name }}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->role->title}}</td>
-                            <td></td>
-
                             <td>@if($user->profile_picture != '')<img src="{{ URL::to('/')}}/images/{{$user->profile_picture }}" width="50" height="50">@endif</td>
 
                             <td>

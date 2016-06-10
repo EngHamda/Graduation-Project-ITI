@@ -145,8 +145,8 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $request = $this->saveFiles($request);
-        $input = $request->all();
+       // $request = $this->saveFiles($request);
+        $input = $request;
         $input['password'] = Hash::make($input['password']);
         //$user->update($input);
         $name=$input['name'];
@@ -159,11 +159,25 @@ class UsersController extends Controller
         $street=$input['street'];
         $city=$input['city'];
         $country=$input['country'];
-        $profile_picture=$input['profile_picture'];
+
         $role_id=$input['role_id'];
-        $clinic_id=$input['clinic_id'];
+        $profile_picture_image=$input->file('profile_picture');;
+
+        if($profile_picture_image){
+            $profile_picture=$profile_picture_image->getClientOriginalName();
+            $profile_picture_image->move(public_path('images'),$profile_picture);
+        }
+
+
+
+        else{
+
+            $profile_picture="none.jpg";
+
+        }
 
         if($role_id==4){
+                $clinic_id=$input['clinic_id'];
                 $speciality_id=$input['speciality_id'];
                 $title=$input['title'];
                 $certification=$input['certification'];
@@ -180,6 +194,7 @@ class UsersController extends Controller
             $this->dispatch($command1);
         }
         elseif($role_id==3) {
+            $clinic_id=$input['clinic_id'];
             $command2 = new UpdateAssistantCommand($clinic_id, $user_id);
             $this->dispatch($command2);
         }

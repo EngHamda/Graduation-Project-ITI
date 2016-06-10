@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 use App\Commands\StoreAdCommand;
 use App\Http\Requests;
 use App\Advertisementsrequest;
+use Auth;
+use App\Advertisement;
 class AdvertisementController extends Controller
 {
-    
+
+
   public function uploaded(Request $request)
     {
+        $id = auth()->guard('medicalcompany')->user()->id;
+        $allAds = Advertisement::where('medicalcompany_id', '=', $id)->get();
         $name = $request->input('name');
 
         $path = $request->file('path')->getClientOriginalName();
@@ -26,7 +31,7 @@ class AdvertisementController extends Controller
 
         $requests = Advertisementsrequest::where('medicalcompany_id', '=', 1)->get();
 
-        return view('medicalcompany.index', compact('requests', 'id'));
+        return view('medicalcompany.index', compact('requests', 'id','allAds'));
 
 
 

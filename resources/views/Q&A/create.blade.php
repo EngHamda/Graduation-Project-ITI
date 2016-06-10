@@ -15,7 +15,7 @@
                 {{--  question_code, question_specific, question_detail
                       is_private, is_answered, patient_id--}}
                 <div class="col-md-12">
-                    {!! Form::open(array('url' => '/questions','method'=>'POST')
+                    {!! Form::open(array('url' => 'questions','method'=>'POST')
                                 , array('class'=>'form-horizontal')) !!}
                     <div class="form-group row">
                         {!! Form::label('question-specific', 'Specific Question'  

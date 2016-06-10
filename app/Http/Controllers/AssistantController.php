@@ -90,9 +90,8 @@ $nationality=$request->input('nationality');
 $nationalid=$request->input('nationalid');
  $roleid=2;
 $gender=$request->input('gender');
- $Dmissiontime=$request->input('Dmissiontime');
- $Dmissiontime= date('Y-m-d', strtotime($Dmissiontime));
-$command=new StorePatientBasicinfoCommand($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$profilepicture,$roleid,$country);
+
+$command=new StorePatientBasicinfoCommand($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$main_image_filename,$roleid,$country);
 
 
 
@@ -107,7 +106,7 @@ $this->dispatch($command2);
 $profile=Patientprofile::where('user_id',$userid)->first();
 $profileid=$profile->id;
 
- return redirect('assistant')->with('status', 'patient profile update');
+ return redirect('assistant')->with('status', 'patient profile is Created');
 
 
 
