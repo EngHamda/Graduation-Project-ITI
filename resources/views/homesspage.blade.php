@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -119,24 +119,6 @@
     {{--login Modal--}}
 
     <div class="modal fade" id="myModal" role="dialog">
-
-
-
-
-
-
-
-
-
-
-             
-                
-
-
-
-
-
-
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -144,38 +126,85 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-
-
-
-   @if (session('status1'))
-                         <div class="alert alert-danger" id="msg">
-                              {{ session('status1') }}  
-                         </div>
-
-
-               <script>
-
-
-                       $(document).ready(function () {
-                       $('#myModal').modal('show');
-                                                    });
-
-
-                </script>
-                       @endif
-
-
-
-
                     <p><form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
                         {{ csrf_field() }}
+
+
+
+
+@if (session('status1'))
+    <div class="alert alert-danger" id="msg">
+        {{ session('status1') }}  
+    </div>
+
+
+<script>
+///alert("hi");
+//var modalid=document.getElementById("myModal1");
+//console.log(modalid)
+//modalid.modal('show');
+
+$(document).ready(function () {
+$('#myModal').modal('show');
+
+
+
+
+
+});
+
+
+
+
+    
+
+</script>
+@endif
+
+
+
+
+
+
+@if (session('status2'))
+    <div class="alert alert-danger" id="msg">
+        {{ session('status2') }}  
+    </div>
+
+
+<script>
+///alert("hi");
+//var modalid=document.getElementById("myModal1");
+//console.log(modalid)
+//modalid.modal('show');
+
+$(document).ready(function () {
+$('#myModal').modal('show');
+
+
+
+
+
+});
+
+
+
+
+    
+
+</script>
+@endif
+
+
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">E-Mail Address</label>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail"
 
-                               
+
+
+                                
                             </div>
                         </div>
 
@@ -183,7 +212,7 @@
                             <label class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" id="loginemail">
+                                <input type="password" class="form-control" name="password" id="loginpassword">
 
                                 
 
@@ -223,16 +252,17 @@
                 <div class="modal-body">
                     <p><form class="form-horizontal" role="form" method="POST" action="{{ url('/medicalcompany/login') }}">
                         {{ csrf_field() }}
-
-
-
 @if (session('status'))
-    <div class="alert alert-danger" id="medicalerrormsg">
+    <div class="alert alert-success">
         {{ session('status') }} 
     </div>
 
 
 <script>
+///alert("hi");
+//var modalid=document.getElementById("myModal1");
+//console.log(modalid)
+//modalid.modal('show');
 
 $(document).ready(function () {
 $('#myModal1').modal('show');
@@ -240,28 +270,17 @@ $('#myModal1').modal('show');
 });
 
 
+
+
+    
+
 </script>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <div class="form-group">
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="medicallogin">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
 
                                 
                             </div>
@@ -271,9 +290,9 @@ $('#myModal1').modal('show');
                             <label class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" id="medicallogin">
+                                <input type="password" class="form-control" name="password">
 
-                               
+                                
                             </div>
                         </div>
 
@@ -306,36 +325,26 @@ $('#myModal1').modal('show');
                 <p> <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
                     {{ csrf_field() }}
 
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="form-group"  >
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" id="regiteralert">
                         <label class="col-md-4 control-label">Name</label>
 
                         <div class="col-md-6">
                             <input type="hidden" name="role_id" value="5">
-                            <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
+                            <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}"  >
                             <div id="nameerror"></div>
+                            @if ($errors->has('name'))
+                                <span class="help-block" id="registeralert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
 
-@if($errors->has('name'))
 
+    
 
 <script>
+///alert("hi");
+//var modalid=document.getElementById("myModal1");
+//console.log(modalid)
+//modalid.modal('show');
 
 $(document).ready(function () {
 $('#myModal2').modal('show');
@@ -343,23 +352,20 @@ $('#myModal2').modal('show');
 
 });
 
+
+
+
+    
+
 </script>
 
 
 
-@endif
-
-
-
-                            @if ($errors->has('name'))
-                                <span class="help-block" id="registeralert" >
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
                             @endif
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="registeralert">
                         <label class="col-md-4 control-label">E-Mail Address</label>
 
                         <div class="col-md-6">
@@ -368,14 +374,14 @@ $('#myModal2').modal('show');
 
                             </div>
                             @if ($errors->has('email'))
-                                <span class="help-block" id="registeralert2">
+                                <span class="help-block" id="registeralert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                             @endif
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}  id="registeralert" ">
                         <label class="col-md-4 control-label">Password</label>
 
                         <div class="col-md-6">
@@ -384,7 +390,7 @@ $('#myModal2').modal('show');
                             <div id="passworderror"></div>
 
                             @if ($errors->has('password'))
-                                <span class="help-block" id="registeralert3">
+                                <span class="help-block" id="registeralert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
@@ -392,7 +398,7 @@ $('#myModal2').modal('show');
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }} id="registeralert"">
                         <label class="col-md-4 control-label">Confirm Password</label>
 
                         <div class="col-md-6">
@@ -439,7 +445,7 @@ $('#myModal2').modal('show');
                                     <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
 
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
-                                    <a href="/questions/create" class="btn primary wp2 mm">Ask Question</a>
+                                    <a href="patient/questions/create" class="btn primary wp2 mm">Ask Question</a>
                                 @endif
                             @else
                                 <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2 mm">Ask Question</a></span>
@@ -828,6 +834,7 @@ $('#myModal2').modal('show');
 <script src="js/min/flickity.pkgd.min.js"></script>
 <script src="js/min/scripts-min.js"></script>
 {!! Html::script('/js/app.js') !!}
+
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID and uncomment -->
 <!--
 <script>

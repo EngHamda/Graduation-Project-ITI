@@ -13,7 +13,8 @@ use App\Commands\UpdateClinicTimesCommand;
 use App\Http\Requests\UpdateClinicTimesRequest;
 
 use App\Commands\DestoryClinicTimesCommand;
-
+use App\Clinics;
+use App\User;
 
 
 
@@ -45,7 +46,9 @@ class ClinicTimesController extends Controller
         //
 //        $x=10;
 //        return compact('x');
+
         return view('ClinicTimes.create');//, compact('clinicList'));
+
     }
 
     /**

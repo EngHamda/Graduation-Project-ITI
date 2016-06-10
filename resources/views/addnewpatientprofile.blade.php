@@ -27,10 +27,13 @@
    <input type="text" name="phone" class="form-control">
  </div>
 
+<label>Gender</label>
  <div class="form-group">
-   <label>Gender</label>
-   <input type="text" name="gender" class="form-control" >
- </div>
+  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="other"> Other
+</div>
+
 
  <div class="form-group">
    <label>Birthdate</label>
@@ -76,7 +79,25 @@
 
  <div class="form-group">
    <label>Blood Group</label>
-   <input type="text" name="bloodgroup" class="form-control">
+   
+
+ <select name="bloodgroup">
+  <option value="A+">A+</option>
+  <option value="B+">B+</option>
+  <option value="AB+">AB+</option>
+  <option value="O+">O+</option>
+  <option value="A-">A-</option>
+  <option value="B-">B-</option>
+  <option value="AB-">AB-</option>
+   <option value="0-">O-</option>
+</select> 
+
+
+
+
+
+
+
  </div>
 
  <div class="form-group">

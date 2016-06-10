@@ -212,47 +212,6 @@ public function insertpatientprofile(Request $request)
         }
 
 
-        public function show()
-        {
-
-
-
-        }
-
-
-
-        public function insertprescription(Request $request)
-        {
-
-
-                $drug=$request->input('drug');
-                $frequency=$request->input('frequency');
-                $duration=$request->input('duration');
-                $date=$request->input('date');
-
-
-
-                $command=new StoreprescriptionCommand($drug,$frequency,$duration,$date);
-
-                $this->dispatch($command);
-
-
-
-
-
-        }
-
-
-
-
-
-        public function showprescription()
-        {
-
-                return view('prescription');
-
-
-        }
 
 
 

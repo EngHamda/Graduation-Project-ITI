@@ -48,31 +48,22 @@ var misdateassociativearray={};
 
 
 
-var containerofbirth = $('.copiesofbirth'),
+
+
+
+var containerofbirth = $('.copiesofp'),
   value_src_birth = $('#birth');
 var count_birth=1;
 var value_src2_birth=$('#birthdate') ;
-var birthassociativearray= {};
-var birthdateassociativearray={};
+var drug= {};
+var freq={};
+var date={};
+var duration={};
+var count_p=1;
 
+value_src_p = $('#drug');
 
-
-
-
-
-
-
-
-
-
-
-$("#check").change(function() {
-    if(this.checked) {
-      alert("hi");
-    }
-});
-
-
+var value_src2_p = $('#date');
 
 
 
@@ -112,8 +103,13 @@ bloodtransferassociativearray[0]=$("#bloodtransfer").val()  ;
 bloodtransferdateassociativearray[0]=$("#bloodtransferdate").val()   ;
 misassociativearray[0]=$("#mis").val()  ;
 misdateassociativearray[0]=$("#misdate").val()   ;
-birthassociativearray[0]=$("#birth").val()  ;
-birthdateassociativearray[0]=$("#birthdate").val()   ;
+
+drug[0]=$("#drug").val()  ;
+duration[0]=$("#duration").val()   ;
+freq[0]=$("#freq").val()   ;
+date[0]=$("#date").val()   ;
+
+
 for(var i=1;i<count;i++)
 {
 var valueofpasthistory= $('#id' + i).val() ;
@@ -212,17 +208,25 @@ misdateassociativearray[y]=valueofmisdate
 
 
 
+console.log(count_p);
 
-for(var y=1;y<count_birth;y++)
+
+
+
+for(var y=1;y<count_p;y++)
 {
 
-var valueofmis= $('#birth' + y).val() ;
-
-var valueofmisdate=$('#bir' + y).val() ;
-birthassociativearray[y]=valueofbirth
-birthdateassociativearray[y]=valueofbirthdate
+var valueofdrug= $('#drug' + y).val() ;
+var valueofdate= $('#date' + y).val() ;
+var valueoffreq=$('#freq' + y).val() ;
+var valueofduration=$('#duration' + y).val() ;
+date[y]=valueofdate;
+drug[y]=valueofdrug;
+freq[y]=valueoffreq;
+duration[y]=valueofduration;
 
 }
+
 
 
 
@@ -249,6 +253,14 @@ var bloodtransferjson=JSON.stringify(bloodtransferassociativearray);
 var bloodtransferdatejson=JSON.stringify(bloodtransferdateassociativearray);
 var misjson=JSON.stringify(misassociativearray);
 var misdatejson=JSON.stringify(misdateassociativearray);
+var drugjson =JSON.stringify(drug);
+var freqjson =JSON.stringify(freq);
+var datejson =JSON.stringify(date);
+var durationjson =JSON.stringify(duration);
+console.log(datejson);
+console.log(freqjson);
+console.log(durationjson);
+
         $.ajax({
             url: '/test',
             type: 'post',
@@ -302,7 +314,7 @@ data: {"_token":token,
 
 
 
-/*
+
 function sendemail()
 {
 
@@ -315,14 +327,23 @@ $.ajax({
             type: 'post',
             dataType: 'json',
 
-            success: function (data) {window.location.replace("/showprescription/"+data);},
+            //success: function (data) {   if(data.success) 
+
+//var data =data.success;
+
+  //    window.location.replace("/showprescription/"+data); 
+
+
+
+
+//},
 
             data:{"_token":token,patientemailjson}});
 
 
 
 }
-*/
+
 
 
 
@@ -524,6 +545,67 @@ $('#patient_profile_form') .on('click', '#addbirth', function(){
          count_birth--;
     });
     
+
+
+
+
+
+$('#patient_profile_form') .on('click', '#addp', function(){
+alert("fff");
+
+        var value = $('#drug').val();
+        var value2=$('#date').val();
+     var html = '<div id="line">' +
+        
+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="date'+ count_p +'" />' +'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="drug'+ count_p +'" />' +'<select id="duration'+count_p+'">' + '<option value="1">' + 'one time' + '</option>' +
+
+'<option>' + 'twice ' + '</option>' +
+'<option>' + 'three times' + '</option>' +
+
+
+
+'</select>' + '<select id="freq'+count_p+'"">' +  '<option value="1">'+ 'every day'+'</option>'+ '<option>'+ 'every month' +'</option>'  +'</select>' +
+
+
+
+
+
+
+
+            '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
+        '</div>'+'<br>';
+        
+        $(html).appendTo($('.copiesofp'));
+        value_src_p.val('');
+ value_src2_p.val('');
+         count_p++;
+        
+    }).on('click', '#remove', function(){
+        $(this).parents('#line').remove();
+         count_p--;
+    });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

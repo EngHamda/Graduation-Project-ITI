@@ -233,9 +233,9 @@ class UsersController extends Controller
 //print_r($request->all());
 
         if ($validator->fails()) {
-            return redirect('/#myModal')
-            ->withErrors($validator)
-                    ->withInput();
+         return redirect('/')->with('status1', 'Not Valid Email OR Password'); 
+            
+                    
             }
 
 $credientials=['email'=> $request->get('email'),'password'=>$request->get('password'),'role_id'=>2];
@@ -264,9 +264,8 @@ return redirect('/');
 
 
 else{
-    return redirect('/#myModal')
-       ->withErrors(['error'=>'login invalid'])
-       ->withInput() ;  
+    return redirect('/')->with('status2','Email doesnt Exist');
+        
     
     }
     }

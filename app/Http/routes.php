@@ -104,10 +104,10 @@ Route::get('/prescription', function () { return view('prescription');});
 
 Route::post('/addprescription','PatientprofilesController@insertprescription');
 Route::post('/sendemail','PatientprofilesController@sendemailtoprescriptionpage');
-Route::get('/addprescription','PatientprofilesController@showprescription');
+Route::get('/showprescription/{id}','PatientprofilesController@showprescription');
 
+//Route::get('/endshow', function () {return view('prescription');});  
 });
-
 
 //adviceowner
 Route::group(['middleware' => 'adviceeditdestroy'], function () {
