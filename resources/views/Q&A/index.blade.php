@@ -4,7 +4,7 @@
     Index Sidebar
 @stop
 @section('content')
-            
+        <div style="margin-top: 50px;"></div>
          <div class="row">
            
             <div class="col-sm-12">
@@ -125,5 +125,6 @@
               
             </div><!--/.col-sm-12 -->
          </div><!--/.row -->
+         <div class="row"></div>
         
 @stop

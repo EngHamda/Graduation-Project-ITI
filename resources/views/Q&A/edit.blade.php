@@ -4,6 +4,8 @@
     edit Sidebar
 @stop
 @section('content')
+<div style="margin-top: 50px;"></div>
+<!--    <div class="row"></div>-->
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Edit Question {{ $question->question_code }}</h3>
@@ -34,22 +36,9 @@
                                                     'placeholder' => 'Question Details')) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        {!! Form::label('question_attach', 'Question Attachments'  
-                                ,array('class'=>'col-sm-3 control-label'))!!}
-                        <div class="col-sm-9">
-                            {{--{!! Form::file('question-attach', null, 
-                                              array('class'=>' form-control', 'multiple'=>'multiple'
-                                                    'placeholder' => 'Upload Attachment')) !!}--}}
-                        </div>
-                    </div>
-<!--                    <form action="./php/upload.php" method="post" enctype="multipart/form-data">
-                            <input type="file" name="files[]" id="filer_input" multiple="multiple">
-                            <input type="submit" value="Submit">
-                      </form>Form::file('image')-->
                     <div class='col-sm-10 col-sm-offset-2'>
-                        {!! Form::submit('Edit Question', array('class'=>'btn btn-success col-sm-offset-2')) !!}                               
-                        {!! Form::reset('Cancel Question', array('class'=>'btn btn-danger col-sm-offset-5')) !!}                               
+                        {!! Form::submit('Edit Question', array('class'=>'btn btn-success col-sm-offset-2', 'style' =>'margin-left: 60px;')) !!}                               
+                        {!! Form::reset('Cancel Question', array('class'=>'btn btn-danger col-sm-offset-6', 'style' =>'margin-left: 210px;')) !!}                               
                     </div>
                     {!! Form::close() !!}
                 </div>
