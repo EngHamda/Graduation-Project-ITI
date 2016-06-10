@@ -14,6 +14,9 @@ class UpdateQuestionRequest extends Request
     }
     public function rules() {
         
-        return [];        
+        return [
+            'question-specific'=> 'required',
+            'question-detail'  => 'required'
+        ];        
     }
 }
