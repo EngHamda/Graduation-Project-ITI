@@ -54,8 +54,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="header-nav-wrapper">
-            <div class="logo">
-                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
+            <div class="logo" style="border-bottom-width: 0px;width: 250px;height: 104px;padding-top: 5px;padding-bottom: 5px;">
+                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Soft Management" ></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -606,76 +606,9 @@ $('#myModal2').modal('show');
                 </article>
             </div>
         </div>
-        <div class="row skillset">
-            <div class="col-md-6">
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Experience Design <span class="push-right">90%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="90%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">HTML5/CSS3 <span class="push-right">95%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="95%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Interactive Prototyping <span class="push-right">80%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="80%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Visual Design <span class="push-right">90%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="90%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 <!-- END SECTION: Crew -->
-<!-- SECTION: Stats -->
-<div class="stats has-padding-tall">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Cup"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="24">24</p>
-                    <p class="stats-text">Awards won</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Book"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="341">341</p>
-                    <p class="stats-text">Articles</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Pen"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="43">43</p>
-                    <p class="stats-text">Freebies</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END SECTION: Stats -->
 <!-- SECTION: Articles -->
 <section class="latest-articles has-padding alternate-bg" id="articles">
     <div class="container">
@@ -735,10 +668,22 @@ $('#myModal2').modal('show');
         </div>
         <div class="row">
             <div class="col-md-6 content-left">
-                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit.</p>
+                <p>A posuere donec senectus suspendisse bibendum
+                    magna ridiculus a justo orci parturient suspendisse 
+                    ad rhoncus cursus ut parturient viverra elit aliquam 
+                    ultrices est sem. Tellus nam ad fermentum ac enim est 
+                    duis facilisis congue a lacus adipiscing consequat risus 
+                    consectetur scelerisque integer suspendisse a mus integer
+                    elit.</p>
             </div>
             <div class="col-md-6 content-right">
-                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit.</p>
+                <p>A posuere donec senectus suspendisse bibendum magna 
+                    ridiculus a justo orci parturient suspendisse ad rhoncus 
+                    cursus ut parturient viverra elit aliquam ultrices est 
+                    sem. Tellus nam ad fermentum ac enim est duis facilisis 
+                    congue a lacus adipiscing consequat risus consectetur 
+                    scelerisque integer suspendisse a mus integer elit.
+                </p>
             </div>
         </div>
     </div>
