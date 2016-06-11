@@ -92,8 +92,6 @@
                             <li><a href="/medicalcompany/logout">Log Out</a></li>
                         @endif
 
-
-
                     </ul>
                 </nav>
 
@@ -113,7 +111,6 @@
             </div>
         </div>
     </div>
-    {{--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>--}}
 
     <!-- Modal -->
     {{--login Modal--}}
