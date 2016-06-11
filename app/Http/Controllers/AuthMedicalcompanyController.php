@@ -48,12 +48,12 @@ class AuthMedicalcompanyController extends Controller
     }
 */
 
-    public function postLogin(Request $request)
+    public function login(Request $request)
     {
 
 
         $validator = Validator::make($request->all(), [
-                    'email' => 'required|unique:posts|max:255',
+                    'email' => 'required|max:255',
                     'password' => 'required',
                 ]);
 
