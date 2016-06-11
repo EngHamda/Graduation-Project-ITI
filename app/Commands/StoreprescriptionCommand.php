@@ -34,8 +34,8 @@ public function handle()
 
 
 return Prescription::create([
-'date'=>$this->allergiesdate,
-'drug'=>$this->allergieshistory,
+'date'=>$this->date,
+'drug'=>$this->drug,
 'duration'=>$this->duration,
 'frequency'=>$this->frequency,
 'patientprofile_id'=>$this->profileid,

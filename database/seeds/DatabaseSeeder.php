@@ -27,13 +27,34 @@ DB::table('users')->insert([
 
 */
 
-DB::table('users')->insert([
-'email'=>'patient@hotmail.com',
+
+
+
+
+
+DB::table('medicalcompany')->insert([
+'email'=>'massistant@hotmail.com',
 'password'=>Hash::make('12345'),
-'role_id'=>2,
+
 
 
 ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
