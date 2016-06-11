@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
-<!--<div class="row">
+<div class="row">
   <div class="col-sm-9">
       <a href="/reservations/create" class="btn btn-danger btn-block btn-lg"> Add Reservation</a>
      </div>
-</div>-->
+</div>
 {!! Form::open(array('action'=>['AssistantController@update',$user->id],'method'=>'PUT','enctype'=>'multipart/form-data')) !!}
     
 {!!  Form::label('name', 'Name') !!}
@@ -24,8 +24,8 @@
 
 
 
-{!!  Form::radio('gender', 'female', true); !!}
-{!!  Form::radio('gender', 'male', true);   !!}
+{{--{!!  Form::radio('gender', 'female', true); !!}
+{!!  Form::radio('gender', 'male', true);   !!}--}}
 
 
 
@@ -71,8 +71,8 @@
 
 
 {!!  Form::label('patientbloodgroup', 'patientbloodgroup')!!}
-{!! Form::select('size', array('A+' => 'A+', 'B+' => 'B+' , 'AB+' => 'AB+' , 'O+' => 'O+', 'O-' => 'O-' , 'A-' => 'A-'  ,'B-' => 'B-','AB-'=>'AB-'), $patientprofile->patientbloodgroup, ['placeholder' => 'Pick a size...']);!!}
-
+{!! Form::select('size', array('A+' => 'A+', 'B+' => 'B+' , 'AB+' => 'AB+' , 'O+' => 'O+', 'O-' => 'O-' , 'A-' => 'A-'  ,'B-' => 'B-','AB-'=>'AB-'), null, ['placeholder' => 'Pick a size...']);!!}
+{{--$patientprofile->patientbloodgroup--}}
 
 {!!  Form::label('patientemergencyphone', 'patientemergencyphone')!!}
 {!! Form::text('patientemergencyphone',$value=null,['class' => 'form-control'])!!}
