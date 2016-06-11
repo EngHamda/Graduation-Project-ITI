@@ -79,6 +79,7 @@
                             @endif
                         <li><a href="#freebies">Questions</a></li>
                         <li><a href="#articles">Advices</a></li>
+
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
                         @if(!Auth::user() && !auth()->guard('medicalcompany')->user())
@@ -339,7 +340,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
-                            <p>Create your landing page in minutes with Synthetica's Sketch style guide.</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -350,13 +351,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1 class="wp1">Download Synthetica today, it's free forever.</h1>
+                            <h1 class="wp1"></h1>
                             <a href="http://tympanus.net/codrops/?p=26570" class="btn primary wp2">Download Template</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
-                            <p>Available exclusively from Codrops.</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -605,7 +606,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 footer-branding">
-                <img class="footer-branding-logo" src="img/synthetica-logo.png" alt="Synthetica freebie html5 css3 template peter finlan logo">
+                <img class="footer-branding-logo" src="img/logo.png"  height="80" width="100" alt="soft management logo">
 
             </div>
         </div>
