@@ -144,6 +144,7 @@ Route::group(['middleware' => 'assistant'], function () {
     Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
     //ClinicTimes
     Route::resource('clinictimes','ClinicTimesController');
+    Route::get('reservations/add/{id}','ReservationsController@add');
     //for ajax
     //create
 //    Route::get('clinictimes/create/days', 'ClinicTimesController@getdays');

@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Q&A-Index')
-@section('sidebar')
+@section('title','Q&A')
+{{--@section('sidebar')
     Index Sidebar
-@stop
+@stop--}}
 @section('content')
         <!--<div style="margin-top: 50px;"></div>-->
          <div class="row">

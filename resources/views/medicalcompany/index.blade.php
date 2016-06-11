@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Medical Company Profile')
 @section('content')
 <div>
 @foreach($requests as $request)

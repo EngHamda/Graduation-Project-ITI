@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Create')
-@section('sidebar')
+@section('title','Add New Clinic Time')
+{{--@section('sidebar')
     create Sidebar
-@stop
+@stop--}}
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">

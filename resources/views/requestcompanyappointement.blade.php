@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Request')
 @section('content')
 
     <form method="POST" action="{{ url('physician/storecompanyrequest') }}">
