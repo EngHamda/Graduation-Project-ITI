@@ -167,9 +167,9 @@
             </div>
         </div>
     </div>
-{{--End of login Modal--}}
+    {{--End of login Modal--}}
 
-{{--starting Modal of Medical Company--}}
+    {{--starting Modal of Medical Company--}}
     <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -212,91 +212,91 @@
             </div>
         </div>
     </div>
-</div>
-{{--Ending Modal of Medical Company--}}
 
-{{--Start of Registeration Modal--}}
-<div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Registeration Form</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group"  >
-                            <label class="col-md-4 control-label">Name</label>
+    {{--Ending Modal of Medical Company--}}
+
+    {{--Start of Registeration Modal--}}
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registeration Form</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group"  >
+                                <label class="col-md-4 control-label">Name</label>
+                                <div class="col-md-6">
+                                    <input type="hidden" name="role_id" value="5">
+                                    <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
+                                    <div id="nameerror"></div>
+                                    @if($errors->has('name'))
+                                    <script>
+                                    $(document).ready(function () {
+                                        $('#myModal2').modal('show');
+                                    });
+                                    </script>
+                                    @endif
+                                    @if ($errors->has('name'))
+                                        <span class="help-block" id="registeralert" >
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
                             <div class="col-md-6">
-                                <input type="hidden" name="role_id" value="5">
-                                <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
-                                <div id="nameerror"></div>
-                                @if($errors->has('name'))
-                                <script>
-                                $(document).ready(function () {
-                                    $('#myModal2').modal('show');
-                                });
-                                </script>
-                                @endif
-                                @if ($errors->has('name'))
-                                    <span class="help-block" id="registeralert" >
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
+                                <div id="emailerror">
+                                </div>
+                                @if ($errors->has('email'))
+                                <span class="help-block" id="registeralert2">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">E-Mail Address</label>
-                        <div class="col-md-6">
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
-                            <div id="emailerror">
-                            </div>
-                            @if ($errors->has('email'))
-                            <span class="help-block" id="registeralert2">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Password</label>
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" name="password" id="password">
-                            <div id="passworderror"></div>
-                            @if ($errors->has('password'))
-                                <span class="help-block" id="registeralert3">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Confirm Password</label>
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" name="password_confirmation" id="passwordconfirm">
-                            <div id="passwordconfirmerror"></div>  <div id="message"></div>
-                            @if ($errors->has('password_confirmation'))
-                                <span class="help-block" id="registeralert">
-                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                </span>
-                            @endif
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password" id="password">
+                                <div id="passworderror"></div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block" id="registeralert3">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-info">
-                    <i class="fa fa-btn fa-user"></i> Register
-                </button>
-                 </form>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password_confirmation" id="passwordconfirm">
+                                <div id="passwordconfirmerror"></div>  <div id="message"></div>
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block" id="registeralert">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                            </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-btn fa-user"></i> Register
+                    </button>
+                     </form>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{{--End of Registeration Modal--}}
+    {{--End of Registeration Modal--}}
 </div>
 
 
@@ -323,14 +323,13 @@
                                 <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2">Reserve Online</a></span>
                             @endif
                         </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
                             <p><span class="bold italic"></span> </p>
                         </div>
                     </div>
-
+                </div>
             </div>
         </div>
         <div class="carousel-cell" style="background-image: url(img/hero-bg-02.jpg);">
@@ -543,6 +542,7 @@
             </div>
         </div>
         <div class="row">
+            @foreach ($latestQuestions as $latestQuestion)
             <div class="col-md-6 content-left">
                 <p>A posuere donec senectus suspendisse bibendum
                     magna ridiculus a justo orci parturient suspendisse 
@@ -561,10 +561,10 @@
                     scelerisque integer suspendisse a mus integer elit.
                 </p>
             </div>
+            @endforeach
         </div>
     </div>
     <div class="container-fluid">
-
         <div class="row"><!--row of question list-->
             @foreach ($latestQuestions as $latestQuestion)
             <div class="col-md-6 no-padding">
@@ -581,16 +581,15 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="freebie-content">
+                                <span class="date">03/01/2016</span>
+                                <h2>{{$latestQuestion->question_specific}}</h2>
+                                <h2>{{$latestQuestion->answers}}</h2>
 
-                                <div class="freebie-content">
-                                    <span class="date">03/01/2016</span>
-                                    <h2>{{$latestQuestion->question_specific}}</h2>
-                                    <h2>{{$latestQuestion->answers}}</h2>
-
-                                    <div class="group">
-                                        <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
-                                    </div>
+                                <div class="group">
+                                    <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
                                 </div>
+                            </div>
                         </figcaption>
                         <img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">
                     </figure>
@@ -606,7 +605,6 @@
         </div>
     </div>
 </section>
-
 <!-- END SECTION: Freebies -->
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">
