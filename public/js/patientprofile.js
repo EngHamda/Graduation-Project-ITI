@@ -1,3 +1,17 @@
+
+$(document).ready(function(){
+
+    $(function() {
+        $( "#pasthistorydate" ).datepicker();
+        $( "#surgicalhistorydate" ).datepicker();
+        $( "#allergiesdate" ).datepicker();
+        $( "#accedentdate" ).datepicker();
+       $( "#bloodtransferdate" ).datepicker();
+       $( "#misdate" ).datepicker();
+ $( "#date" ).datepicker();
+       
+    });});
+
 var patientemailarray=[];
 var pasthistoryassociativearray = {};
 var pasthistorydateassociativearray = {};
@@ -51,19 +65,17 @@ var misdateassociativearray={};
 
 
 
-var containerofbirth = $('.copiesofp'),
-  value_src_birth = $('#birth');
-var count_birth=1;
-var value_src2_birth=$('#birthdate') ;
+value_src_p = $('#drug');
+
+var value_src2_p = $('#date');
+ 
 var drug= {};
 var freq={};
 var date={};
 var duration={};
 var count_p=1;
 
-value_src_p = $('#drug');
 
-var value_src2_p = $('#date');
 
 
 
@@ -104,10 +116,10 @@ bloodtransferdateassociativearray[0]=$("#bloodtransferdate").val()   ;
 misassociativearray[0]=$("#mis").val()  ;
 misdateassociativearray[0]=$("#misdate").val()   ;
 
-drug[0]=$("#drug").val()  ;
+drug[0]= $("#drug").val() ;
 duration[0]=$("#duration").val()   ;
 freq[0]=$("#freq").val()   ;
-date[0]=$("#date").val()   ;
+date[0]= $("#date").val()  ;
 
 
 for(var i=1;i<count;i++)
@@ -139,7 +151,7 @@ allergiesdateassociativearray[ee]=valueofallergiesdate
 
 }
 
-
+//alert(count_accedent);
 for(var eee=1;eee<count_accedent;eee++)
 {
 
@@ -148,8 +160,8 @@ for(var eee=1;eee<count_accedent;eee++)
 var valueofaccedent= $('#accedent' + eee).val() ;
 
 var valueofaccedentdate=$('#acc' + eee).val() ;
-accedentassociativearray[ee]=valueofaccedent;
-accedentdateassociativearray[ee]=valueofaccedentdate
+accedentassociativearray[eee]=valueofaccedent;
+accedentdateassociativearray[eee]=valueofaccedentdate
 
 }
 
@@ -208,7 +220,7 @@ misdateassociativearray[y]=valueofmisdate
 
 
 
-console.log(count_p);
+
 
 
 
@@ -217,6 +229,7 @@ for(var y=1;y<count_p;y++)
 {
 
 var valueofdrug= $('#drug' + y).val() ;
+
 var valueofdate= $('#date' + y).val() ;
 var valueoffreq=$('#freq' + y).val() ;
 var valueofduration=$('#duration' + y).val() ;
@@ -257,9 +270,11 @@ var drugjson =JSON.stringify(drug);
 var freqjson =JSON.stringify(freq);
 var datejson =JSON.stringify(date);
 var durationjson =JSON.stringify(duration);
-console.log(datejson);
-console.log(freqjson);
-console.log(durationjson);
+//console.log(drugjson);
+console.log(drugjson);
+//console.log(accedentdatejson);
+//console.log(datejson);
+//console.log(durationjson);
 
         $.ajax({
             url: '/test',
@@ -291,7 +306,8 @@ console.log(durationjson);
 
             },
 data: {"_token":token, 
-    "pastpasthistorydatejson":pasthistorydatejson,
+    "pasthistoryjson":pasthistoryjson,
+    " pasthistorydatejson":pasthistorydatejson,
     "patientemailjson":patientemailjson,
     "surgicalhistoryjson":surgicalhistoryjson,
     "surgicalhistorydatejson":surgicalhistorydatejson,
@@ -300,11 +316,17 @@ data: {"_token":token,
     "accedentjson":accedentjson,
     "accedentdatejson":accedentdatejson,
     "specialneedsjson":specialneedsjson ,
-     "familyhistory":familyhistoryjson ,
+     "familyhistoryjson":familyhistoryjson ,
      "bloodtransferjson":bloodtransferjson ,
       "bloodtransferdatejson":bloodtransferdatejson ,
        "misjson":misjson ,
-        "misdatejson":misdatejson }
+        "misdatejson":misdatejson,
+"drugjson":drugjson,
+"freqjson":freqjson,
+"datejson":datejson,
+"durationjson":durationjson,
+
+      }
         });
     }
 
@@ -361,6 +383,7 @@ $.ajax({
 
 
 $('#patient_profile_form') .on('click', '#add', function(){
+
         var value = value_src.val();
         var value2=value_src2.val();
         var html = '<div id="line">' +
@@ -370,33 +393,54 @@ $('#patient_profile_form') .on('click', '#add', function(){
         '</div>'+'<br>';
         
         $(html).appendTo(container);
+        
+        $(document).ready(function(){
+
+    $(function() {
+        $("#uu"+count).datepicker();
+      });
+  });
         value_src.val('');
  value_src2.val('');
          count++;
 
-    }).on('click', '#remove', function(){
+    })
+.on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count--
+        // count--
     });
-    
+ 
 
 $('#patient_profile_form') .on('click', '#addsurgical', function(){
         var value = value_src_surgical.val();
         var value2=value_src2_surgical.val();
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="surgical'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="sur'+ count +'" />' +
+            '<input class="form-control" type="text"    name=" name' + count_surgical +'"         value="' + value + '"  id="surgical'+ count_surgical +'" />' 
++'<input class="form-control" type="text"    name=" name' + count_surgical +'"         value="' + value2 + '"  id="sur'+ count_surgical +'" />' +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
         
+
         $(html).appendTo(containerofsurgical);
+           
+        
+$(document).ready(function(){
+
+    $(function() {
+        $("#sur"+count_surgical).datepicker();
+      });
+  });
+
+
         value_src_surgical.val('');
  value_src2_surgical.val('');
          count_surgical++;
          
+
+         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-        count_surgical--;
+        //count_surgical--;
     });
     
 
@@ -404,19 +448,28 @@ $('#patient_profile_form') .on('click', '#addallergies', function(){
         var value = value_src_allergies.val();
         var value2=value_src2_allergies.val();
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="allergies'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="all'+ count +'" />' +
+            '<input class="form-control" type="text"    name=" name' + count_allergies +'"         value="' + value + '"  id="allergies'+ count_allergies +'" />' 
++'<input class="form-control" type="text"    name=" name' + count_allergies +'"         value="' + value2 + '"  id="all'+ count_allergies +'" />' +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
         
         $(html).appendTo(containerofallergies);
+$(document).ready(function(){
+
+    $(function() {
+        $("#all"+count_allergies).datepicker();
+      });
+  });
+
         value_src_allergies.val('');
  value_src2_allergies.val('');
          count_allergies++;
         
+
+
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_allergies--;
+        
     });
     
 $('#patient_profile_form') .on('click', '#addaccedent', function(){
@@ -424,19 +477,27 @@ $('#patient_profile_form') .on('click', '#addaccedent', function(){
         var value = value_src_accedent.val();
         var value2=value_src2_accedent.val();
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="accedent'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="acc'+ count +'" />' +
+            '<input class="form-control" type="text"    name=" name' + count_accedent +'"         value="' + value + '"  id="accedent'+ count_accedent +'" />' 
++'<input class="form-control" type="text"    name=" name' + count_accedent +'"         value="' + value2 + '"  id="acc'+ count_accedent +'" />' +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
         
         $(html).appendTo(containerofaccedent);
+
+$(document).ready(function(){
+
+    $(function() {
+        $("#acc"+count_accedent).datepicker();
+      });
+  });
+
         value_src_accedent.val('');
  value_src2_accedent.val('');
          count_accedent++;
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_accedent--;
+        
     });
     
 
@@ -445,7 +506,7 @@ $('#patient_profile_form') .on('click', '#addspecialneeds', function(){
         var value = value_src_specialneeds.val();
      
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="specialneeds'+ count +'" />' 
+            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="specialneeds'+ count_specialneeds +'" />' 
  +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
@@ -457,7 +518,7 @@ $('#patient_profile_form') .on('click', '#addspecialneeds', function(){
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_specialneeds--;
+         //count_specialneeds--;
     });
     
 
@@ -467,7 +528,7 @@ $('#patient_profile_form') .on('click', '#addfamilyhistory', function(){
   var value = value_src_familyhistory.val();
      
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="familyhistory'+ count +'" />' 
+            '<input class="form-control" type="text"    name=" name' + count_familyhistory +'"         value="' + value + '"  id="familyhistory'+ count +'" />' 
  +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
@@ -479,7 +540,7 @@ $('#patient_profile_form') .on('click', '#addfamilyhistory', function(){
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_familyhistory--;
+         //count_familyhistory--;
     });
     
 $('#patient_profile_form') .on('click', '#addbloodtransfer', function(){
@@ -487,19 +548,25 @@ $('#patient_profile_form') .on('click', '#addbloodtransfer', function(){
         var value = value_src_bloodtransfer.val();
         var value2=value_src2_bloodtransfer.val();
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="bloodtransfer'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="blood'+ count +'" />' +
+            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="bloodtransfer'+ count_bloodtransfer +'" />' 
++'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="blood'+ count_bloodtransfer +'" />' +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
         
         $(html).appendTo(containerofbloodtransfer);
+        $(document).ready(function(){
+
+    $(function() {
+        $("#blood"+count_bloodtransfer).datepicker();
+      });
+  });
         value_src_bloodtransfer.val('');
  value_src2_bloodtransfer.val('');
          count_bloodtransfer++;
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_bloodtransfer--;
+         //count_bloodtransfer--;
     });
     
 $('#patient_profile_form') .on('click', '#addmis', function(){
@@ -507,64 +574,55 @@ $('#patient_profile_form') .on('click', '#addmis', function(){
         var value = $('#mis').val();
         var value2=value_src2_mis.val();
      var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="misc'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="mis'+ count +'" />' +
+            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="misc'+ count_mis+'" />' 
++'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="mis'+ count_mis+'" />' +
             '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
         '</div>'+'<br>';
         
         $(html).appendTo(containerofmis);
+
+ 
+$(document).ready(function(){
+
+    $(function() {
+        $("#mis"+count_mis).datepicker();
+      });
+  });
+
+
         value_src_mis.val('');
  value_src2_mis.val('');
          count_mis++;
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_mis--;
+         //count_mis--;
     });
     
 
 
 
-$('#patient_profile_form') .on('click', '#addbirth', function(){
 
-        var value = $('#birth').val();
-        var value2=$('#birthdate').val();
-     var html = '<div id="line">' +
-            '<input class="form-control" type="text"    name=" name' + count +'"         value="' + value + '"  id="birth'+ count +'" />' 
-+'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="bi'+ count +'" />' +
-            '<input type="button" value="Remove" id="remove" class="btn btn-default" />' +
-        '</div>'+'<br>';
-        
-        $(html).appendTo($('.copiesofbirth'));
-        value_src_birth.val('');
- value_src2_birth.val('');
-         count_birth++;
-        
-    }).on('click', '#remove', function(){
-        $(this).parents('#line').remove();
-         count_birth--;
-    });
-    
 
 
 
 
 
 $('#patient_profile_form') .on('click', '#addp', function(){
-alert("fff");
+
 
         var value = $('#drug').val();
         var value2=$('#date').val();
      var html = '<div id="line">' +
         
-'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="date'+ count_p +'" />' +'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value2 + '"  id="drug'+ count_p +'" />' +'<select id="duration'+count_p+'">' + '<option value="1">' + 'one time' + '</option>' +
+'<input class="form-control" type="text"    name=" name' + count_p+'"         value="' + value2+ '"  id="date'+ count_p +'" />' +'<input class="form-control" type="text"    name=" name' + count +'"         value="' + value+ '"  id="drug'+ count_p +'" />' +'<select id="freq'+count_p+'">' + '<option value="one">' + 'one' + '</option>' +
 
-'<option>' + 'twice ' + '</option>' +
-'<option>' + 'three times' + '</option>' +
+'<option value="twice">' + 'twice ' + '</option>' +
+'<option value="three times">' + 'three times' + '</option>' +
 
 
 
-'</select>' + '<select id="freq'+count_p+'"">' +  '<option value="1">'+ 'every day'+'</option>'+ '<option>'+ 'every month' +'</option>'  +'</select>' +
+'</select>' + '<select id="duration'+count_p+'"">' +  '<option value="everyday">'+ 'every day'+'</option>'+ '<option value="everymonth">'+ 'every month' +'</option>'  +'</select>' +
 
 
 
@@ -576,13 +634,26 @@ alert("fff");
         '</div>'+'<br>';
         
         $(html).appendTo($('.copiesofp'));
+
+$(document).ready(function(){
+
+    $(function() {
+        $("#date"+count_p).datepicker();
+      });
+  });
+
+
+
+
+
+
         value_src_p.val('');
  value_src2_p.val('');
          count_p++;
         
     }).on('click', '#remove', function(){
         $(this).parents('#line').remove();
-         count_p--;
+      
     });
     
 

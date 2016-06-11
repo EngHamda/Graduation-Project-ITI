@@ -137,3 +137,9 @@ $("#medicallogin").click(function(){
 
 
 
+$(document).ready(function(){
+
+    $(function() {
+        $( "pasthistorydate" ).datepicker();
+       
+    });});
