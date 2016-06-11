@@ -61,9 +61,50 @@
             {!! Form::file('main_image'),['class'=>'form-control']!!}
             {!! link_to("/patient/create/".$user->id, $title = "add reservation", $attributes = array(), $secure = null)!!}
 
+<<<<<<< HEAD
+
+{!!  Form::label('patientheight', 'patientheight') !!}
+{!! Form::text('patientheight',$value=$patientprofile->patientheight,['class' => 'form-control'])!!}
+
+
+{!!  Form::label('patientbloodgroup', 'patientbloodgroup') !!}
+{!! Form::text('patientbloodgroup',$value=$patientprofile->patientbloodgroup,['class' => 'form-control'])!!}
+
+{!! Form::select('size', array('A+' => 'A+', 'B+' => 'B+' , 'AB+' => 'AB+' , 'O+' => 'O+', 'O-' => 'O-' , 'A-' => 'A-'  ,'B-' => 'B-','AB-'=>'AB-'), $patientprofile->patientbloodgroup, ['placeholder' => 'Pick a size...']);!!}
+
+{!!  Form::label('patientemergencyphone', 'patientemergencyphone') !!}
+{!! Form::text('patientemergencyphone',$value=$patientprofile->patientemergencyphone,['class' => 'form-control'])!!}
+
+
+
+{!!  Form::label('patientnationality', 'patientnationality') !!}
+{!! Form::text('patientnationality',$value=$patientprofile->patientnationality,['class' => 'form-control'])!!}
+
+
+{!!  Form::label('patientnationalid', 'patientnationalid') !!}
+{!! Form::text('patientnationalid',$value=$patientprofile->patientnationalid,['class' => 'form-control'])!!}
+
+{!!  Form::label('admission_date', 'admission') !!}
+{!! Form::text('admission',$value=null,['id' => 'datepicker-3','class'=>'form-control'])!!}
+
+
+
+{!!  Form::label('main_image', 'Main_image') !!}
+{!! Form::file('main_image')!!}
+
+
+{!! link_to("/patient/create/".$user->id, $title = "add reservation", $attributes = array(), $secure = null)!!}
+
+
+{!! Form::submit('Update')!!}
+
+
+{!! Form::close() !!}
+=======
         {!! Form::submit('Update')!!}
     
     {!! Form::close() !!}
+>>>>>>> f7057344ea659c547400b47020b2380e97732f1b
 
 @stop
 

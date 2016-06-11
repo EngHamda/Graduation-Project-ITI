@@ -18,8 +18,8 @@ Route::get('/advices/{id}','AdvicesController@show');
 Route::get('/advices',array('uses' => 'AdvicesController@index','as' => 'advices.index'));
 Route::post('advices/like',array('uses' => 'AdvicesController@adviceLikeAdvice'));
 
-Route::get('/medicalcompany/login', 'AuthMedicalcompanyController@login');
-Route::post('/medicalcompany/login', 'AuthMedicalcompanyController@postLogin');
+//Route::get('/medicalcompany/login', 'AuthMedicalcompanyController@login');
+Route::post('/medicalcompany/login', 'AuthMedicalcompanyController@login');
 
 
 //put here routes to be acess only by doctor
@@ -158,7 +158,7 @@ Route::group(['middleware' => 'medicalcompany'], function () {
 
 Route::group(['middleware'=>'auth:medicalcompany'],function(){Route::get('/medicalcompany', 'AuthMedicalcompanyController@index');});
     Route::get('/medicalcompany/logout', 'AuthMedicalcompanyController@logout');
-Route::post('/medicalcompany/storead', 'AdvertisementController@uploaded');
+Route::post('/medicalcompany', 'AdvertisementController@uploaded');
 Route::get('/medicalcompany/confirmdoctorrequest/{id}','AdvertisementController@confirm');
 
 });
@@ -224,5 +224,5 @@ Route::get('advices/like',[
 
 
 Route::get('/profile','PatientprofilesController@index');
-Route::post('searchpatient','PatientprofilesController@index');
+Route::post('/searchpatient','PatientprofilesController@searchPatient');
 
