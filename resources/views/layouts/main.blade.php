@@ -484,6 +484,7 @@
                 {!! Html::script('js/patientprofile.js') !!}
                 {!! Html::script('js/custom/rome.js') !!}
                 {!! Html::script('js/custom/ajax-reservation-crud.js') !!}
+                {!! Html::script('js/custom/jquery-add-clinic-times.js') !!}
 
                         <!--<script src="js/bootstrap.min.js"></script>-->
 </body>

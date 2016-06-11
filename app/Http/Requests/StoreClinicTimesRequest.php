@@ -14,6 +14,11 @@ class StoreClinicTimesRequest extends Request
     }
     public function rules() {
         
-        return [];//'answer-specific'=> 'required'        
+        return [
+            'physician-name'=> 'required',
+            'clinic-day'    => 'required',
+            'time_from'     => 'required',
+            'time_to'       => 'required'
+        ];//'answer-specific'=> 'required'        
     }
 }
