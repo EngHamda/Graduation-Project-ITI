@@ -242,5 +242,20 @@ class ReservationsController extends Controller
         $clinicList = array_combine($clinicIds, $clinicNames);
         return view('Reservation.createforassistant', compact('username','clinicList'));
     }
+    public function add($id)
+    {
+        //
+        $user = User::where('id',$id)->first();
+        $clinicNames = array();
+        $clinicIds = array();
+        $clinics = Clinics::all('id','name');
+        foreach ($clinics as $clinic ){ 
+            // Code Here
+            array_push($clinicNames, $clinic->name);
+            array_push($clinicIds, $clinic->id);
+        }
+        $clinicList = array_combine($clinicIds, $clinicNames);
+        return view('Reservation.create', compact('clinicList', 'user'));
+    }
 
 }
