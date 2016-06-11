@@ -265,7 +265,27 @@ if (array_key_exists($i,$pasthistoryarray  )) {
 
        
 
+        public function searchPatient(Request $request){
+           $national_id = $request->input('national_id');
 
+            $basicinfos = Patientprofile::where('patientnationalid','=', $national_id)->first();
+
+            $user_id =$basicinfos->user_id;
+            $user=User::where('id',$user_id)->first();
+
+            $profile_id = $basicinfos->id;
+            $pasthistories = Pasthistory::where('patientprofile_id',$profile_id)->get();
+            $surgicalhistories = Surgicalhistory::where('patientprofile_id',$profile_id)->get();
+
+            $accidents =Accident::where('patientprofile_id',$profile_id)->get();
+            $allergies = Allergy::where('patientprofile_id',$profile_id)->get();
+            $specialneeds = Specialneed::where('patientprofile_id',$profile_id)->get();
+            $bloodtransfusions = Bloodtransfer::where('patientprofile_id',$profile_id)->get();
+            $familyhistories = Familyhistory:: where('patientprofile_id',$profile_id)->get();
+            $miscarriages = Miscarriage::where('patientprofile_id',$profile_id)->get();
+            $prescriptions = Prescription::where('patientprofile_id',$profile_id)->get();
+            return view('patientprofile',compact('user','basicinfos','pasthistories','surgicalhistories','allergies','accidents','specialneeds','bloodtransfusions','familyhistories','miscarriages','prescriptions'));
+        }
 
 
 

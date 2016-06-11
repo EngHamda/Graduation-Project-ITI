@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Request')
 @section('content')
 
     <form method="POST" action="{{ url('physician/storecompanyrequest') }}">
@@ -10,7 +10,7 @@
 
 
 
-    enter time :<input type="text"  id="imepicker" name="time" >
+    enter time :<input type="text"  id="appointment_time" name="time" >
 
         <p id="error">
 

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Edit Advice')
 @section('content')
 
     <div class="panel panel-default">

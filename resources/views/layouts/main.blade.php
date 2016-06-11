@@ -60,7 +60,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <title>Reservation-@yield('title')</title>
+    <title>Soft Management - @yield('title')</title>
 
 </head>
 
@@ -73,7 +73,7 @@
     <div class="row">
         <div class="header-nav-wrapper">
 
-            <div class="logo">
+            <div class="logo" style="border-bottom-width: 0px;width: 250px;height: 104px;padding-top: 5px;padding-bottom: 5px;" >
                 <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
             </div>
             <div class="primary-nav-wrapper">
@@ -432,8 +432,8 @@
                     <div class="row">
                         <div class="col-md-12 footer-nav">
                             <ul class="footer-primary-nav">
-                                <li><a href="#intro">The Collective</a></li>
-                                <li><a href="#team">Our Staff</a></li>
+                                <li><a href="/#intro">The Collective</a></li>
+                                <li><a href="/#team">Our Staff</a></li>
                                 <li><a href="/questions">Questions</a></li>
                                 <li><a href="/advices">Advices</a></li>
                             </ul>
@@ -484,6 +484,7 @@
                 {!! Html::script('js/patientprofile.js') !!}
                 {!! Html::script('js/custom/rome.js') !!}
                 {!! Html::script('js/custom/ajax-reservation-crud.js') !!}
+                {!! Html::script('js/custom/jquery-add-clinic-times.js') !!}
 
                         <!--<script src="js/bootstrap.min.js"></script>-->
 </body>

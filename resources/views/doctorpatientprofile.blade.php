@@ -1,4 +1,5 @@
 @extends("layouts.main")
+@section('title','Physician Patient Profile')
 @section("content")
 <div id="updateMessage" style="display:none;">patient profile Updates</div>
 <div id="successMessage" style="display:none;">Email doesn't Exist</div>

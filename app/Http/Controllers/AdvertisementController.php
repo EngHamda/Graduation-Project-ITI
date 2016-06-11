@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Commands\StoreAdCommand;
+use App\Commands\ConfirmRequestCommand;
 use App\Http\Requests;
 use App\Advertisementsrequest;
 use Auth;
@@ -15,7 +16,7 @@ class AdvertisementController extends Controller
   public function uploaded(Request $request)
     {
         $id = auth()->guard('medicalcompany')->user()->id;
-        $allAds = Advertisement::where('medicalcompany_id', '=', $id)->get();
+      //  $allAds = Advertisement::where('medicalcompany_id', '=', $id)->get();
         $name = $request->input('name');
 
         $path = $request->file('path')->getClientOriginalName();
@@ -31,8 +32,8 @@ class AdvertisementController extends Controller
 
         $requests = Advertisementsrequest::where('medicalcompany_id', '=', 1)->get();
 
-        return view('medicalcompany.index', compact('requests', 'id','allAds'));
-
+//        return view('medicalcompany.index', compact('requests', 'id','allAds'));
+            return redirect('/medicalcompany');
 
 
 

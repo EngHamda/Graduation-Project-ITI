@@ -1,5 +1,5 @@
 @extends('layouts.main')
-{{--@section('title','Q&A-Show')--}}
+@section('title','Q&A-Show Question')
 {{--@section('sidebar')--}}
     {{--show Sidebar--}}
 {{--@stop--}}
@@ -20,7 +20,7 @@
                 <a href="/questions/{{ $question->id}}/edit" class="btn btn-info">Edit</a>
 
                 {!! Form::open([ 'url' => "/questions/destroy/".$question->id,'method' => 'DELETE'] ) !!}
-                {!! Form::submit('Cancel', array('class'=>'btn btn-danger')) !!} 
+                {!! Form::submit('Remove', array('class'=>'btn btn-danger')) !!} 
                 {!! Form::close() !!}
             @endif
         @endif

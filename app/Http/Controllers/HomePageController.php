@@ -16,7 +16,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $latestAdvices = Advice::orderBy('created_at', 'desc')->take(5)->get();
+        $latestAdvices = Advice::orderBy('created_at', 'desc')->take(2)->get();
         $latestQuestions = Question::where('is_answered','answered')->orderBy('created_at', 'desc')->take(5)->get();
         return view('homepage', compact('latestAdvices','latestQuestions'));
     }

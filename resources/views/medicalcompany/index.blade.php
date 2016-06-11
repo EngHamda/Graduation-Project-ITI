@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Medical Company Profile')
 @section('content')
 <div>
 @foreach($requests as $request)
@@ -11,7 +11,7 @@
 @endif
 
 @if($request->isconfirmed==1)
-<p>confirmed already</p>
+<p>Confirmed </p>
 @endif
 
 
@@ -22,7 +22,7 @@
 
 
 
-<form method="POST" action="{{ url('/medicalcompany/storead') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ url('/medicalcompany') }}" enctype="multipart/form-data">
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="medicalcompany_id" value="{{auth()->guard('medicalcompany')->user()->id}}"  >
     <div class="form-group">

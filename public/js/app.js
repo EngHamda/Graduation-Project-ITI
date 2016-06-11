@@ -2,7 +2,7 @@
 // Like and Dislike
 $('.like').on('click',function(event)
     {
-            console.log('hi');
+
         // Prevent default behavior
         var adviceId =event.target.parentNode.parentNode.parentNode.dataset['adviceid'];
         event.defaultPrevented;
@@ -134,8 +134,8 @@ $("#medicallogin").click(function(){
     });
 
 
-
-
+//Time picker for request medical company
+rome(appointment_time, { date: false });
 
 $(document).ready(function(){
 

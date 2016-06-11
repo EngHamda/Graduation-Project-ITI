@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Synthetica HTML5/CSS3 Template by Peter Finlan</title>
+    <title>Soft Management</title>
     <meta name="description" content="A free html template with Sketch design made with Bootstrap">
     <meta name="keywords" content="free html template, bootstrap, ui kit, sass" />
     <meta name="author" content="Peter Finlan for Codrops" />
@@ -54,8 +54,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="header-nav-wrapper">
-            <div class="logo">
-                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
+            <div class="logo" style="border-bottom-width: 0px;width: 250px;height: 104px;padding-top: 5px;padding-bottom: 5px;">
+                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Soft Management" ></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -119,24 +119,6 @@
     {{--login Modal--}}
 
     <div class="modal fade" id="myModal" role="dialog">
-
-
-
-
-
-
-
-
-
-
-             
-                
-
-
-
-
-
-
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -144,75 +126,49 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-
-
-
-   @if (session('status1'))
-                         <div class="alert alert-danger" id="msg">
-                              {{ session('status1') }}  
-                         </div>
-
-
+                   @if (session('status1'))
+                    <div class="alert alert-danger" id="msg">
+                         {{ session('status1') }}  
+                    </div>
                <script>
-
-
                        $(document).ready(function () {
-                       $('#myModal').modal('show');
-                                                    });
-
-
+                           $('#myModal').modal('show');
+                       });
                 </script>
-                       @endif
-
-
-
-
-                    <p><form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail">
-
-                               
+                   @endif
+                    <p>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" id="loginemail">
-
-                                
-
-
-
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password" id="loginemail">
+                                </div>
                             </div>
-                        </div>
+                    </p>
                 </div>
-               </p>
                 <div class="modal-footer">
-
                     <button  id="medicalcompany" type="button" class="btn btn-default">
-                        <i class="fa fa-btn fa-sign-in"></i>AreYouMedicalCompany?
+                        <i class="fa fa-btn fa-sign-in"></i> AreYouMedicalCompany?
                     </button>
                     <button type="submit" class="btn btn-info">
-                        <i class="fa fa-btn fa-sign-in"></i>Login
+                        <i class="fa fa-btn fa-sign-in"></i> Login
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-
                     </form>
                 </div>
-
-</div>
-</div>
+            </div>
         </div>
-{{--End of login Modal--}}
+    </div>
+    {{--End of login Modal--}}
 
-{{--starting Modal of Medical Company--}}
+    {{--starting Modal of Medical Company--}}
     <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -223,64 +179,28 @@
                 <div class="modal-body">
                     <p><form class="form-horizontal" role="form" method="POST" action="{{ url('/medicalcompany/login') }}">
                         {{ csrf_field() }}
-
-
-
-@if (session('status'))
-    <div class="alert alert-danger" id="medicalerrormsg">
-        {{ session('status') }} 
-    </div>
-
-
-<script>
-
-$(document).ready(function () {
-$('#myModal1').modal('show');
-
-});
-
-
-</script>
-@endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="medicallogin">
-
-                                
+                        @if (session('status'))
+                            <div class="alert alert-danger" id="medicalerrormsg">
+                                {{ session('status') }} 
                             </div>
-                        </div>
-
+                            <script>
+                            $(document).ready(function () {
+                                $('#myModal1').modal('show');
+                            });
+                            </script>
+                        @endif
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="medicallogin">
+                                </div>
+                            </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Password</label>
-
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password" id="medicallogin">
-
-                               
                             </div>
                         </div>
-
-
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">
@@ -291,141 +211,96 @@ $('#myModal1').modal('show');
             </div>
         </div>
     </div>
-</div>
-{{--Ending Modal of Medical Company--}}
 
-{{--Start of Registeration Modal--}}
-<div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Registeration Form</h4>
-            </div>
-            <div class="modal-body">
-                <p> <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
-                    {{ csrf_field() }}
+    {{--Ending Modal of Medical Company--}}
 
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="form-group"  >
-                        <label class="col-md-4 control-label">Name</label>
-
-                        <div class="col-md-6">
-                            <input type="hidden" name="role_id" value="5">
-                            <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
-                            <div id="nameerror"></div>
-
-@if($errors->has('name'))
-
-
-<script>
-
-$(document).ready(function () {
-$('#myModal2').modal('show');
- 
-
-});
-
-</script>
-
-
-
-@endif
-
-
-
-                            @if ($errors->has('name'))
-                                <span class="help-block" id="registeralert" >
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">E-Mail Address</label>
-
-                        <div class="col-md-6">
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
-                            <div id="emailerror">
-
+    {{--Start of Registeration Modal--}}
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registeration Form</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group"  >
+                                <label class="col-md-4 control-label">Name</label>
+                                <div class="col-md-6">
+                                    <input type="hidden" name="role_id" value="5">
+                                    <input type="text" class="form-control" name="name"  id="name" value="{{ old('name') }}" >
+                                    <div id="nameerror"></div>
+                                    @if($errors->has('name'))
+                                    <script>
+                                    $(document).ready(function () {
+                                        $('#myModal2').modal('show');
+                                    });
+                                    </script>
+                                    @endif
+                                    @if ($errors->has('name'))
+                                        <span class="help-block" id="registeralert" >
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
                             </div>
-                            @if ($errors->has('email'))
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
+                                <div id="emailerror">
+                                </div>
+                                @if ($errors->has('email'))
                                 <span class="help-block" id="registeralert2">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Password</label>
-
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" name="password" id="password">
-
-                            <div id="passworderror"></div>
-
-                            @if ($errors->has('password'))
-                                <span class="help-block" id="registeralert3">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password" id="password">
+                                <div id="passworderror"></div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block" id="registeralert3">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                            @endif
-
+                                @endif
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Confirm Password</label>
-
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" name="password_confirmation" id="passwordconfirm">
-                            <div id="passwordconfirmerror"></div>  <div id="message"></div>
-                            @if ($errors->has('password_confirmation'))
-                                <span class="help-block" id="registeralert">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password_confirmation" id="passwordconfirm">
+                                <div id="passwordconfirmerror"></div>  <div id="message"></div>
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block" id="registeralert">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                    </div>
-
-
-               </p>
-            </div>
-            <div class="modal-footer">
-
-                        <button type="submit" class="btn btn-info">
-                            <i class="fa fa-btn fa-user"></i>Register
-                        </button>
-
-                 </form>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                @endif
+                                </div>
+                            </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-btn fa-user"></i> Register
+                    </button>
+                     </form>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
+    {{--End of Registeration Modal--}}
 </div>
-</div>
 
 
 
-{{--End of Registeration Modal--}}
+
 <header class="hero">
     <div class="carousel js-flickity">
         <div class="carousel-cell" style="background-image: url(img/clinic4.jpg);">
@@ -447,14 +322,13 @@ $('#myModal2').modal('show');
                                 <span data-toggle="modal" data-target="#myModal"> <a class="btn primary wp2">Reserve Online</a></span>
                             @endif
                         </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
                             <p><span class="bold italic"></span> </p>
                         </div>
                     </div>
-
+                </div>
             </div>
         </div>
         <div class="carousel-cell" style="background-image: url(img/hero-bg-02.jpg);">
@@ -606,76 +480,9 @@ $('#myModal2').modal('show');
                 </article>
             </div>
         </div>
-        <div class="row skillset">
-            <div class="col-md-6">
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Experience Design <span class="push-right">90%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="90%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">HTML5/CSS3 <span class="push-right">95%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="95%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Interactive Prototyping <span class="push-right">80%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="80%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bar-chart-wrapper">
-                    <h5 class="bar-chart-text">Visual Design <span class="push-right">90%</span></h5>
-                    <div class="bar-wrapper">
-                        <div class="bar" data-percentage="90%">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 <!-- END SECTION: Crew -->
-<!-- SECTION: Stats -->
-<div class="stats has-padding-tall">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Cup"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="24">24</p>
-                    <p class="stats-text">Awards won</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Book"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="341">341</p>
-                    <p class="stats-text">Articles</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 stats-container">
-                <i class="icon icon-Pen"></i>
-                <div class="stats-wrapper">
-                    <p class="stats-number" data-stop="43">43</p>
-                    <p class="stats-text">Freebies</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END SECTION: Stats -->
 <!-- SECTION: Articles -->
 <section class="latest-articles has-padding alternate-bg" id="articles">
     <div class="container">
@@ -734,16 +541,29 @@ $('#myModal2').modal('show');
             </div>
         </div>
         <div class="row">
+            @foreach ($latestQuestions as $latestQuestion)
             <div class="col-md-6 content-left">
-                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit.</p>
+                <p>A posuere donec senectus suspendisse bibendum
+                    magna ridiculus a justo orci parturient suspendisse 
+                    ad rhoncus cursus ut parturient viverra elit aliquam 
+                    ultrices est sem. Tellus nam ad fermentum ac enim est 
+                    duis facilisis congue a lacus adipiscing consequat risus 
+                    consectetur scelerisque integer suspendisse a mus integer
+                    elit.</p>
             </div>
             <div class="col-md-6 content-right">
-                <p>A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit.</p>
+                <p>A posuere donec senectus suspendisse bibendum magna 
+                    ridiculus a justo orci parturient suspendisse ad rhoncus 
+                    cursus ut parturient viverra elit aliquam ultrices est 
+                    sem. Tellus nam ad fermentum ac enim est duis facilisis 
+                    congue a lacus adipiscing consequat risus consectetur 
+                    scelerisque integer suspendisse a mus integer elit.
+                </p>
             </div>
+            @endforeach
         </div>
     </div>
     <div class="container-fluid">
-
         <div class="row"><!--row of question list-->
             @foreach ($latestQuestions as $latestQuestion)
             <div class="col-md-6 no-padding">
@@ -760,16 +580,15 @@ $('#myModal2').modal('show');
                                     </li>
                                 </ul>
                             </div>
+                            <div class="freebie-content">
+                                <span class="date">03/01/2016</span>
+                                <h2>{{$latestQuestion->question_specific}}</h2>
+                                <h2>{{$latestQuestion->answers}}</h2>
 
-                                <div class="freebie-content">
-                                    <span class="date">03/01/2016</span>
-                                    <h2>{{$latestQuestion->question_specific}}</h2>
-                                    <h2>{{$latestQuestion->answers}}</h2>
-
-                                    <div class="group">
-                                        <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
-                                    </div>
+                                <div class="group">
+                                    <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
                                 </div>
+                            </div>
                         </figcaption>
                         <img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">
                     </figure>
@@ -785,7 +604,6 @@ $('#myModal2').modal('show');
         </div>
     </div>
 </section>
-</body>
 <!-- END SECTION: Freebies -->
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">

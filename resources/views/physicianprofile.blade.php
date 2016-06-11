@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Physician Profile')
 @section('content')
     <div class="container">
         <br>
@@ -15,10 +15,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 @foreach($adverisements as $index => $add)
-                    <div class="item @if($index == 0) {{ 'active' }} @endif">
+                    @if($index == 0)
+                    <div class="item {{ 'active' }}">                    
                         <a href="/physician/request/{{$add->id}}"><img style="width: 25%;" src="{{ URL::to('/') }}/images/{{ $add->path }}"  alt="{{ URL::to('/') }}/images/{{ $add->path }}">  </a>
                         <h3>requst now </h3>
                     </div>
+                    @endif
                 @endforeach
 
 
@@ -38,7 +40,33 @@
     </div>
 
     <div style="margin-top: 50px;"></div>
+
   <a href="/add" class="btn btn-info btn-block btn-lg"> Add Patient Profile</a>
+
+    <div style="margin-top: 50px;"></div>
+
+    <form  class="form-horizontal" method="POST" action="{{ url('searchpatient') }}">
+        <div class="row">
+
+            <div class="col-lg-offset-3 col-md-6">
+
+                <div class="form-group">
+                    <input  id='national_id' type="text" name="national_id" class="form-control" placeholder="National ID"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-offset-3 col-md-6">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block btn-lg">SearchForPatientProfile</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
     <div style="margin-top: 50px;"></div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -58,4 +86,6 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+
 @stop

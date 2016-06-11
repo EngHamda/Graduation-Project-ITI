@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Create')
-@section('sidebar')
+@section('title','Create Reservation')
+{{--@section('sidebar')
     create Sidebar
-@stop
+@stop--}}
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -19,9 +19,17 @@
                                 ,array('class'=>'col-sm-3 form-control-label'))!!}
                         <div class="col-sm-9">
                             <!--<fieldset disabled>-->
-
-                                {!! Form::text('patient-name', auth()->user()->name, 
+                                @if(auth()->user())
+                                    @if(auth()->user()->role_id == 3)
+                                        {!! Form::text('patient-name', $user->name, 
                                                 array('class'=>' form-control', 'readonly')) !!}
+                                    @else
+                                        {!! Form::text('patient-name', auth()->user()->name, 
+                                                array('class'=>' form-control', 'readonly')) !!}
+                                    @endif
+                                @endif
+                                {{--{!! Form::text('patient-name', auth()->user()->name, 
+                                                array('class'=>' form-control', 'readonly')) !!}--}}
                             <!--</fieldset>-->
                         </div>
                     </div>
