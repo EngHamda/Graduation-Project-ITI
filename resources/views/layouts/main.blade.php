@@ -72,9 +72,8 @@
     {{--bodycontainer--}}
     <div class="row">
         <div class="header-nav-wrapper">
-
-            <div class="logo">
-                <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Soft Management"></a>
+            <div class="logo" style="border-bottom-width: 0px;width: 250px;height: 104px;padding-top: 5px;padding-bottom: 5px;" >
+                <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
