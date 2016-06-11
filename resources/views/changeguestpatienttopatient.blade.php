@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+<!--<div class="row">
+  <div class="col-sm-9">
+      <a href="/reservations/create" class="btn btn-danger btn-block btn-lg"> Add Reservation</a>
+     </div>
+</div>-->
 {!! Form::open(array('action'=>['AssistantController@update',$user->id],'method'=>'PUT','enctype'=>'multipart/form-data')) !!}
     
 {!!  Form::label('name', 'Name') !!}

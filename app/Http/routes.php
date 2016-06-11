@@ -138,7 +138,6 @@ Route::group(['middleware' => 'assistant'], function () {
     
     Route::get('/assistant/addnewpatientprofile', function () {
         return view('addnewpatientprofile');
-        
     });  
     Route::post('assistant/addnewpatientprofile','AssistantController@store');
     Route::resource('assistant','AssistantController');
@@ -146,6 +145,9 @@ Route::group(['middleware' => 'assistant'], function () {
     Route::get('/patient/create/{id}','ReservationsController@createbyassistant');
     //ClinicTimes
     Route::resource('clinictimes','ClinicTimesController');
+    //for ajax
+    //create
+//    Route::get('clinictimes/create/days', 'ClinicTimesController@getdays');
 
 });
 

@@ -14,11 +14,9 @@ use App\Http\Requests\UpdateClinicTimesRequest;
 
 use App\Commands\DestoryClinicTimesCommand;
 
-
-
-
-
 use App\ClinicTimes;
+use App\Physician_Details;
+use Auth;
 
 
 class ClinicTimesController extends Controller
@@ -45,7 +43,33 @@ class ClinicTimesController extends Controller
         //
 //        $x=10;
 //        return compact('x');
-        return view('ClinicTimes.create');//, compact('clinicList'));
+        //get all physician in this clinic
+        /*
+         $clinic_id = $request->input('clinic-id');
+        $physicianNames = array();
+        $physicianIds = array();
+        $physicians = Physician_Details::where('clinic_id',$clinic_id)->select('user_id')->get();//->get();
+        foreach ($physicians as $physician ){
+//            $data = $physician->user->name." - ".$physician->user->physiciandetail->speciality->name;
+            array_push($physicianNames, $physician->user->name);
+            array_push($physicianIds, $physician->user_id);           
+            
+        }
+//        $physicians_name = $physicians->user->name;//->select('user_id')->get();//->get();
+        $physicianList = array_combine($physicianIds, $physicianNames);
+        
+         */
+        $clinic_id = auth()->user()->assistant_details->clinic_id;
+        $physicianNames = array();
+        $physicianIds = array();
+        $physicians = Physician_Details::where('clinic_id',$clinic_id)->select('user_id')->get();
+        foreach ($physicians as $physician ){
+            array_push($physicianNames, $physician->user->name);
+            array_push($physicianIds, $physician->user_id);           
+        }
+        $physicianList = array_combine($physicianIds, $physicianNames);
+//        return compact('physicianList');
+        return view('ClinicTimes.create', compact('physicianList'));
     }
 
     /**
@@ -59,17 +83,17 @@ class ClinicTimesController extends Controller
         //
         //get data from view
         //"clinic_id":"1","physician_id":"3","day":"4","start":"12:00","end":"15:00"
-        $clinic_id    = 1;//$request->input('patient-name');
-        $physician_id = 3;// $request->input('clinic-name');
-        $day          = '4';
-        $start        = '12:00';
-        $end          = '15:00';
+        $clinic_id    = auth()->user()->assistant_details->clinic_id;
+        $physician_id = $request->input('physician-name');
+        $day          = $request->input('clinic-day');
+        $start        = $request->input('time_from');
+        $end          = $request->input('time_to');
         //create command
-        $command = new StoreClinicTimesRequest($clinic_id, $physician_id, $day, $start, $end);
+        $command = new StoreClinicTimesCommand($clinic_id, $physician_id, $day, $start, $end);
         //run command
         $this->dispatch($command);
-        return \Redirect::route('clinictimes.index')
-                ->with('message','New Reservation is added');
+        return \Redirect::route('clinictimes.create')
+                ->with('message','New Time is added');
     }
 
     /**
@@ -111,11 +135,11 @@ class ClinicTimesController extends Controller
     public function update(UpdateClinicTimesRequest $request, $id)
     {
         //
-        $clinic_id    = 1;//$request->input('patient-name');
-        $physician_id = 3;// $request->input('clinic-name');
-        $day          = '4';
-        $start        = '12:00';
-        $end          = '15:00';
+        $clinic_id    = auth()->user()->assistant_details->clinic_id;
+        $physician_id = $request->input('physician-name');
+        $day          = $request->input('clinic-day');
+        $start        = $request->input('time_from');
+        $end          = $request->input('time_to');
         //create command
         $command = new UpdateClinicTimesCommand($clinic_id, $physician_id, $day, $start, $end, $id);
         //run command
@@ -141,4 +165,16 @@ class ClinicTimesController extends Controller
                 ->with('message','ClinicTimes is deleted');
         
     }
+    
+//    public function getdays(Request $request)
+//    {
+//        //'clinic-id', 'physician-id'
+//        $clinic_id = auth()->user()->assistant_details->clinic_id;
+//        $physician_id = $request->input('physician_clinic_times_id');
+//        $days= ClinicTimes::where('clinic_id',$clinic_id)
+//                ->where('physician_id',$physician_id)
+//                ->select('day')->get();
+//        return $days;//$days[0];//Values;//$physicians_name;
+//        
+//    }
 }
