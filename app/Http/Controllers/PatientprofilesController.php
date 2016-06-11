@@ -33,7 +33,7 @@ class PatientprofilesController extends Controller
         {
             $email = 'patient@gmail.com';
             $user = User::where('email', $email)->first();
-
+          
             $user_id =$user->id;
 
             $basicinfos = Patientprofile::where('user_id',$user_id)->first();
@@ -62,80 +62,93 @@ public function insertpatientprofile(Request $request)
 {
 
                 $patientemailjson=$request->input('patientemailjson');
+
                 $patientemailarray  = json_decode($patientemailjson, true);
                 $email=$patientemailarray[0];
 
+$email=trim($email);
 
-                $user=User::where('email',$email)->first();
+
+             
+                $user=Patientprofile::where('patientnationalid','=',$email)->first();
+             
                 if($user)
                 {
-                $userid=$user->id;
-                $profile=Patientprofile::where('user_id',$userid)->first();
-                }
-                else
-                {
+                    
+            
 
-
-                $Response   = array(
-                            'success' => '1',
-                        );
-                return $Response;
-
-                }
-                if($profile)
-                {
-
-                $profileid=$profile->id;
+   $profileid=$user->id;
                 $pasthistoryjson=$request->input('pasthistoryjson');
                 $pasthistoryarray  = json_decode($pasthistoryjson, true);
                 $pasthistoryCount  = count($pasthistoryarray);
                 $pasthistorydatejson=$request->input('pasthistorydatejson');
                 $pasthistorydatearray = json_decode($pasthistorydatejson, true);
-
-                for($i=0; $i<$pasthistoryCount  ;$i++)
+                             for($i=0; $i<=$pasthistoryCount  ;$i++)
 
 
                 {
+                         
 
-                        $command=new StorePastHistoryCommand($pasthistorydatearray[$i],$pasthistoryarray[$i],$profileid);
+if (array_key_exists($i,$pasthistoryarray  )) {
+  $pasthistorydatearray[$i]= date('Y-m-d', strtotime($pasthistorydatearray[$i]));
 
-                        $this->dispatch($command);
+ $command=new StorePastHistoryCommand($pasthistorydatearray[$i],$pasthistoryarray[$i],$profileid);
 
+                        $this->dispatch($command);}
+
+
+
+
+
+
+                      
                 }
-
 
 
                 $surgicalhistoryjson=$request->input('surgicalhistoryjson');
                 $surgicalhistoryarray  = json_decode($surgicalhistoryjson, true);
+
                 $surgicalhistorydatejson=$request->input('surgicalhistorydatejson');
                 $surgicalhistorydatearray  = json_decode($surgicalhistorydatejson, true);
+                
                 $Count  = count($surgicalhistorydatearray);
 
-                for($c=0; $c<$Count  ;$c++){
-                        $command=new StoresurgicalhistoryCommand($surgicalhistoryarray[$c],$surgicalhistorydatearray[$c],$profileid);
-                        $this->dispatch($command);
-                }
+                for($c=0; $c<=$Count  ;$c++){
+                      
+
+                    if (array_key_exists($c,$surgicalhistorydatearray)) {
+                         $surgicalhistorydatearray[$c]= date('Y-m-d', strtotime($surgicalhistorydatearray[$c]));
+                     $command=new StoresurgicalhistoryCommand($surgicalhistoryarray[$c],$surgicalhistorydatearray[$c],$profileid);
+                        $this->dispatch($command);}
+                    }
+                
                 $allergiesjson=$request->input('allergiesjson');
                 $allergiesarray  = json_decode($allergiesjson, true);
                 $allergiesdatejson=$request->input('allergiesdatejson');
                 $Count  = count($allergiesarray);
                 $allergiesdatearray  = json_decode($allergiesdatejson, true);
 
-                for($c=0; $c<$Count  ;$c++)
+
+                for($c=0; $c<=$Count  ;$c++)
                 {
+                    if (array_key_exists($c,$allergiesarray)) {
+                         $allergiesdatearray[$c]= date('Y-m-d', strtotime($allergiesdatearray[$c]));
                         $command=new StoreallergiesCommand($allergiesarray [$c],$allergiesdatearray[$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
+
+
                 $accedentjson=$request->input('accedentjson');
                 $accedentarray  = json_decode($accedentjson, true);
                 $accedentdatejson=$request->input('accedentdatejson');
                 $Count  = count($accedentarray);
                 $accedentdatearray  = json_decode($accedentdatejson, true);
-
-                for($c=0; $c<$Count  ;$c++)
-                {
+                  
+                for($c=0; $c<=$Count  ;$c++)
+                {if (array_key_exists($c,$accedentarray)) {
+                         
                         $command=new StoreAccidentCommand($accedentarray [$c],$accedentdatearray[$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
                 $specialneedsjson=$request->input('specialneedsjson');
                 $specialneedsarray  = json_decode($specialneedsjson, true);
@@ -143,17 +156,22 @@ public function insertpatientprofile(Request $request)
 
                 for($c=0; $c<$Count  ;$c++)
                 {
+                    if (array_key_exists($c,$specialneedsarray  )) {
                         $command=new StorespecialneedsCommand($specialneedsarray [$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
                 $familyhistoryjson=$request->input('familyhistoryjson');
-                $familyhistoryarray  = json_decode($familyhistoryjson, true);
+                $familyhistoryarray  = json_decode($familyhistoryjson ,true);
                 $Count  = count($familyhistoryarray);
+
+
+
 
                 for($c=0; $c<$Count  ;$c++)
                 {
+                    if (array_key_exists($c,$familyhistoryarray )) {
                         $command=new StorefamilyhistoryCommand($familyhistoryarray [$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
 
                 $bloodtransferjson=$request->input('bloodtransferjson');
@@ -164,8 +182,11 @@ public function insertpatientprofile(Request $request)
 
                 for($c=0; $c<$Count  ;$c++)
                 {
+                    if (array_key_exists($c,$bloodtransferdatearray )) {
+                         $bloodtransferdatearray[$c]= date('Y-m-d', strtotime($bloodtransferdatearray[$c]));
+
                         $command=new StorebloodtransferCommand($bloodtransferarray [$c],$bloodtransferdatearray[$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
                 $misjson=$request->input('misjson');
                 $misarray  = json_decode($misjson, true);
@@ -175,22 +196,40 @@ public function insertpatientprofile(Request $request)
 
                 for($c=0; $c<$Count  ;$c++)
                 {
+                    if (array_key_exists($c,$misdatearray )) {
+                         $misdatearray[$c]= date('Y-m-d', strtotime($misdatearray[$c]));
                         $command=new StoremiscarriagesCommand($misarray [$c],$misdatearray[$c],$profileid);
-                        $this->dispatch($command);
+                        $this->dispatch($command);}
                 }
 
 
-                //$birthjson=$request->input('birthjson');
-                //$birtharray  = json_decode($birthjson, true);
-                //$birthdatejson=$request->input('birthdatejson');
-                //$Count  = count($birtharray);
-                //$birthdatearray  = json_decode($birthdatejson, true);
+                $drugjson=$request->input('drugjson');
+                $drugarray  = json_decode($drugjson, true);
 
-                //for($c=0; $c<$Count  ;$c++)
-                //{
-                //$command=new StoreBirthCommand($misarray [$c],$misdatearray[$c],$profileid);
-                //$this->dispatch($command);
-                //}
+                $freqjson=$request->input('freqjson');
+                $freqarray  = json_decode($freqjson, true);
+
+                $Count  = count($drugarray);
+                
+                
+ $datejson=$request->input('datejson');
+                $datearray  = json_decode($datejson, true);
+
+       
+
+
+                   $durationjson=$request->input('durationjson');
+                $durationarray  = json_decode($durationjson, true);    
+
+
+                for($c=0; $c<=$Count  ;$c++)
+                {
+                    if (array_key_exists($c,$drugarray)) {
+                  $datearray[$c]= date('Y-m-d', strtotime($datearray[$c])); 
+                    
+                $command=new StoreprescriptionCommand($drugarray [$c],$durationarray[$c],$freqarray[$c],$datearray[$c], $profileid);
+                $this->dispatch($command);}
+                }
 
 
 
@@ -200,16 +239,31 @@ public function insertpatientprofile(Request $request)
                             'success' => '2',
                         );
                 return $Response;
+
+
                 }
 
 
 
+                else
+                {
+
+
+                            $Response   = array(
+                            'success' => '1',
+                                     );
+                               return $Response;
+
+                                     }
+               
+               
 
 
 
 
 
-        }
+
+       
 
         public function searchPatient(Request $request){
            $national_id = $request->input('national_id');
@@ -232,6 +286,29 @@ public function insertpatientprofile(Request $request)
             $prescriptions = Prescription::where('patientprofile_id',$profile_id)->get();
             return view('patientprofile',compact('user','basicinfos','pasthistories','surgicalhistories','allergies','accidents','specialneeds','bloodtransfusions','familyhistories','miscarriages','prescriptions'));
         }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

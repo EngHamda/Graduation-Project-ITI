@@ -137,3 +137,9 @@ $("#medicallogin").click(function(){
 //Time picker for request medical company
 rome(appointment_time, { date: false });
 
+$(document).ready(function(){
+
+    $(function() {
+        $( "pasthistorydate" ).datepicker();
+       
+    });});
