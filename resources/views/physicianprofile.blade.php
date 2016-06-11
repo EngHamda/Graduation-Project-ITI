@@ -49,7 +49,7 @@
             <div class="col-lg-offset-3 col-md-6">
 
                 <div class="form-group">
-                    <input  id='national_id' type="text" name="national_id" class="form-control"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input  id='national_id' type="text" name="national_id" class="form-control" placeholder="National ID"> <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
 
             <div class="col-lg-offset-3 col-md-6">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block btn-lg">Search Patient By Email </button>
+                    <button type="submit" class="btn btn-success btn-block btn-lg">SearchForPatientProfile</button>
                 </div>
             </div>
         </div>
