@@ -444,10 +444,11 @@
                 {!! Html::script('js/bootstrap.min.js') !!}
                 <script src="/js/jquery-ui.min.js"></script>
                 <!--    {!! Html::script('js/custom/script.js') !!} for Q Index -->
+                {!! Html::script('js/custom/rome.js') !!}
                 {!! Html::script('js/app.js') !!}
                 {!! Html::script('js/patientprofile.js') !!}
-                {!! Html::script('js/custom/rome.js') !!}
                 {!! Html::script('js/custom/ajax-reservation-crud.js') !!}
+                {!! Html::script('js/custom/jquery-add-clinic-times.js') !!}
 
                         <!--<script src="js/bootstrap.min.js"></script>-->
 </body>

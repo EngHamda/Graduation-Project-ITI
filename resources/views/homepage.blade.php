@@ -538,25 +538,23 @@
             </div>
         </div>
         <div class="row">
+            <?php $first="true";?>
             @foreach ($latestQuestions as $latestQuestion)
-            <div class="col-md-6 content-left">
-                <p>A posuere donec senectus suspendisse bibendum
-                    magna ridiculus a justo orci parturient suspendisse 
-                    ad rhoncus cursus ut parturient viverra elit aliquam 
-                    ultrices est sem. Tellus nam ad fermentum ac enim est 
-                    duis facilisis congue a lacus adipiscing consequat risus 
-                    consectetur scelerisque integer suspendisse a mus integer
-                    elit.</p>
-            </div>
-            <div class="col-md-6 content-right">
-                <p>A posuere donec senectus suspendisse bibendum magna 
-                    ridiculus a justo orci parturient suspendisse ad rhoncus 
-                    cursus ut parturient viverra elit aliquam ultrices est 
-                    sem. Tellus nam ad fermentum ac enim est duis facilisis 
-                    congue a lacus adipiscing consequat risus consectetur 
-                    scelerisque integer suspendisse a mus integer elit.
-                </p>
-            </div>
+                @if($first=="true")
+                    <div class="col-md-6 content-left">
+                        <h2>{{$latestQuestion->question_specific}}</h2>
+                        <h2>{{$latestQuestion->answers}}</h2>
+<!--                        <p>A posuere donec senectus suspendisse bibendum
+                            magna ridiculus a justo orci parturient suspendisse 
+                            ad rhoncus cursus ut parturient viverra elit aliquam 
+                            ultrices est sem. Tellus nam ad fermentum ac enim est 
+                            duis facilisis congue a lacus adipiscing consequat risus 
+                            consectetur scelerisque integer suspendisse a mus integer
+                            elit.
+                        </p>-->
+                    </div>
+                    <?php // $first="false";?>
+                @endif
             @endforeach
         </div>
     </div>
