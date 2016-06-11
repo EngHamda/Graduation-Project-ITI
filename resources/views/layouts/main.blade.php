@@ -74,7 +74,7 @@
         <div class="header-nav-wrapper">
 
             <div class="logo">
-                <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
+                <a href="/"><img src="/img/logo.png" height="80" width="100" alt="Soft Management"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -100,6 +100,12 @@
                         @endif
                         <li><a href="/questions">Questions</a></li>
                         <li><a href="/advices">Advices</a></li>
+                            @if(Auth::user())
+                                @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
+                                <li><a href="/questions/create">Ask Question</a></li>
+                                <li><a href="/reservations/create">Reserve Online</a></li>
+                                @endif
+                            @endif
                         <li><a href="/#team">Our Staff</a></li>
                         @if(!Auth::user()&&!auth()->guard('medicalcompany')->user())
                             <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
@@ -127,7 +133,7 @@
 
 
 
-                    <body>
+
                     <!--[if lt IE 8]>
                     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
                     <![endif]-->
@@ -137,29 +143,29 @@
                             <div class="header-nav-wrapper">
 
                                 <div class="logo">
-                                    <a href="/index.html"><img src="/img/synthetica-logo.png" alt="Synthetica Freebie Peter Finlan"></a>
+                                    <a href="/index.html"><img src="/img/logo.png" alt="Softmanagement logo"></a>
                                 </div>
-                                <div class="primary-nav-wrapper">
-                                    <nav>
-                                        <ul class="primary-nav">
-                                            <li><a href="/">Home</a></li>
-                                            @if(Auth::user())
-                                                @if(Auth::user()->role_id==3)
-                                                    <li><a href="/assistant">My Profile</a></li>
-                                                @endif
-                                            @endif
-                                            <li><a href="/questions">Questions</a></li>
-                                            <li><a href="/advices">Advices</a></li>
-                                            <li><a href="#team">Our Staff</a></li>
-                                            @if(!Auth::user())
-                                                <li data-toggle="modal" data-target="#myModal"><a>Login</a></li>
-                                                <li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>
-                                            @endif
-                                            @if(Auth::user())
-                                                <li><a href="/auth/logout">Log Out</a></li>
-                                            @endif
-                                        </ul>
-                                    </nav>
+                                {{--<div class="primary-nav-wrapper">--}}
+                                    {{--<nav>--}}
+                                        {{--<ul class="primary-nav">--}}
+                                            {{--<li><a href="/">Home</a></li>--}}
+                                            {{--@if(Auth::user())--}}
+                                                {{--@if(Auth::user()->role_id==3)--}}
+                                                    {{--<li><a href="/assistant">My Profile</a></li>--}}
+                                                {{--@endif--}}
+                                            {{--@endif--}}
+                                            {{--<li><a href="/questions">Questions</a></li>--}}
+                                            {{--<li><a href="/advices">Advices</a></li>--}}
+                                            {{--<li><a href="#team">Our Staff</a></li>--}}
+                                            {{--@if(!Auth::user())--}}
+                                                {{--<li data-toggle="modal" data-target="#myModal"><a>Login</a></li>--}}
+                                                {{--<li data-toggle="modal" data-target="#myModal2"><a>Sign Up</a></li>--}}
+                                            {{--@endif--}}
+                                            {{--@if(Auth::user())--}}
+                                                {{--<li><a href="/auth/logout">Log Out</a></li>--}}
+                                            {{--@endif--}}
+                                        {{--</ul>--}}
+                                    {{--</nav>--}}
                                     <div class="secondary-nav-wrapper">
                                         <ul class="secondary-nav">
                                             <li class="subscribe"><a href="#get-started">Subscribe</a></li>
@@ -179,7 +185,7 @@
                                 </div>
                                 <div class="navicon">
                                     <a class="nav-toggle" href="#"><span></span></a>
-                                    \
+
                                 </div>
                             </div>
                         </div>
@@ -198,33 +204,48 @@
                                     <h4 class="modal-title">Login</h4>
                                 </div>
                                 <div class="modal-body">
+
+
+
+                                    @if (session('status1'))
+                                        <div class="alert alert-danger" id="msg">
+                                            {{ session('status1') }}
+                                        </div>
+
+
+                                        <script>
+
+
+                                            $(document).ready(function () {
+                                                $('#myModal').modal('show');
+                                            });
+
+
+                                        </script>
+                                    @endif
+
+
+
+
                                     <p><form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
                                         {{ csrf_field() }}
 
-                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">E-Mail Address</label>
                                             <div class="col-md-6">
-                                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail">
 
-                                                @if ($errors->has('email'))
-                                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                                @endif
+
                                             </div>
                                         </div>
 
-                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Password</label>
 
                                             <div class="col-md-6">
-                                                <input type="password" class="form-control" name="password">
+                                                <input type="password" class="form-control" name="password" id="loginemail">
 
-                                                @if ($errors->has('password'))
-                                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                                @endif
+
 
 
 
@@ -234,7 +255,7 @@
                                 </p>
                                 <div class="modal-footer">
 
-                                    <button  id="medical" type="button" class="btn btn-info ">
+                                    <button  id="medicalcompany" type="button" class="btn btn-default">
                                         <i class="fa fa-btn fa-sign-in"></i>AreYouMedicalCompany?
                                     </button>
                                     <button type="submit" class="btn btn-info">
@@ -249,7 +270,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--End of login Modal--}}
 
                     {{--starting Modal of Medical Company--}}
                     <div class="modal fade" id="myModal1" role="dialog">
@@ -436,6 +456,12 @@
                                 <li><a href="/#team">Our Staff</a></li>
                                 <li><a href="/questions">Questions</a></li>
                                 <li><a href="/advices">Advices</a></li>
+                                @if(Auth::user())
+                                    @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
+                                        <li><a href="/questions/create">Ask Question</a></li>
+                                        <li><a href="/reservations/create">Reserve Online</a></li>
+                                    @endif
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -480,9 +506,10 @@
                 {!! Html::script('js/bootstrap.min.js') !!}
                 <script src="/js/jquery-ui.min.js"></script>
                 <!--    {!! Html::script('js/custom/script.js') !!} for Q Index -->
+            {!! Html::script('js/custom/rome.js') !!}
                 {!! Html::script('js/app.js') !!}
                 {!! Html::script('js/patientprofile.js') !!}
-                {!! Html::script('js/custom/rome.js') !!}
+
                 {!! Html::script('js/custom/ajax-reservation-crud.js') !!}
                 {!! Html::script('js/custom/jquery-add-clinic-times.js') !!}
 

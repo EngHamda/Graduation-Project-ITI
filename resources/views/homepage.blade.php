@@ -55,7 +55,7 @@
     <div class="row">
         <div class="header-nav-wrapper">
             <div class="logo">
-                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Synthetica Freebie Peter Finlan"></a>
+                <a href="/"><img src="img/logo.png" height="80" width="100" alt="Soft management logo"></a>
             </div>
             <div class="primary-nav-wrapper">
                 <nav>
@@ -79,6 +79,7 @@
                             @endif
                         <li><a href="#freebies">Questions</a></li>
                         <li><a href="#articles">Advices</a></li>
+
                         <li><a href="#intro">Learn more</a></li>
                         <li><a href="#team">Our Staff</a></li>
                         @if(!Auth::user() && !auth()->guard('medicalcompany')->user())
@@ -119,24 +120,6 @@
     {{--login Modal--}}
 
     <div class="modal fade" id="myModal" role="dialog">
-
-
-
-
-
-
-
-
-
-
-             
-                
-
-
-
-
-
-
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -468,7 +451,7 @@ $('#myModal2').modal('show');
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
-                            <p>Create your landing page in minutes with Synthetica's Sketch style guide.</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -479,13 +462,13 @@ $('#myModal2').modal('show');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1 class="wp1">Download Synthetica today, it's free forever.</h1>
+                            <h1 class="wp1"></h1>
                             <a href="http://tympanus.net/codrops/?p=26570" class="btn primary wp2">Download Template</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
-                            <p>Available exclusively from Codrops.</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -785,14 +768,14 @@ $('#myModal2').modal('show');
         </div>
     </div>
 </section>
-</body>
+
 <!-- END SECTION: Freebies -->
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">
     <div class="container">
         <div class="row">
             <div class="col-md-4 footer-branding">
-                <img class="footer-branding-logo" src="img/synthetica-logo.png" alt="Synthetica freebie html5 css3 template peter finlan logo">
+                <img class="footer-branding-logo" src="img/logo.png"  height="80" width="100" alt="soft management logo">
 
             </div>
         </div>
