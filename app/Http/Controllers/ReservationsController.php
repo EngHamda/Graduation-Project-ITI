@@ -98,7 +98,7 @@ class ReservationsController extends Controller
         //run command
         $this->dispatch($command);
         if(Auth::user()->role_id == 3){
-            return redirect('/reservations')
+            return redirect('/assistant')
                 ->with('message','New Reservation is added');
         }elseif (Auth::user()->role_id == 2 || Auth::user()->role_id == 5) {
             return redirect('/')->with('message','New Reservation is added');
