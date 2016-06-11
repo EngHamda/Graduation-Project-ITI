@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Assistant Profile')
 @section('content')
 
 <div class="container">

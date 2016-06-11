@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Update Patient Profile')
 @section('content')
 <div class="row">
   <div class="col-sm-9">

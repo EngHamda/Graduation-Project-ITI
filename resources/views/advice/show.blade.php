@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Advice details')
 @section('content')
 
     {{$advice->advice}}

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Create New Patient Profile')
 @section('content')
 
 

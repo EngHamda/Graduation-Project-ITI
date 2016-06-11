@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Show')
-@section('sidebar')
+@section('title','Reservation details')
+{{--@section('sidebar')
     show Sidebar
-@stop
+@stop--}}
 @section('content')
     <div class="panel panel-default" id='show_reservation'>
         <div class="panel-heading">

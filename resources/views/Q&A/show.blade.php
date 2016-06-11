@@ -1,5 +1,5 @@
 @extends('layouts.main')
-{{--@section('title','Q&A-Show')--}}
+@section('title','Q&A-Show Question')
 {{--@section('sidebar')--}}
     {{--show Sidebar--}}
 {{--@stop--}}

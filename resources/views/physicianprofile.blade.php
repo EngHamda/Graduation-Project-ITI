@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title','Physician Profile')
 @section('content')
     <div class="container">
         <br>
@@ -15,10 +15,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 @foreach($adverisements as $index => $add)
-                    <div class="item @if($index == 0) {{ 'active' }} @endif">
+                    @if($index == 0)
+                    <div class="item {{ 'active' }}">                    
                         <a href="/physician/request/{{$add->id}}"><img style="width: 25%;" src="{{ URL::to('/') }}/images/{{ $add->path }}"  alt="{{ URL::to('/') }}/images/{{ $add->path }}">  </a>
                         <h3>requst now </h3>
                     </div>
+                    @endif
                 @endforeach
 
 

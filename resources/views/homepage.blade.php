@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Synthetica HTML5/CSS3 Template by Peter Finlan</title>
+    <title>Soft Management</title>
     <meta name="description" content="A free html template with Sketch design made with Bootstrap">
     <meta name="keywords" content="free html template, bootstrap, ui kit, sass" />
     <meta name="author" content="Peter Finlan for Codrops" />

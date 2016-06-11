@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Q&A-Edit')
-@section('sidebar')
+@section('title','Q&A-Edit Question')
+{{--@section('sidebar')
     edit Sidebar
-@stop
+@stop--}}
 @section('content')
 <!--<div style="margin-top: 50px;"></div>-->
 <!--    <div class="row"></div>-->

@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('title','Q&A-Create')
-@section('sidebar')
+@section('title','Q&A-Create Question')
+{{--@section('sidebar')
     create Sidebar
-@stop
+@stop--}}
 @section('content')
     <!--<div style="margin-top: 50px;"></div>-->
     <div class="panel panel-default">
