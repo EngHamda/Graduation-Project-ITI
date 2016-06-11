@@ -14,7 +14,9 @@
                     <thead>
                     <tr>
                         <th>{{ trans('quickadmin::admin.users-index-name') }}</th>
-                        <th>&nbsp;</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Profile Picture</th>
                     </tr>
                     </thead>
 
@@ -24,14 +26,12 @@
                             <td>{{ $user->name }}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->role->title}}</td>
-                            <td></td>
-
-                            <td>@if($user->profile_picture != '')<img src="{{ asset('uploads/thumb') . '/'.  $user->profile_picture }}">@endif</td>
+                            <td>@if($user->profile_picture != '')<img src="{{ URL::to('/')}}/images/{{$user->profile_picture }}" width="50" height="50">@endif</td>
 
                             <td>
                                 {!! link_to_route('users.edit', trans('quickadmin::admin.users-index-edit'), [$user->id], ['class' => 'btn btn-xs btn-info']) !!}
-                                {!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . trans('quickadmin::admin.users-index-are_you_sure') . '\');',  'route' => array('users.destroy', $user->id)]) !!}
-                                {!! Form::submit(trans('quickadmin::admin.users-index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                {{--{!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . trans('quickadmin::admin.users-index-are_you_sure') . '\');',  'route' => array('users.destroy', $user->id)]) !!}--}}
+                                {{--{!! Form::submit(trans('quickadmin::admin.users-index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}--}}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

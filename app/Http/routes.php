@@ -40,8 +40,7 @@ Route::put('questions/update/{id}','QuestionsController@update');
 
 //questionowner and questionnotansweredyet
 Route::group(['middleware' => 'questionownerdestroy'], function () {   
-
-Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
+    Route::delete('/questions/destroy/{id}','QuestionsController@destroy');
   });
 
 
@@ -105,14 +104,14 @@ Route::get('/prescription', function () { return view('prescription');});
 
 Route::post('/addprescription','PatientprofilesController@insertprescription');
 Route::post('/sendemail','PatientprofilesController@sendemailtoprescriptionpage');
-Route::get('/addprescription','PatientprofilesController@showprescription');
+Route::get('/showprescription/{id}','PatientprofilesController@showprescription');
 
+//Route::get('/endshow', function () {return view('prescription');});  
 });
-
 
 //adviceowner
 Route::group(['middleware' => 'adviceeditdestroy'], function () {
-    Route::get('{id}/edit','AdvicesController@edit');
+    Route::get('/advices/{id}/edit','AdvicesController@edit');
     Route::put('/advices/update/{id}','AdvicesController@update');
     Route::delete('/advices/destroy/{id}',array('uses' => 'AdvicesController@destroy','as' => 'advices.destroy'));
 });
@@ -221,4 +220,8 @@ Route::get('advices/like',[
 //Route::resource('questions.answers', 'AnswersController');
 //    photos/{photos}/comments/{comments}.
 //questions/1/answers/10/edit
+
+
+Route::get('/profile','PatientprofilesController@index');
+Route::post('searchpatient','PatientprofilesController@index');
 

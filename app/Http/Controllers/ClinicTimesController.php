@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateClinicTimesRequest;
 
 use App\Commands\DestoryClinicTimesCommand;
 
+
 use App\ClinicTimes;
 use App\Physician_Details;
 use Auth;
@@ -44,21 +45,6 @@ class ClinicTimesController extends Controller
 //        $x=10;
 //        return compact('x');
         //get all physician in this clinic
-        /*
-         $clinic_id = $request->input('clinic-id');
-        $physicianNames = array();
-        $physicianIds = array();
-        $physicians = Physician_Details::where('clinic_id',$clinic_id)->select('user_id')->get();//->get();
-        foreach ($physicians as $physician ){
-//            $data = $physician->user->name." - ".$physician->user->physiciandetail->speciality->name;
-            array_push($physicianNames, $physician->user->name);
-            array_push($physicianIds, $physician->user_id);           
-            
-        }
-//        $physicians_name = $physicians->user->name;//->select('user_id')->get();//->get();
-        $physicianList = array_combine($physicianIds, $physicianNames);
-        
-         */
         $clinic_id = auth()->user()->assistant_details->clinic_id;
         $physicianNames = array();
         $physicianIds = array();

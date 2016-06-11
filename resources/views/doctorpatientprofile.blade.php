@@ -104,6 +104,53 @@ miscarriage:
 
 
 
+presciption
+
+<div class="copiesofp"></div>
+<div class="lineofp">
+
+  
+    
+    <input  id="drug" type="text" name="drug" placeholder="content" class="form-control"/>
+ 
+   <input id="date" type="text" name="date" placeholder="content" class="form-control"/>
+
+
+<select name="frequency" id="freq">
+  <option value="one">one</option>
+  <option value="twice">twice</option>
+  <option value="three times">three times</option>
+
+</select> 
+
+
+
+<select name="duration" id="duration">
+  <option value="every year">every year</option>
+  <option value="every mounth">every mounth</option>
+  <option value="every week">every week</option>
+  <option value="every day">every day</option>
+ <option value="everyhour">everyhour</option>
+</select> 
+
+<input type="button" value="addp" id="addp" class="btn btn-default" />
+
+  </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,12 +176,13 @@ miscarriage:
 
 
 
-
-<a href="/addprescription"> Add Prescription </a>
-
+ 
 
 
-  <button onclick="send()">Click me</button> 
+
+
+
+  <button onclick="send()">submit</button> 
 
 
 

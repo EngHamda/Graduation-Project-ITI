@@ -24,9 +24,8 @@
 
 
 
-{!!  Form::label('gender', 'gender') !!}
-{!! Form::text('gender',$value=$user->gender,['class' => 'form-control'])!!}
-
+{!!  Form::radio('gender', 'female', true); !!}
+{!!  Form::radio('gender', 'male', true);   !!}
 
 
 
@@ -72,7 +71,7 @@
 
 
 {!!  Form::label('patientbloodgroup', 'patientbloodgroup')!!}
-{!! Form::text('patientbloodgroup',$value=null,['class' => 'form-control'])!!}
+{!! Form::select('size', array('A+' => 'A+', 'B+' => 'B+' , 'AB+' => 'AB+' , 'O+' => 'O+', 'O-' => 'O-' , 'A-' => 'A-'  ,'B-' => 'B-','AB-'=>'AB-'), $patientprofile->patientbloodgroup, ['placeholder' => 'Pick a size...']);!!}
 
 
 {!!  Form::label('patientemergencyphone', 'patientemergencyphone')!!}
@@ -101,7 +100,7 @@
 
 
 
-{!! Form::submit('Click Me!')!!}
+{!! Form::submit('Update')!!}
 
 
 

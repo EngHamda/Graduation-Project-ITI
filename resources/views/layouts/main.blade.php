@@ -421,7 +421,7 @@
             </div>
 
 
-            <!-- SECTION: Footer -->
+           <!-- SECTION: Footer -->
             <footer class="has-padding footer-bg">
                 <div class="container">
                     <div class="row">

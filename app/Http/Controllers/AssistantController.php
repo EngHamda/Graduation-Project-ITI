@@ -79,35 +79,31 @@ $profilepicture->move(public_path('images'),$main_image_filename);
 
 else{
 
-$profilepicture="none.jpg";
+$main_image_filename="none.jpg";
 
 }
- $patientwheight =$request->input('patientweight');
- $patientheight =$request->input('patientheight');
-$bloodgroup=$request->input('bloodgroup');
-$emergencyphone=$request->input('emergencyphone');
-$nationality=$request->input('nationality');
-$nationalid=$request->input('nationalid');
- $roleid=2;
-$gender=$request->input('gender');
- $Dmissiontime=$request->input('Dmissiontime');
- $Dmissiontime= date('Y-m-d', strtotime($Dmissiontime));
-$command=new StorePatientBasicinfoCommand($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$profilepicture,$roleid,$country);
+        $patientwheight =$request->input('patientweight');
+        $patientheight =$request->input('patientheight');
+        $bloodgroup=$request->input('bloodgroup');
+        $emergencyphone=$request->input('emergencyphone');
+        $nationality=$request->input('nationality');
+        $nationalid=$request->input('nationalid');
+        $roleid=2;
+        $gender=$request->input('gender');
+        $command=new StorePatientBasicinfoCommand($name,$email,$password,$dateofbirth,$gender,$phone,$buildingnumber,$street,$city,$main_image_filename,$roleid,$country);
+        $this->dispatch($command);
 
-
-
-$this->dispatch($command);
 
 $user=User::where('email',$email)->first();
 //var_dump($user->id);
 $userid=$user->id;
-$command2=new StorePatientProfileInfoCommand($patientwheight,$userid,$patientheight,$bloodgroup,$emergencyphone,$nationality,$nationalid);
+$physicianid=0;
+$command2=new StorePatientProfileInfoCommand($patientwheight,$userid,$patientheight,$bloodgroup,$emergencyphone,$nationality,$nationalid,$physicianid);
 $this->dispatch($command2);
 
-$profile=Patientprofile::where('user_id',$userid)->first();
-$profileid=$profile->id;
 
- return redirect('assistant')->with('status', 'patient profile update');
+
+ return redirect('assistant')->with('status', 'patient profile is Created');
 
 
 

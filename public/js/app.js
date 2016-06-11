@@ -2,9 +2,9 @@
 // Like and Dislike
 $('.like').on('click',function(event)
     {
-            //console.log(event);
+            console.log('hi');
         // Prevent default behavior
-        var adviceId =event.target.parentNode.parentNode.dataset['adviceid'];
+        var adviceId =event.target.parentNode.parentNode.parentNode.dataset['adviceid'];
         event.defaultPrevented;
 
        var isLike = event.target.previousElementSibling==null;
@@ -40,6 +40,7 @@ $(document).ready(function(){
 
     $("#email").focus(function(){
         $("#emailerror").html(" ");
+        //$('#registeralert').hide();
 
     });
 
@@ -89,3 +90,50 @@ $('#medicalcompany').on('click', function () {
 
 
 });
+
+
+$("#loginemail").click(function(){
+        $('#msg').hide();
+    });
+
+$("#loginpassword").click(function(){
+        $('#msg').hide();
+    });
+
+
+
+
+
+$("#name").click(function(){
+        $('#registeralert').hide();
+    });
+
+
+ $("#email").click(function(){
+      $('#registeralert2').hide();  
+    });
+
+
+   
+
+
+
+$("#password").click(function(){
+        $('#registeralert3').hide();
+    });
+
+
+
+
+
+
+
+
+$("#medicallogin").click(function(){
+        $('#medicalerrormsg').hide();
+    });
+
+
+
+
+

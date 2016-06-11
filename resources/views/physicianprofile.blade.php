@@ -37,8 +37,9 @@
         </div>
     </div>
 
+    <div style="margin-top: 50px;"></div>
   <a href="/add" class="btn btn-info btn-block btn-lg"> Add Patient Profile</a>
-
+    <div style="margin-top: 50px;"></div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Create Advice</h3>

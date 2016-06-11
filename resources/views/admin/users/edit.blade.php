@@ -84,7 +84,7 @@
                 {!! Form::text('city',old('city',$user->city), ['class'=>'form-control']) !!}
             </div>
 
-            {!! Form::label('Country', null, ['class'=>'col-sm-2 control-label']) !!}
+            {!! Form::label('Governorate', null, ['class'=>'col-sm-2 control-label']) !!}
             <div class="col-sm-2">
                 {!! Form::text('country',old('country',$user->country), ['class'=>'form-control']) !!}
             </div>

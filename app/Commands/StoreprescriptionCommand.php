@@ -24,7 +24,7 @@ $this->drug=$drug;
 $this->duration=$duration;
 $this->frequency=$frequency;
 $this->date=$date;
-
+$this->profileid=$profileid;
 }
 
 public function handle()
