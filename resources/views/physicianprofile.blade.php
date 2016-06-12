@@ -78,9 +78,9 @@
             <div class="form-group">
                 {!!Form::label('advice', 'Insert Advice') !!}
                 {!! Form::text('advice',$values=null,$attributes=['class'=>'form-control','name'=>'advice'])!!}
+                <br>
 
-
-                {!! Form::submit('Submit')!!}
+                {!! Form::submit('Submit',$attributes=['class'=>'form-control , btn btn-info'])!!}
             </div>
 
             {!! Form::close() !!}

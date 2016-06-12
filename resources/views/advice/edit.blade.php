@@ -12,7 +12,8 @@
             <div class="form-group">
                 {!!Form::label('advice', 'Update Advice') !!}
                 {!! Form::text('advice', $value=$advice->advice ,$attributes=['class'=>'form-control','name'=>'advice'])!!}
-                {!! Form::submit('Update')!!}
+                <br>
+                {!! Form::submit('Update',$attributes=['class'=>'form-control , btn btn-info'])!!}
             </div>
 
             {!! Form::close() !!}

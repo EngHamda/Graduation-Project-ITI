@@ -13,11 +13,10 @@
                             <div class="row">
                         <article  data-adviceid="{{$advice->id}}">
                             <div class="col-sm-2">
-                                @if($advice->user->profile_picture != '')<img src="{{ asset('uploads/thumb') . '/'.  $advice->user->profile_picture }}">@endif
+                                @if($advice->user->profile_picture != '')<img src="{{ URL::to('/')}}/images/{{$advice->user->profile_picture }}" width="50" height="50">@endif
 
                             </div>
                             <div class="col-sm-8">
-
                                  {{$advice->advice}}
 
                                         @if(Auth::user())
