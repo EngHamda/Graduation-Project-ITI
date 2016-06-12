@@ -149,6 +149,7 @@
     </div><!-- ./row -->
     <!-- Modal -->
     {{--login Modal--}}
+
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -157,35 +158,35 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
+                    @if (session('status1'))
+                        <div class="alert alert-danger" id="msg">
+                            {{ session('status1') }}
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#myModal').modal('show');
+                            });
+                        </script>
+                    @endif
                     <p>
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('user/login') }}">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="loginemail">
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password">
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password" id="loginemail">
                             </div>
+                        </div>
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button  id="medical" type="button" class="btn btn-info ">
+                    <button  id="medicalcompany" type="button" class="btn btn-default">
                         <i class="fa fa-btn fa-sign-in"></i> AreYouMedicalCompany?
                     </button>
                     <button type="submit" class="btn btn-info">
@@ -207,43 +208,41 @@
                     <h4 class="modal-title">Medical Company Login</h4>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/medicalcompany/login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-                                    @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                    <p><form class="form-horizontal" role="form" method="POST" action="{{ url('/medicalcompany/login') }}">
+                        {{ csrf_field() }}
+                        @if (session('status'))
+                            <div class="alert alert-danger" id="medicalerrormsg">
+                                {{ session('status') }}
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password">
-                                    @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#myModal1').modal('show');
+                                });
+                            </script>
+                        @endif
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="medicallogin">
                             </div>
-                    </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password" id="medicallogin">
+                            </div>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">
-                        <i class="fa fa-btn fa-sign-in"></i> Login
+                        <i class="fa fa-btn fa-sign-in"></i>Login
                     </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </form>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  </form>
                 </div>
             </div>
         </div>
     </div>
+
     {{--Ending Modal of Medical Company--}}
     {{--Start of Registeration Modal--}}
     <div class="modal fade" id="myModal2" role="dialog">
