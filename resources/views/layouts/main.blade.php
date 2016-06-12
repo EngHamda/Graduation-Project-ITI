@@ -329,7 +329,7 @@
         @endif
         @if ($errors->any())
             <ul>
-                {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+              {{ implode('', $errors->all(':message')) }}
             </ul>
         @endif
 
