@@ -15,7 +15,6 @@
     <li><a data-toggle="tab" href="#blood">Blood Transfusion</a></li>
     <li><a data-toggle="tab" href="#family">Family History</a></li>
     <li><a data-toggle="tab" href="#miscarriage">Miscarriages</a></li>
-    <li><a data-toggle="tab" href="#birth">Births</a></li>
     <li><a data-toggle="tab" href="#prescription">Prescription</a></li>
 </ul>
 
@@ -118,37 +117,53 @@
                 <hr>
             @endforeach</ul>
     </div>
-    <div id="birth" class="tab-pane fade">
-        <h3>Births</h3>
-        <p>Some content in menu 2.</p>
-    </div>
+  <div style="margin-top: 50px"></div>
     <div id="prescription" class="tab-pane fade">
-        <form id="patient_profile_form">
+        <form id="patient_profile_form" class="form-group">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="copiesofp"></div>
         <div class="lineofp">
+            <div class="row">
+                <div class="col-md-2">
+            <input  id="date" type="text" name="date" placeholder="Date" class="form-control"/>
+                    </div>
+                <div class="col-md-2">
+            <input id="drug" type="text" name="drug" placeholder="Drug" class="form-control"/>
+                    </div>
 
-            <input  id="date" type="text" name="drug" placeholder="content" class="form-control"/>
-            <input id="drug" type="text" name="date" placeholder="content" class="form-control"/>
+                <div class="col-md-2">
 
-            <select name="frequency" id="freq">
-                <option value="one">one</option>
-                <option value="twice">twice</option>
-                <option value="three times">three times</option>
+
+            <select name="frequency" id="freq" class="form-control">
+                <option value="Once Per Week">Once Per Week</option>
+                <option value="Every Three Days">Every Three Days</option>
+                <option value="Every Other Day">Every Other Day</option>
+                <option value="Once Daily">Once Daily</option>
+                <option value="Twice Daily">Twice Daily</option>
+                <option value="Three Times Per Day">Three Times Per Day</option>
+                <option value="Every Two Hours">Every Two Hours</option>
 
             </select>
+                    </div>
+                <div class="col-md-2">
 
-            <select name="duration" id="duration">
-                <option value="every year">every year</option>
-                <option value="every mounth">every mounth</option>
-                <option value="every week">every week</option>
-                <option value="every day">every day</option>
-                <option value="everyhour">everyhour</option>
+            <select name="duration" id="duration" class="form-control">
+                <option value="Year">Year</option>
+                <option value="Month">Month</option>
+                <option value="Two Weeks">Two Weeks</option>
+                <option value="Week">Week</option>
+                <option value="Five Days">Five Days</option>
+                <option value="Three Days">Three Days</option>
+                <option value="Day">Day</option>
             </select>
+                    </div>
+               <div class="col-md-2">
 
             <input type="button" value="addprescription" id="addp" class="btn btn-info" />
+                   </div>
 
         </div>
+            </div>
         </form>
         <article  data-basicinfos_id="{{$basicinfos->id}}">
         <input type="submit" id="prescription_add" value="Add" class="btn btn-success">
