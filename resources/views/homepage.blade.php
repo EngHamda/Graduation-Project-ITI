@@ -309,9 +309,10 @@
                             <h1 class="wp1"> </h1>
                             <div style="margin-top: 250px;"></div>
                             @if(Auth::user())
-                                    <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
+
 
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
+                                    <a href="/reservations/create" class="btn primary wp2">Reserve Online</a>
                                     <a href="/questions/create" class="btn primary wp2 mm">Ask Question</a>
                                 @endif
                             @else
@@ -380,17 +381,15 @@
                 <h4>The collective</h4>
             </div>
             <div class="col-md-9">
-                <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress, banjo normcore trust fund hella. Kinfolk gluten-free lo-fi quinoa. Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch godard before they sold out. Kale chips chillwave kickstarter photo booth cronut cold-pressed. Banjo fixie umami kombucha affogato gluten-free authentic slow-carb hashtag, hammock pour-over chambray viral VHS normcore.</p>
-                <div class="video-player">
-                    <video id="video_synth" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="568" height="300" poster="img/video-cover.jpg" data-setup='{}'>
-                        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-                        <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
-                        <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg" />
-                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                    </video>
-                </div>
-                <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress, banjo normcore trust fund hella. Kinfolk gluten-free lo-fi quinoa. </p>
-                <p>Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch godard before they sold out. Kale chips chillwave kickstarter photo booth cronut cold-pressed. Banjo fixie umami kombucha affogato gluten-free authentic slow-carb hashtag, hammock pour-over chambray viral VHS normcore.</p>
+                <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress, banjo normcore trust fund hella. Kinfolk gluten-free lo-fi quinoa. Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch godard before they sold out. Kale chips chillwave kickstarter photo booth cronut c
+                    old-pressed. Banjo fixie umami kombucha affogato gluten-free authentic slow-
+                    carb hashtag, hammock pour-over chambray viral VHS normcore.
+                </p>
+                <p>Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch god
+                    ard before they sold out. Kale chips chillwave kickstarter photo booth cro
+                    nut cold-pressed. Banjo fixie umami kombucha affogato gluten-free auth
+                    entic slow-carb hashtag, hammock pour-over chambray viral VHS normcore.
+                </p>
             </div>
         </div>
     </div>
