@@ -77,6 +77,7 @@ class PatientprofilesController extends Controller
             $profileid = $user->id;
             $pasthistoryjson = $request->input('pasthistoryjson');
             $pasthistoryarray = json_decode($pasthistoryjson, true);
+
             $pasthistoryCount = count($pasthistoryarray);
             $pasthistorydatejson = $request->input('pasthistorydatejson');
             $pasthistorydatearray = json_decode($pasthistorydatejson, true);
@@ -84,11 +85,15 @@ class PatientprofilesController extends Controller
 
 
                 if (array_key_exists($i, $pasthistoryarray)) {
-                    $pasthistorydatearray[$i] = date('Y-m-d', strtotime($pasthistorydatearray[$i]));
+                    if($pasthistoryarray[$i] !="")
+                    {
+                        $pasthistorydatearray[$i] = date('Y-m-d', strtotime($pasthistorydatearray[$i]));
 
-                    $command = new StorePastHistoryCommand($pasthistorydatearray[$i], $pasthistoryarray[$i], $profileid);
+                        $command = new StorePastHistoryCommand($pasthistorydatearray[$i], $pasthistoryarray[$i], $profileid);
 
-                    $this->dispatch($command);
+                        $this->dispatch($command);
+
+                    }
                 }
 
 
@@ -107,9 +112,11 @@ class PatientprofilesController extends Controller
 
 
                 if (array_key_exists($c, $surgicalhistorydatearray)) {
-                    $surgicalhistorydatearray[$c] = date('Y-m-d', strtotime($surgicalhistorydatearray[$c]));
-                    $command = new StoresurgicalhistoryCommand($surgicalhistoryarray[$c], $surgicalhistorydatearray[$c], $profileid);
-                    $this->dispatch($command);
+                    if($surgicalhistoryarray[$c] !="")
+                    {
+                        $surgicalhistorydatearray[$c] = date('Y-m-d', strtotime($surgicalhistorydatearray[$c]));
+                        $command = new StoresurgicalhistoryCommand($surgicalhistoryarray[$c], $surgicalhistorydatearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
 
@@ -122,9 +129,10 @@ class PatientprofilesController extends Controller
 
             for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $allergiesarray)) {
-                    $allergiesdatearray[$c] = date('Y-m-d', strtotime($allergiesdatearray[$c]));
-                    $command = new StoreallergiesCommand($allergiesarray [$c], $allergiesdatearray[$c], $profileid);
-                    $this->dispatch($command);
+                    if($allergiesarray[$c] !=""){
+                        $allergiesdatearray[$c] = date('Y-m-d', strtotime($allergiesdatearray[$c]));
+                        $command = new StoreallergiesCommand($allergiesarray [$c], $allergiesdatearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
 
@@ -137,19 +145,20 @@ class PatientprofilesController extends Controller
 
             for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $accedentarray)) {
-
-                    $command = new StoreAccidentCommand($accedentarray [$c], $accedentdatearray[$c], $profileid);
-                    $this->dispatch($command);
+                    if($accedentarray[$c] !=""){
+                        $command = new StoreAccidentCommand($accedentarray [$c], $accedentdatearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
             $specialneedsjson = $request->input('specialneedsjson');
             $specialneedsarray = json_decode($specialneedsjson, true);
             $Count = count($specialneedsarray);
 
-            for ($c = 0; $c < $Count; $c++) {
+            for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $specialneedsarray)) {
-                    $command = new StorespecialneedsCommand($specialneedsarray [$c], $profileid);
-                    $this->dispatch($command);
+                    if($specialneedsarray[$c] !=""){
+                        $command = new StorespecialneedsCommand($specialneedsarray [$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
             $familyhistoryjson = $request->input('familyhistoryjson');
@@ -157,10 +166,11 @@ class PatientprofilesController extends Controller
             $Count = count($familyhistoryarray);
 
 
-            for ($c = 0; $c < $Count; $c++) {
+            for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $familyhistoryarray)) {
-                    $command = new StorefamilyhistoryCommand($familyhistoryarray [$c], $profileid);
-                    $this->dispatch($command);
+                    if($familyhistoryarray[$c] !=""){
+                        $command = new StorefamilyhistoryCommand($familyhistoryarray [$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
 
@@ -170,12 +180,13 @@ class PatientprofilesController extends Controller
             $Count = count($bloodtransferarray);
             $bloodtransferdatearray = json_decode($bloodtransferdatejson, true);
 
-            for ($c = 0; $c < $Count; $c++) {
+            for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $bloodtransferdatearray)) {
-                    $bloodtransferdatearray[$c] = date('Y-m-d', strtotime($bloodtransferdatearray[$c]));
+                    if($bloodtransferarray[$c] !=""){
+                        $bloodtransferdatearray[$c] = date('Y-m-d', strtotime($bloodtransferdatearray[$c]));
 
-                    $command = new StorebloodtransferCommand($bloodtransferarray [$c], $bloodtransferdatearray[$c], $profileid);
-                    $this->dispatch($command);
+                        $command = new StorebloodtransferCommand($bloodtransferarray [$c], $bloodtransferdatearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
             $misjson = $request->input('misjson');
@@ -184,11 +195,12 @@ class PatientprofilesController extends Controller
             $Count = count($misarray);
             $misdatearray = json_decode($misdatejson, true);
 
-            for ($c = 0; $c < $Count; $c++) {
-                if (array_key_exists($c, $misdatearray)) {
-                    $misdatearray[$c] = date('Y-m-d', strtotime($misdatearray[$c]));
-                    $command = new StoremiscarriagesCommand($misarray [$c], $misdatearray[$c], $profileid);
-                    $this->dispatch($command);
+            for ($c = 0; $c <= $Count; $c++) {
+                if (array_key_exists($c, $misarray)) {
+                    if($misarray[$c] !=""){
+                        $misdatearray[$c] = date('Y-m-d', strtotime($misdatearray[$c]));
+                        $command = new StoremiscarriagesCommand($misarray [$c], $misdatearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
 
@@ -212,10 +224,11 @@ class PatientprofilesController extends Controller
 
             for ($c = 0; $c <= $Count; $c++) {
                 if (array_key_exists($c, $drugarray)) {
-                    $datearray[$c] = date('Y-m-d', strtotime($datearray[$c]));
+                    if($drugarray[$c] !=""){
+                        $datearray[$c] = date('Y-m-d', strtotime($datearray[$c]));
 
-                    $command = new StoreprescriptionCommand($drugarray [$c], $durationarray[$c], $freqarray[$c], $datearray[$c], $profileid);
-                    $this->dispatch($command);
+                        $command = new StoreprescriptionCommand($drugarray [$c], $durationarray[$c], $freqarray[$c], $datearray[$c], $profileid);
+                        $this->dispatch($command);}
                 }
             }
 
