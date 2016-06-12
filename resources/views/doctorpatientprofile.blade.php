@@ -180,23 +180,29 @@
                         </div>
 
                         <div class="col-md-2">
-                <select name="frequency" id="freq" class="form-control">
-                    <option value="one">one</option>
-                    <option value="twice">twice</option>
-                    <option value="three times">three times</option>
+                            <select name="frequency" id="freq" class="form-control">
+                                <option value="Once Per Week">Once Per Week</option>
+                                <option value="Every Three Days">Every Three Days</option>
+                                <option value="Every Other Day">Every Other Day</option>
+                                <option value="Once Daily">Once Daily</option>
+                                <option value="Twice Daily">Twice Daily</option>
+                                <option value="Three Times Per Day">Three Times Per Day</option>
+                                <option value="Every Two Hours">Every Two Hours</option>
 
-                </select>
+                            </select>
                             </div>
 
                             <div class="col-md-2">
+                                <select name="duration" id="duration" class="form-control">
+                                    <option value="Year">Year</option>
+                                    <option value="Month">Month</option>
+                                    <option value="Two Weeks">Two Weeks</option>
+                                    <option value="Week">Week</option>
+                                    <option value="Five Days">Five Days</option>
+                                    <option value="Three Days">Three Days</option>
+                                    <option value="Day">Day</option>
+                                </select>
 
-                <select name="duration" id="duration" class="form-control">
-                    <option value="every year">every year</option>
-                    <option value="every mounth">every mounth</option>
-                    <option value="every week">every week</option>
-                    <option value="every day">every day</option>
-                    <option value="everyhour">everyhour</option>
-                </select>
                                 </div>
                                 <div class="col-md-2">
 
