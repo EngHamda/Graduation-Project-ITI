@@ -381,15 +381,11 @@
                 <h4>The collective</h4>
             </div>
             <div class="col-md-9">
-                <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress, banjo normcore trust fund hella. Kinfolk gluten-free lo-fi quinoa. Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch godard before they sold out. Kale chips chillwave kickstarter photo booth cronut c
-                    old-pressed. Banjo fixie umami kombucha affogato gluten-free authentic slow-
-                    carb hashtag, hammock pour-over chambray viral VHS normcore.
-                </p>
-                <p>Pabst kitsch ennui hoodie meggings banjo. Schlitz tacos kitsch god
-                    ard before they sold out. Kale chips chillwave kickstarter photo booth cro
-                    nut cold-pressed. Banjo fixie umami kombucha affogato gluten-free auth
-                    entic slow-carb hashtag, hammock pour-over chambray viral VHS normcore.
-                </p>
+                <p>Soft Management is clinical management system where:</p>
+                    <p>Patients can reserve appointments, view medical advices and ask questions to be answered by physicians.</p>
+                    <p>Physician can keep his patients' profiles, review it when he needs. Submit advices and answer questions.</p>
+                    <p>Medical companies can upload advertisements.</p>
+
             </div>
         </div>
     </div>
