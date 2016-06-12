@@ -13,6 +13,11 @@ $(document).ready(function(){
 
     });});
 
+    $("#nationalid").click(function(){
+        $('#successMessage').hide();
+        $('#errorMessage').hide();
+    });
+
 var patientemailarray=[];
 var pasthistoryassociativearray = {};
 

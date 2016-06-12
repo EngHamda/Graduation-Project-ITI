@@ -92,18 +92,20 @@ class PhysicianController extends Controller
     }
 
 
-   public function requestcompany($id)
-  {
 
-$advertisementid=$id;
+    public function requestcompany($id)
+    {
 
-
-
-return view('requestcompanyappointement',compact('medicalid','advertisementid'));
-
+        $advertisementid=$id;
+        $advertisement=Advertisement::find($advertisementid);
+        $advertisement=$advertisement->path;
 
 
- }
+        return view('requestcompanyappointement',compact('medicalid','advertisementid','advertisement'));
+
+
+
+    }
 
 
 

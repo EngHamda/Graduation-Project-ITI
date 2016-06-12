@@ -1,9 +1,9 @@
 @extends("layouts.main")
 @section('title','Physician Patient Profile')
 @section("content")
-    <div id="updateMessage" style="display:none;">patient profile Updates</div>
-    <div id="successMessage" style="display:none;">Email doesn't Exist</div>
-    <div id="errorMessage" style="display:none;">patient profile doexn't Exist</div>
+    <div id="updateMessage" style="display:none;" class="alert-success">patient profile Updates</div>
+    <div id="successMessage" style="display:none;" class="alert-danger">National ID doesn't Exist</div>
+    <div id="errorMessage" style="display:none;" class="alert-danger">patient profile doexn't Exist</div>
 
     <label> National ID: </label>
     <div class="row">
