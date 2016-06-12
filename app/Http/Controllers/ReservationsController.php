@@ -42,13 +42,13 @@ class ReservationsController extends Controller
 //        $reservations = Reservation::all();
         //$clinic_id=Auth::user()->clinic_id
         $reservations = Reservation:://where('clinic_id', $clinic_id)
-                                    //clinic_id for assistant login
-                //->
-                orderBy('reservation_day', 'asc')
-                ->orderBy('reservation_time', 'asc')
-                ->orderBy('reservation_confirmed', 'asc')
-                ->orderBy('reservation_number', 'asc')
-                ->get();//array of selected columns
+        //clinic_id for assistant login
+        //->
+        orderBy('reservation_day', 'asc')
+            ->orderBy('reservation_time', 'asc')
+            ->orderBy('reservation_confirmed', 'asc')
+            ->orderBy('reservation_number', 'asc')
+            ->get();//array of selected columns
 //        return compact('reservations');//,'patient_names');
         return view('Reservation.index', compact('reservations'));//,'patient_names'));
     }
@@ -64,17 +64,12 @@ class ReservationsController extends Controller
         $clinicNames = array();
         $clinicIds = array();
         $clinics = Clinics::all('id','name');
-        foreach ($clinics as $clinic ){ 
+        foreach ($clinics as $clinic ){
             // Code Here
             array_push($clinicNames, $clinic->name);
             array_push($clinicIds, $clinic->id);
         }
         $clinicList = array_combine($clinicIds, $clinicNames);
-        //$clinicList = array_fill_keys($clinicNames, $clinicNames);
-        //output
-            //{"clinicList":{"Clinic1":["Clinic1","Clinic2"]
-            //              ,"Clinic2":["Clinic1","Clinic2"]}}        
-//        return compact('clinicList');
         return view('Reservation.create', compact('clinicList'));
     }
 
@@ -103,7 +98,7 @@ class ReservationsController extends Controller
         }elseif (Auth::user()->role_id == 2 || Auth::user()->role_id == 5) {
             return redirect('/')->with('message','New Reservation is added');
         }
-        
+
     }
 
     /**
@@ -130,15 +125,19 @@ class ReservationsController extends Controller
     {
         //
         $reservation = Reservation::find($id);
-        $clinicNames = array();
-        $clinicIds = array();
-        $clinics = Clinics::all('id','name');
-        foreach ($clinics as $clinic ){ 
-            // Code Here
-            array_push($clinicNames, $clinic->name);
-            array_push($clinicIds, $clinic->id);
-        }
-        $clinicList = array_combine($clinicIds, $clinicNames);
+        $clinic_id = auth()->user()->assistant_details->clinic_id;
+        $clinic_name = Clinics::where('id',$clinic_id)
+            ->select('name')->first()->name;
+        $clinicList = array($clinic_id=>$clinic_name);
+//        $clinicNames = array();
+//        $clinicIds = array();
+//        $clinics = Clinics::all('id','name');
+//        foreach ($clinics as $clinic ){
+//            // Code Here
+//            array_push($clinicNames, $clinic->name);
+//            array_push($clinicIds, $clinic->id);
+//        }
+//        $clinicList = array_combine($clinicIds, $clinicNames);
         return view('Reservation.edit',  compact('reservation', 'clinicList'));
     }
 
@@ -164,10 +163,12 @@ class ReservationsController extends Controller
         $command = new UpdateReservationCommand($patient_id, $physician_id, $clinic_id, $reservation_day, $reservation_time, $reservation_confirmed, $reservation_number, $id);
         //run command
         $this->dispatch($command);
-        return redirect('/reservations')
+        return redirect('/assistant')
 //        return redirect('/patient/index')
-                ->with('message','Reservation Number '.$reservation_number.' is updated');
-        
+            ->with('message','Reservation Number '.$reservation_number.' is updated');
+        /**/
+
+
     }
 
     /**
@@ -184,8 +185,8 @@ class ReservationsController extends Controller
         $this->dispatch($command);
         return redirect('/reservations')
 //        return redirect('/patient/index')
-                ->with('message','Reservation is deleted');
-        
+            ->with('message','Reservation is deleted');
+
     }
 
     public function getphysicians(Request $request)
@@ -197,13 +198,13 @@ class ReservationsController extends Controller
         foreach ($physicians as $physician ){
 //            $data = $physician->user->name." - ".$physician->user->physiciandetail->speciality->name;
             array_push($physicianNames, $physician->user->name);
-            array_push($physicianIds, $physician->user_id);           
-            
+            array_push($physicianIds, $physician->user_id);
+
         }
 //        $physicians_name = $physicians->user->name;//->select('user_id')->get();//->get();
         $physicianList = array_combine($physicianIds, $physicianNames);
         return $physicianList;//$physicians_name;
-        
+
     }
     public function getdays(Request $request)
     {
@@ -211,30 +212,30 @@ class ReservationsController extends Controller
         $clinic_id = $request->input('clinic_id');
         $physician_id = $request->input('physician_id');
         $days= ClinicTimes::where('clinic_id',$clinic_id)
-                ->where('physician_id',$physician_id)
-                ->select('day', 'start', 'end')->get();
+            ->where('physician_id',$physician_id)
+            ->select('day', 'start', 'end')->get();
 //        $days = ClinicTimes::where('clinic_id',$clinic_id)
 //                               ->where('physician_id',$physician_id);
 //                               ->select('day','start','end');//->get();//,'start','end')->get();
-        
+
 //        $daysValues = array();
 //        foreach ($days as $day ){
 //            array_push($daysValues, $days->start);
-////            array_push($physicianIds, $physician->user_id);           
-//            
+////            array_push($physicianIds, $physician->user_id);
+//
 //        }
         $x=['ff'];
         return $days;//$days[0];//Values;//$physicians_name;
-        
+
     }
 
     public function createbyassistant( $id)
     {
-         $username=User::find($id)->name;
+        $username=User::find($id)->name;
         $clinicNames = array();
         $clinicIds = array();
         $clinics = Clinics::all('id','name');
-        foreach ($clinics as $clinic ){ 
+        foreach ($clinics as $clinic ){
             // Code Here
             array_push($clinicNames, $clinic->name);
             array_push($clinicIds, $clinic->id);
@@ -248,13 +249,21 @@ class ReservationsController extends Controller
         $user = User::where('id',$id)->first();
         $clinicNames = array();
         $clinicIds = array();
-        $clinics = Clinics::all('id','name');
-        foreach ($clinics as $clinic ){ 
-            // Code Here
-            array_push($clinicNames, $clinic->name);
-            array_push($clinicIds, $clinic->id);
+//        $clinics = Clinics::all('id','name');
+        if(Auth::user()->role_id == 3){
+            $clinic_id = auth()->user()->assistant_details->clinic_id;
+            $clinic_name = Clinics::where('id',$clinic_id)
+                ->select('name')->first()->name;
+            $clinicList = array($clinic_id=>$clinic_name);
+        }elseif (Auth::user()->role_id == 2 || Auth::user()->role_id == 5) {
+            $clinics = Clinics::all('id','name');
+            foreach ($clinics as $clinic ){
+                // Code Here
+                array_push($clinicNames, $clinic->name);
+                array_push($clinicIds, $clinic->id);
+            }
+            $clinicList = array_combine($clinicIds, $clinicNames);
         }
-        $clinicList = array_combine($clinicIds, $clinicNames);
         return view('Reservation.create', compact('clinicList', 'user'));
     }
 

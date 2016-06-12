@@ -3,7 +3,7 @@
 namespace App\Commands;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
-use App\Accedent;
+use App\Accident;
 class StoreAccidentCommand extends Command implements SelfHandling{
 
 
@@ -32,7 +32,7 @@ public function handle()
 
 
 
-return Accedent::create([
+return Accident::create([
 'accedentdate'=>$this->accedentdate,
 'accedentinformation'=>$this->accedenthistory,
 'patientprofile_id'=>$this->profileid,
