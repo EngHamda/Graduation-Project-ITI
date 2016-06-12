@@ -1,28 +1,49 @@
 @extends('layouts.main')
 @section('title','Medical Company Profile')
 @section('content')
-<div>
-@foreach($requests as $request)
-<p>{{$request->user->name}}<p>
-<p>{{$request->advertisementrequstdate}}<p>
+    <div class="container">
 
-@if($request->isconfirmed==0)
-<a href="/medicalcompany/confirmdoctorrequest/{{$request->id}}">confirmrequest</a>
-@endif
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Requests from physician</h3></div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Physician name</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($requests as $request)
+                        <tr>
+                            <td>{{$request->user->name}}</td>
+                            <td> {{$request->user->advertisementrequsttime}}</td>
+                            <td>{{$request->advertisementrequstdate}}</td>
 
-@if($request->isconfirmed==1)
-<p>Confirmed </p>
-@endif
+                            @if($request->isconfirmed==0)
+                                <td><a  class="btn btn-info" href="/medicalcompany/confirmdoctorrequest/{{$request->id}}">confirmrequest</a></td>
+                            @endif
+
+                            @if($request->isconfirmed==1)
+                                <td>Confirmed </td>
+                            @endif
+
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
-@endforeach
-
-
-</div>
 
 
 
-<form method="POST" action="{{ url('/medicalcompany') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/medicalcompany') }}" enctype="multipart/form-data">
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="medicalcompany_id" value="{{auth()->guard('medicalcompany')->user()->id}}"  >
     <div class="form-group">

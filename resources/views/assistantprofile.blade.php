@@ -79,11 +79,8 @@
                             @foreach($reservations as $reservation)
                             <tr>
                                 <th scope="row">
-                                    <!--<a href="#show_reservation">-->
-                                    <a href="http://localhost:8000/reservations/{{ $reservation->id }}" >
-                                    <!--<a href="/patient/show/{{-- $reservation->id--}}">-->
-                                        {{ $reservation->reservation_number }}
-                                    </a>
+                                    {{ $reservation->reservation_number }}
+
                                 </th>
                                 <td>{{ $reservation->reservation_day }}</td>
                                 <td>{{ $reservation->reservation_time }}</td>

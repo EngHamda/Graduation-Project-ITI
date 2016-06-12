@@ -401,82 +401,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>The Crew</h4>
+                <h4>Our Staff</h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <article class="crew-member" style="background-image: url(img/crew-peter-finlan.jpg)">
-                    <figure>
-                        <figcaption class="overlay">
-                            <h2>Peter Finlan</h2>
-                            <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress.</p>
-                            <div class="crew-socials">
-                                <ul>
-                                    <li><a href="http://www.twitter.com/peterfinlan/"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a href="http://www.linkedin.com/in/peterfinlan/"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </article>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <article class="crew-member" style="background-image: url(img/crew-blaz-robar.jpg)">
-                    <figure>
-                        <figcaption class="overlay">
-                            <h2>Blaz Robar</h2>
-                            <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress.</p>
-                            <div class="crew-socials">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </article>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <article class="crew-member" style="background-image: url(img/crew-mary-lou.jpg)">
-                    <figure>
-                        <figcaption class="overlay">
-                            <h2>Mary Lou</h2>
-                            <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress.</p>
-                            <div class="crew-socials">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </article>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <article class="crew-member" style="background-image: url('img/crew-dude.jpg')">
-                    <figure>
-                        <figcaption class="overlay">
-                            <h2>Kobe West</h2>
-                            <p>8-bit aesthetic kitsch 90's humblebrag. Gastropub tacos hoodie letterpress.</p>
-                            <div class="crew-socials">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </article>
-            </div>
+            @foreach ($staff as $physician)
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <article class="crew-member" style="background-image: url({{ URL::to('/')}}/images/{{$physician->profile_picture}})">
+                        {{--<img  src="{{ URL::to('/')}}/images/{{$advice->user->profile_picture }}" width="50" height="50">@endif--}}
+
+                        <figure>
+                            <figcaption class="overlay">
+                                <h2>{{$physician->name}}</h2>
+                                <p>{{$physician->physician_details->title}}</p>
+                                <p>{{$physician->physician_details->certification}}</p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -491,17 +434,17 @@
         </div>
         <div class="row">
             @foreach ($latestQuestions as $latestQuestion)
-                    <div class="col-md-6 content-left">
-                        <!--<span class="date">{{--$latestQuestion->updated_at--}}</span>-->
-                        <h5>{{$latestQuestion->question_specific}}</h5>
-                        <section  style="padding-top: 2px;padding-bottom: 2px;padding-left: 10px;">
-                            {{$latestQuestion->question_detail}}
-                        </section>
-                        <div class="group">
-                            <a href="/question/{{$latestQuestion->id}}" >Show Details</a>
-                        </div>
-                        <br>
+                <div class="col-md-6 content-left">
+                    <!--<span class="date">{{--$latestQuestion->updated_at--}}</span>-->
+                    <h5>{{$latestQuestion->question_specific}}</h5>
+                    <section  style="padding-top: 2px;padding-bottom: 2px;padding-left: 10px;">
+                        {{$latestQuestion->question_detail}}
+                    </section>
+                    <div class="group">
+                        <a href="/question/{{$latestQuestion->id}}" >Show Details</a>
                     </div>
+                    <br>
+                </div>
             @endforeach
         </div>
     </div>

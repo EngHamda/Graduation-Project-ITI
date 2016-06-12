@@ -57,7 +57,7 @@
  </div>
 
  <div class="form-group">
-   <label>Country</label>
+   <label>Governorate</label>
    <input type="text" name="country" class="form-control">
  </div>
  

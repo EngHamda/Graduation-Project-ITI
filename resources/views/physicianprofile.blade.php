@@ -15,16 +15,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 @foreach($adverisements as $index => $add)
-                    @if($index == 0)
-                    <div class="item {{ 'active' }}">                    
+                    <div class="item @if($index == 0) {{ 'active' }} @endif">
                         <a href="/physician/request/{{$add->id}}"><img style="width: 25%;" src="{{ URL::to('/') }}/images/{{ $add->path }}"  alt="{{ URL::to('/') }}/images/{{ $add->path }}">  </a>
-                        <h3>requst now </h3>
+                        <h3>Request Now </h3>
                     </div>
-                    @endif
-                @endforeach
-
-
-            </div>
+                    @endforeach
+                            </div>
 
 
             <!-- Left and right controls -->

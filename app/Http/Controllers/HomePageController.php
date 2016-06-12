@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Advice;
 use App\Question;
+use App\User;
 class HomePageController extends Controller
 {
     /**
@@ -18,8 +19,10 @@ class HomePageController extends Controller
     {
         $latestAdvices = Advice::orderBy('created_at', 'desc')->take(2)->get();
         $latestQuestions = Question::where('is_answered','answered')->orderBy('created_at', 'desc')->take(2)->get();
-        return view('homepage', compact('latestAdvices','latestQuestions'));
+        $staff           = User::where('role_id',4)->get();
+        return view('homepage', compact('latestAdvices', 'latestQuestions', 'staff'));
     }
+
 
     /**
      * Show the form for creating a new resource.

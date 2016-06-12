@@ -4,7 +4,7 @@ $('.like').on('click',function(event)
     {
 
         // Prevent default behavior
-        var adviceId =event.target.parentNode.parentNode.parentNode.dataset['adviceid'];
+        var adviceId =event.target.parentNode.parentNode.dataset['adviceid'];
         event.defaultPrevented;
 
        var isLike = event.target.previousElementSibling==null;

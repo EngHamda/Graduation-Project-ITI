@@ -25,7 +25,7 @@ class StoreUserRequest extends Request
     {
         return [
             'name'=>'required',
-            'email'=>'required',
+            'email' => 'required|email|unique:users',
             'password'=>'required',
             'gender'=>'required',
             'birth_date'=>'required',
