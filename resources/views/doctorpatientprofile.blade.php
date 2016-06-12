@@ -196,11 +196,6 @@ presciption
 
 var token = '{{Session::token()}}';
 
-
-
-
-
-
 </script>
 
 

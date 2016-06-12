@@ -76,24 +76,6 @@ var duration={};
 var count_p=1;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function send() {
 
 
@@ -337,34 +319,34 @@ data: {"_token":token,
 
 
 
-function sendemail()
-{
-
-patientemailarray[0]=$(".patientemail").val();
-patientemailassociativearray[0] = patientemailarray[0];
-pasthistoryassociativearray[0]=$("#pasthistory").val();
-var patientemailjson=JSON.stringify(patientemailassociativearray);
-$.ajax({
-            url: '/sendemail',
-            type: 'post',
-            dataType: 'json',
-
-            //success: function (data) {   if(data.success) 
-
-//var data =data.success;
-
-  //    window.location.replace("/showprescription/"+data); 
-
-
-
-
-//},
-
-            data:{"_token":token,patientemailjson}});
-
-
-
-}
+//function sendemail()
+//{
+//
+//patientemailarray[0]=$(".patientemail").val();
+//patientemailassociativearray[0] = patientemailarray[0];
+//pasthistoryassociativearray[0]=$("#pasthistory").val();
+//var patientemailjson=JSON.stringify(patientemailassociativearray);
+//$.ajax({
+//            url: '/sendemail',
+//            type: 'post',
+//            dataType: 'json',
+//
+//            //success: function (data) {   if(data.success)
+//
+////var data =data.success;
+//
+//  //    window.location.replace("/showprescription/"+data);
+//
+//
+//
+//
+////},
+//
+//            data:{"_token":token,patientemailjson}});
+//
+//
+//
+//}
 
 
 
@@ -658,31 +640,66 @@ $(document).ready(function(){
     
 
 
+$('#prescription_add').on('click',function(event) {
+
+    var userId = event.target.parentNode.dataset['basicinfos_id'];
+    var patient_id ={};
+    patient_id[0]=userId;
+    drug[0] = $("#drug").val();
+    duration[0] = $("#duration").val();
+    freq[0] = $("#freq").val();
+    date[0] = $("#date").val();
+
+    for (var y = 1; y < count_p; y++) {
+
+        var valueofdrug = $('#drug' + y).val();
+
+        var valueofdate = $('#date' + y).val();
+        var valueoffreq = $('#freq' + y).val();
+        var valueofduration = $('#duration' + y).val();
+        date[y] = valueofdate;
+        drug[y] = valueofdrug;
+        freq[y] = valueoffreq;
+        duration[y] = valueofduration;
+
+    }
+
+    var drugjson = JSON.stringify(drug);
+    var freqjson = JSON.stringify(freq);
+    var datejson = JSON.stringify(date);
+    var durationjson = JSON.stringify(duration);
+    var idjson = JSON.stringify(patient_id);
 
 
+    $.ajax({
+        url: '/prescription',
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
 
 
+            if (data.success == 2) {
+                $("#successpres").show();
+            }
 
 
+            if (data.success == 1) {
+                $("#successMessage").show();
+            }
 
 
+            if (data.success == 0) {
+                $("#errorMessage").show();
+            }
+        },
+        data: {
+            "_token": token,
+            "idjson" : idjson,
+            "drugjson": drugjson,
+            "freqjson": freqjson,
+            "datejson": datejson,
+            "durationjson": durationjson,
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })
+})

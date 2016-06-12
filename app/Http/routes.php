@@ -105,6 +105,7 @@ Route::get('/prescription', function () { return view('prescription');});
 Route::post('/addprescription','PatientprofilesController@insertprescription');
 Route::post('/sendemail','PatientprofilesController@sendemailtoprescriptionpage');
 Route::get('/showprescription/{id}','PatientprofilesController@showprescription');
+    Route::post('/prescription','PatientprofilesController@storePrescription');
 
 //Route::get('/endshow', function () {return view('prescription');});  
 });
