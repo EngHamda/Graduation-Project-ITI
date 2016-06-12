@@ -330,7 +330,7 @@
                 </div>
             </div>
         </div>
-        <div class="carousel-cell" style="background-image: url(img/hero-bg-02.jpg);">
+        <div class="carousel-cell" style="background-image: url(img/dentalclinic.jpg);">
             <div class="hero-bg">
                 <div class="container">
                     <div class="row">

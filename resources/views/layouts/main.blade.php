@@ -99,7 +99,6 @@
 
 
                                 @if(Auth::user()->role_id==2||Auth::user()->role_id==5)
-                                    <li><a href="/reservations/create">Reserve Online</a></li>
                                     <li><a href="/questions/create">Ask Question</a></li>
                                 @endif
                             @endif

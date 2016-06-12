@@ -25,7 +25,7 @@ class StoreAdviceRequest extends Request
     public function rules()
     {
         return [
-            'advice'=>'required',
+            'advice'=>'required|max:180',
 
 
         ];
