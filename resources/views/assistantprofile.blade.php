@@ -15,7 +15,6 @@
    <div class="col-sm-9">
 
 <a href="/assistant/addnewpatientprofile" class="btn btn-info btn-block btn-lg"> AddNewPatient</a>
-    <a href="/reservations/create" class="btn btn-danger btn-block btn-lg"> Add Reservation</a>
     <a href="/clinictimes/create" class="btn btn-info btn-block btn-lg"> AddClinicTimes</a>
   </div>
   </div>

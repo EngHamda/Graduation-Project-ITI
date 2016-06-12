@@ -481,6 +481,38 @@
     </div>
 </section>
 <!-- END SECTION: Crew -->
+<!-- SECTION: Freebies -->
+<section class="freebies has-padding" id="freebies" style="padding-top: 50px;padding-bottom: 50px;">
+    <div class="container freebies-intro" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Freshest Questions</h4>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($latestQuestions as $latestQuestion)
+                    <div class="col-md-6 content-left">
+                        <!--<span class="date">{{--$latestQuestion->updated_at--}}</span>-->
+                        <h5>{{$latestQuestion->question_specific}}</h5>
+                        <section  style="padding-top: 2px;padding-bottom: 2px;padding-left: 10px;">
+                            {{$latestQuestion->question_detail}}
+                        </section>
+                        <div class="group">
+                            <a href="/question/{{$latestQuestion->id}}" >Show Details</a>
+                        </div>
+                        <br>
+                    </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="is-centered">
+            <a href="/questions" class="btn secondary view-more">View more</a>
+        </div>
+    </div>
+</section>
+<!-- END SECTION: Freebies -->
+
 <!-- SECTION: Articles -->
 <section class="latest-articles has-padding alternate-bg" id="articles">
     <div class="container">
@@ -530,79 +562,6 @@
     </div>
 </section>
 <!-- END SECTION: Articles -->
-<!-- SECTION: Freebies -->
-<section class="freebies has-padding" id="freebies">
-    <div class="container freebies-intro">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Freshest Questions</h4>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($latestQuestions as $latestQuestion)
-            <div class="col-md-6 content-left">
-                <p>A posuere donec senectus suspendisse bibendum
-                    magna ridiculus a justo orci parturient suspendisse 
-                    ad rhoncus cursus ut parturient viverra elit aliquam 
-                    ultrices est sem. Tellus nam ad fermentum ac enim est 
-                    duis facilisis congue a lacus adipiscing consequat risus 
-                    consectetur scelerisque integer suspendisse a mus integer
-                    elit.</p>
-            </div>
-            <div class="col-md-6 content-right">
-                <p>A posuere donec senectus suspendisse bibendum magna 
-                    ridiculus a justo orci parturient suspendisse ad rhoncus 
-                    cursus ut parturient viverra elit aliquam ultrices est 
-                    sem. Tellus nam ad fermentum ac enim est duis facilisis 
-                    congue a lacus adipiscing consequat risus consectetur 
-                    scelerisque integer suspendisse a mus integer elit.
-                </p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row"><!--row of question list-->
-            @foreach ($latestQuestions as $latestQuestion)
-            <div class="col-md-6 no-padding">
-                <article class="item wp5">
-                    <figure class="has-overlay">
-                        <figcaption class="overlay">
-                            <div class="like-share-wrapper">
-                                <ul>
-                                    <li>
-                                        <div class="like-button-wrapper">
-                                            <a href="#" class="like_button"><i class="like-counter fa fa-heart-o"></i></a>
-                                            <span class="count">0</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="freebie-content">
-                                <span class="date">03/01/2016</span>
-                                <h2>{{$latestQuestion->question_specific}}</h2>
-                                <h2>{{$latestQuestion->answers}}</h2>
-
-                                <div class="group">
-                                    <a href="http://tympanus.net/codrops/2015/09/16/freebie-land-io-ui-kit-landing-page-design-sketch/" class="btn secondary">Download</a>
-                                </div>
-                            </div>
-                        </figcaption>
-                        <img src="img/landio-freebie.jpg" alt="Land.io Freebie Peter Finlan">
-                    </figure>
-                </article>
-            </div>
-            @endforeach
-        </div>
-
-
-            <div class="is-centered">
-                <a href="/questions" class="btn secondary view-more">View more</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END SECTION: Freebies -->
 <!-- SECTION: Footer -->
 <footer class="has-padding footer-bg">
     <div class="container">

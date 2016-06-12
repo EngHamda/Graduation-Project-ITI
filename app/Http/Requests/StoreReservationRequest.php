@@ -13,23 +13,12 @@ class StoreReservationRequest extends Request
         
     }
     public function rules() {
-        
-
         return [
-
-
-
-
- 'patient-name'=>'required',
-'clinic-name'=>'required',
-'physician-name'=>'required',
-'reservation_day'=>'required',
-'reservation_time'=>'required',
-
-
-
-
-
-];        
+            'patient-name'=>'required',
+            'clinic-name'=>'required',
+            'physician-name'=>'required',
+            'clinic-day'=>'required',
+            'clinic-time'=>'required'
+        ];     
     }
 }

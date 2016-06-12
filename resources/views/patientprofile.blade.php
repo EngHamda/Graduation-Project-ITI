@@ -46,6 +46,7 @@
         <ul>@foreach($pasthistories as $pasthistory)
            <li>Date : {{$pasthistory->pasthistorydate}}</li>
                 <li>{{$pasthistory->historyinformation}}</li>
+                <hr>
                 @endforeach
         </ul>
     </div>
@@ -54,15 +55,16 @@
         <ul>@foreach($surgicalhistories as $surgicalhistory)
                 <li>Date : {{$surgicalhistory->surgicaldate}}</li>
                 <li>{{$surgicalhistory->surgicalinformation}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="previousprescriptions" class="tab-pane fade">
         <h3>Previous Prescriptions</h3>
         <ul>@foreach($prescriptions as $prescription)
                 <li>Date : {{$prescription->date}}</li>
-                <li>{{$prescription->drug}}</li>
-                <li>{{$prescription->frequency}}</li>
-                <li>{{$prescription->duration}}</li>
+                <li>Drug :{{$prescription->drug}}</li>
+                <li>Frequency :{{$prescription->frequency}} {{$prescription->duration}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="allergies" class="tab-pane fade">
@@ -70,6 +72,7 @@
         <ul>@foreach($allergies as $allergy)
                 <li>Date : {{$allergy->allergydate}}</li>
                 <li>{{$allergy->allergyinformation}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="accidents" class="tab-pane fade">
@@ -77,6 +80,7 @@
         <ul>@foreach($accidents as $accident)
                 <li>Date : {{$accident->accedentdate}}</li>
                 <li>{{$accident->accedentinformation}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="needs" class="tab-pane fade">
@@ -84,6 +88,7 @@
         <ul>@foreach($specialneeds as $specialneed)
 
                 <li>{{$specialneed->specialneedinformation}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="blood" class="tab-pane fade">
@@ -92,6 +97,7 @@
 
                 <li>Date :{{$bloodtransfusion->bloodtransferdate}}</li>
                 <li>{{$bloodtransfusion->bloodtransfer}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="family" class="tab-pane fade">
@@ -99,6 +105,7 @@
        <ul>@foreach($familyhistories as $familyhistory)
 
             <li>{{$familyhistory->familyhistory}}</li>
+               <hr>
             @endforeach</ul>
     </div>
 
@@ -108,6 +115,7 @@
 
                 <li>{{$miscarriage->miscarriagedate}}</li>
                 <li>{{$miscarriage->miscarriage}}</li>
+                <hr>
             @endforeach</ul>
     </div>
     <div id="birth" class="tab-pane fade">
@@ -138,12 +146,12 @@
                 <option value="everyhour">everyhour</option>
             </select>
 
-            <input type="button" value="addp" id="addp" class="btn btn-default" />
+            <input type="button" value="addprescription" id="addp" class="btn btn-info" />
 
         </div>
         </form>
         <article  data-basicinfos_id="{{$basicinfos->id}}">
-        <input type="button" id="prescription_add">
+        <input type="submit" id="prescription_add" value="Add" class="btn btn-success">
         </article>
         <div id="successpres" style="display:none;">Added prescription</div>
 </div>
